@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/mydb
+  jpa:
+    # 输出 sql 语句
+    show-sql: true
+
+    # 数据表的生成策略。
+    #
+    # true - 若有表则检测更新，若无表则创建
+    generate-ddl: true
+
+    # 和 generate-ddl 类似，但有 create,create-drop,update 等更多策略。
+    #    hibernate:
+    #      ddl-auto:
+
+    open-in-view: true
