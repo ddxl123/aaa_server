@@ -9,7 +9,6 @@ class Users : BaseEntity() {
     @Column(nullable = true, length = 20)
     var username: String? = null
 
-
     @Column(nullable = true, length = 20)
     var password: String? = null
 
@@ -19,3 +18,4 @@ class Users : BaseEntity() {
     @Column(nullable = true)
     var age: Byte? = null
 }
+
