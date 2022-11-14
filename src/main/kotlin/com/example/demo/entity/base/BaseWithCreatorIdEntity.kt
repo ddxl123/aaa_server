@@ -4,7 +4,7 @@ import javax.persistence.Column
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-open class BaseWithCreatorEntity : BaseEntity() {
+open class BaseWithCreatorIdEntity : BaseEntity() {
 
     /**
      * 哪个用户创建的数据。

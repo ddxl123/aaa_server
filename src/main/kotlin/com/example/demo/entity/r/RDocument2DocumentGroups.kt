@@ -1,24 +1,23 @@
 package com.example.demo.entity.r
 
-import com.example.demo.entity.base.BaseEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import com.example.demo.entity.unit.Documents
-import com.example.demo.entity.unit.Fragments
 import com.example.demo.entity.unit_group.DocumentGroups
-import com.example.demo.entity.unit_group.FragmentGroups
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.Table
 
 /**
  * [Documents] 属于 [DocumentGroups]
  */
 @Entity
-open class RDocument2DocumentGroups : BaseEntity() {
+class RDocument2DocumentGroups : BaseWithCreatorIdEntity() {
 
     /**
      * 关联的文档组 id。
+     *
+     * 若为空，则当前文档处在该用户文档组的最顶层。
      */
-    @Column(nullable = false)
+    @Column(nullable = true)
     var documentGroupId: Long? = null
 
     /**

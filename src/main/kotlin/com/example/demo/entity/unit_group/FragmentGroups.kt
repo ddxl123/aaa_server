@@ -1,11 +1,11 @@
 package com.example.demo.entity.unit_group
 
-import com.example.demo.entity.base.BaseWithCreatorEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class FragmentGroups : BaseWithCreatorEntity() {
+class FragmentGroups : BaseWithCreatorIdEntity() {
 
     /**
      * 当前碎片组的父碎片组id。

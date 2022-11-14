@@ -5,17 +5,17 @@ import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class DocumentGroups : BaseWithCreatorIdEntity() {
+class MemoryModelGroups : BaseWithCreatorIdEntity() {
 
     /**
-     * 当前文档组的父文档组id。
-     * 若为 null，则当前文档组是根文档组。
+     * 当前记忆模型组的父记忆模型组id。
+     * 若为 null，则当前记忆模型组是根记忆模型组。
      */
     @Column(nullable = true)
-    var fatherDocumentGroupsId: Long? = null
+    var fatherMemoryModelGroupsId: Long? = null
 
     /**
-     * 文档组名称。
+     * 记忆模型组名称。
      */
     @Column(nullable = true)
     var title: String? = null

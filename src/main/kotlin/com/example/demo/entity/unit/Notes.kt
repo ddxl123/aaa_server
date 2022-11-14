@@ -1,6 +1,6 @@
 package com.example.demo.entity.unit
 
-import com.example.demo.entity.base.BaseWithCreatorEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 
@@ -8,7 +8,7 @@ import javax.persistence.Entity
  * 笔记可以被继承。
  */
 @Entity
-class Notes : BaseWithCreatorEntity() {
+class Notes : BaseWithCreatorIdEntity() {
 
     /**
      * 从哪个文档摘取的笔记。

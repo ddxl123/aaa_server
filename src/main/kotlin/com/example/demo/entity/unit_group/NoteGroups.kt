@@ -1,11 +1,11 @@
 package com.example.demo.entity.unit_group
 
-import com.example.demo.entity.base.BaseWithCreatorEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class NoteGroups : BaseWithCreatorEntity() {
+class NoteGroups : BaseWithCreatorIdEntity() {
 
     /**
      * 当前笔记组的父笔记组id。

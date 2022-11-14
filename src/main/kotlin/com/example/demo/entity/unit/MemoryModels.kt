@@ -1,11 +1,18 @@
 package com.example.demo.entity.unit
 
-import com.example.demo.entity.base.BaseWithCreatorEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class MemoryModels : BaseWithCreatorEntity() {
+class MemoryModels : BaseWithCreatorIdEntity() {
+
+    /**
+     * 从哪个父记忆模型修改而来的。
+     * 若为 null，则自身为根记忆模型。
+     */
+    @Column(nullable = true)
+    var fatherFragmentId: Long? = null
 
     @Column(nullable = true)
     var title: String? = null

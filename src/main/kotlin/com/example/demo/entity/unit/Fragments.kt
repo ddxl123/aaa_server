@@ -1,6 +1,6 @@
 package com.example.demo.entity.unit
 
-import com.example.demo.entity.base.BaseWithCreatorEntity
+import com.example.demo.entity.base.BaseWithCreatorIdEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 
@@ -8,7 +8,7 @@ import javax.persistence.Entity
  * 碎片可以被继承。
  */
 @Entity
-class Fragments : BaseWithCreatorEntity() {
+class Fragments : BaseWithCreatorIdEntity() {
 
     /**
      * 从哪个笔记碎片化的。
