@@ -12,10 +12,10 @@ enum class DtoOrVo {
 }
 
 
-class Variable<out T, out V> {
+class FieldTarget<out T, out V> {
 
     /**
-     * [variableObj] XXX:name
+     * [fieldTargetObj] XXX:name
      *
      * [isForceNullable] 是否强制为空或不为空，无论 XXX:name 的注解是否为空。
      * 当 [isForceNullable] 为 null 时，会根据 XXX:name 自动检测是否为空。
@@ -23,14 +23,14 @@ class Variable<out T, out V> {
      * [explain] 当前变量的注释。
      */
     constructor(
-            variableObj: KMutableProperty1<T, V>,
+            fieldTargetObj: KMutableProperty1<T, V>,
             isForceNullable: Boolean? = null,
             explain: String = ""
     ) {
-        this.kotlinTypeName = variableObj.returnType.toString().split(".").last().replace("?", "")
+        this.kotlinTypeName = fieldTargetObj.returnType.toString().split(".").last().replace("?", "")
         val targetValue: TargetValue = typeMap[this.kotlinTypeName]
                 ?: throw Exception("未找到对应的 dartType！need:${this.kotlinTypeName}")
-        this.variableName = variableObj.name.replace(Regex("[A-Z]")) { matchResult -> "_${matchResult.value.lowercase()}" }
+        this.fieldName = fieldTargetObj.name.replace(Regex("[A-Z]")) { matchResult -> "_${matchResult.value.lowercase()}" }
         this.dartTypeName = targetValue.dartTypeName
         this.kotlinImport = targetValue.kotlinImport
         this.dartImport = targetValue.dartImport
@@ -38,14 +38,14 @@ class Variable<out T, out V> {
             this.isForceNullable = isForceNullable
         } else {
             // 识别注解，解析出是否为空
-            this.isForceNullable = variableObj.javaField!!.getDeclaredAnnotationsByType(Column::class.java).firstOrNull()?.nullable
+            this.isForceNullable = fieldTargetObj.javaField!!.getDeclaredAnnotationsByType(Column::class.java).firstOrNull()?.nullable
                     ?: true
         }
         this.explain = explain
     }
 
     /**
-     * [variableName] 自命名的变量名。
+     * [fieldName] 自命名的字段名。
      *
      * [kotlinType] 需要的 kotlin 的类型。
      * 可查看映射：[typeMap]
@@ -55,7 +55,7 @@ class Variable<out T, out V> {
      * [explain] 当前变量的注释。
      */
     constructor(
-            variableName: String,
+            fieldName: String,
             kotlinType: KClass<*>,
             isForceNullable: Boolean,
             explain: String = ""
@@ -63,7 +63,7 @@ class Variable<out T, out V> {
         this.kotlinTypeName = kotlinType.simpleName!!
         val targetValue: TargetValue = typeMap[this.kotlinTypeName]
                 ?: throw Exception("未找到对应的 dartType！need:${this.kotlinTypeName}")
-        this.variableName = variableName
+        this.fieldName = fieldName
         this.dartTypeName = targetValue.dartTypeName
         this.kotlinImport = targetValue.kotlinImport
         this.dartImport = targetValue.dartImport
@@ -72,7 +72,7 @@ class Variable<out T, out V> {
     }
 
 
-    val variableName: String
+    val fieldName: String
     val kotlinTypeName: String
     val dartTypeName: String
     val kotlinImport: String
@@ -83,38 +83,38 @@ class Variable<out T, out V> {
 
 class ClassTarget<out T, out V>(
         val className: String,
-        private val variables: Array<Variable<T, V>>
+        private vararg val fieldTargets: FieldTarget<T, V>
 ) {
     private val kotlinImports = mutableSetOf<String>()
 
     fun toKotlinContent(dtoOrVo: DtoOrVo): String {
-        var variableContent = ""
-        for (variable in variables) {
-            kotlinImports.add(variable.kotlinImport)
-            variableContent += """
-    // ${variable.explain}
-    var ${variable.variableName}: ${variable.kotlinTypeName}${if (variable.isForceNullable) '?' else ""},${"\n"}"""
+        var fieldTargetContent = ""
+        for (fieldTarget in fieldTargets) {
+            kotlinImports.add(fieldTarget.kotlinImport)
+            fieldTargetContent += """
+    // ${fieldTarget.explain}
+    var ${fieldTarget.fieldName}: ${fieldTarget.kotlinTypeName}${if (fieldTarget.isForceNullable) '?' else ""},${"\n"}"""
         }
 
         return """
 package com.example.demo.dto_vo.${dtoOrVo.name}
 ${kotlinImports.joinToString("\n")}
 data class $className(
-$variableContent
+$fieldTargetContent
 )
 """.trimIndent()
     }
 
     fun toDartContent(): String {
-        var variableContent = ""
+        var fieldTargetContent = ""
         var requiredContent = ""
-        for (variable in variables) {
-            variableContent += """
-    /// ${variable.explain}
-    ${variable.dartTypeName}${if (variable.isForceNullable) "?" else ""} ${variable.variableName};
+        for (fieldTarget in fieldTargets) {
+            fieldTargetContent += """
+    /// ${fieldTarget.explain}
+    ${fieldTarget.dartTypeName}${if (fieldTarget.isForceNullable) "?" else ""} ${fieldTarget.fieldName};
 """
             requiredContent += """
-    required this.${variable.variableName},
+    required this.${fieldTarget.fieldName},
 """
         }
         return """
@@ -123,7 +123,7 @@ import 'package:json_annotation/json_annotation.dart';
 part '${className}.g.dart';
 @JsonSerializable()
 class $className {
-$variableContent
+$fieldTargetContent
 $className({
 $requiredContent
 });
