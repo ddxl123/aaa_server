@@ -1,4 +1,4 @@
-package com.example.demo.dto_vo.generator
+package com.example.demo.generator
 
 import java.time.Instant
 

@@ -1,15 +1,13 @@
-package com.example.demo.dto_vo.generator
+package com.example.demo.generator
 
 import java.io.File
+import java.nio.file.*
 import javax.persistence.Column
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.jvm.javaField
-
-enum class DtoOrVo {
-    dto,
-    vo,
-}
 
 
 class FieldTarget<out T, out V> {
@@ -81,13 +79,49 @@ class FieldTarget<out T, out V> {
     val explain: String
 }
 
+class PathClass(
+        /**
+         * 相对 [dartGeneratorRootPath]+[mainPath] 的路径。
+         */
+        val dartRelativePath: String,
+
+        /**
+         * 相对 [kotlinGeneratorRootPath]+[mainPath] 的路径。
+         */
+        val kotlinRelativePath: String,
+
+        /**
+         * 统一类名。
+         */
+        val className: String
+
+) {
+    val dartCompletePathNoClass: String = ShareObjectGenerator.dartGeneratorRootPath + ShareObjectGenerator.mainPath + dartRelativePath
+    val kotlinCompletePath: String = ShareObjectGenerator.kotlinGeneratorRootPath + ShareObjectGenerator.mainPath + kotlinRelativePath
+    private val dartCompletePathWithClassNoClass: String
+    private val kotlinCompletePathWithClass: String
+    val dartCompletePathWithClassAndSuffix: String
+    val kotlinCompletePathWithClassSuffix: String
+
+    init {
+        if (dartCompletePathNoClass.contains("\\") || kotlinCompletePath.contains("\\")) {
+            throw Exception("路径必须用/，不要使用 \\")
+        }
+        dartCompletePathWithClassNoClass = "$dartCompletePathNoClass/$className"
+        kotlinCompletePathWithClass = "$kotlinCompletePath/$className"
+        dartCompletePathWithClassAndSuffix = "$dartCompletePathWithClassNoClass.dart"
+        kotlinCompletePathWithClassSuffix = "$kotlinCompletePathWithClass.kt"
+    }
+}
+
 class ClassTarget<out T, out V>(
-        val className: String,
+        val pathClass: PathClass,
         private vararg val fieldTargets: FieldTarget<T, V>
 ) {
     private val kotlinImports = mutableSetOf<String>()
 
-    fun toKotlinContent(dtoOrVo: DtoOrVo): String {
+    fun toKotlinContent(): String {
+
         var fieldTargetContent = ""
         for (fieldTarget in fieldTargets) {
             kotlinImports.add(fieldTarget.kotlinImport)
@@ -97,9 +131,9 @@ class ClassTarget<out T, out V>(
         }
 
         return """
-package com.example.demo.dto_vo.${dtoOrVo.name}
+package ${ShareObjectGenerator.kotlinPackageName}.${(ShareObjectGenerator.mainPath + pathClass.kotlinRelativePath).split(Regex("/")).run { subList(1, count()) }.joinToString(".")}
 ${kotlinImports.joinToString("\n")}
-data class $className(
+data class ${pathClass.className}(
 $fieldTargetContent
 )
 """.trimIndent()
@@ -120,44 +154,63 @@ $fieldTargetContent
         return """
 // ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
-part '${className}.g.dart';
+part '${pathClass.className}.g.dart';
 @JsonSerializable()
-class $className {
+class ${pathClass.className} {
 $fieldTargetContent
-$className({
+${pathClass.className}({
 $requiredContent
 });
-    factory $className.fromJson(Map<String, dynamic> json) => _$${className}FromJson(json);
-    Map<String, dynamic> toJson() => _$${className}ToJson(this);
+    factory ${pathClass.className}.fromJson(Map<String, dynamic> json) => _$${pathClass.className}FromJson(json);
+    Map<String, dynamic> toJson() => _$${pathClass.className}ToJson(this);
 }
 """
     }
 }
 
-class DtoVoGenerator {
-    private val kotlinMainPath = "D:\\project\\aaa_server\\src\\main\\kotlin\\com\\example\\demo\\dto_vo"
-
-    private val dartMainPath = "D:\\project\\aaa\\subpackages\\httper\\lib\\dto_vo"
-
-    fun run() {
-        write(dtos, DtoOrVo.dto)
-        write(bos, DtoOrVo.vo)
-    }
+class ShareObjectGenerator {
+    companion object {
 
 
-    /**
-     * [list] 集合。
-     *
-     * [dtoOrVo] dto 或 do 字符。
-     */
-    private fun <T, V> write(list: Array<out ClassTarget<T, V>>, dtoOrVo: DtoOrVo) {
-        for (dto in list) {
-            val kotlinFile = File("$kotlinMainPath\\${dtoOrVo.name}\\${dto.className}.kt")
-            kotlinFile.writeText(dto.toKotlinContent(dtoOrVo))
+        var kotlinPackageName: String = ""
 
-            val dartFile = File("$dartMainPath\\${dtoOrVo.name}\\${dto.className}.dart")
-            dartFile.writeText(dto.toDartContent())
+        /**
+         * kotlin 项目根路径。
+         */
+        var kotlinGeneratorRootPath: String = ""
+
+        /**
+         * dart 项目根路径是。
+         */
+        var dartGeneratorRootPath: String = ""
+
+        /**
+         * 相对根路径的主路径。
+         */
+        var mainPath: String = ""
+
+        val targets = mutableListOf<ClassTarget<*, *>>()
+
+        fun setConfig(
+                kotlinPackageName: String,
+                kotlinGeneratorRootPath: String,
+                dartGeneratorRootPath: String,
+                mainPath: String,
+        ) {
+            ShareObjectGenerator.kotlinPackageName = kotlinPackageName
+            ShareObjectGenerator.kotlinGeneratorRootPath = kotlinGeneratorRootPath
+            ShareObjectGenerator.dartGeneratorRootPath = dartGeneratorRootPath
+            ShareObjectGenerator.mainPath = mainPath
         }
-    }
 
+        fun run() {
+            for (target in targets) {
+                Path(target.pathClass.kotlinCompletePath).createDirectories()
+                Path(target.pathClass.dartCompletePathNoClass).createDirectories()
+                File(target.pathClass.kotlinCompletePathWithClassSuffix).writeText(target.toKotlinContent())
+                File(target.pathClass.dartCompletePathWithClassAndSuffix).writeText(target.toDartContent())
+            }
+        }
+
+    }
 }
