@@ -1,11 +1,13 @@
 package com.example.demo.entity
 
-import com.example.demo.entity.base.BaseEntity
+import com.example.demo.entity.base.BaseIdAutoAssignable
+import com.example.demo.entity.base.BaseIdManualAssignable
+import com.example.demo.entity.base.BaseTimeEntity
 import javax.persistence.*
 
 
 @Entity
-class Users : BaseEntity() {
+class Users : BaseIdAutoAssignable() {
     @Column(nullable = true, length = 20)
     var username: String? = null
 

@@ -1,11 +1,17 @@
 package com.example.demo.entity.unit
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class MemoryModels : BaseWithCreatorIdEntity() {
+class MemoryModels : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 从哪个父记忆模型修改而来的。

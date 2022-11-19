@@ -1,12 +1,18 @@
 package com.example.demo.entity.info
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class FragmentMemoryInfos : BaseWithCreatorIdEntity() {
+class FragmentMemoryInfos : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 属于哪个碎片组。

@@ -1,6 +1,6 @@
 package com.example.demo.entity.unit
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import javax.persistence.Column
 import javax.persistence.Entity
 
@@ -8,7 +8,13 @@ import javax.persistence.Entity
  * 文档不能被继承。
  */
 @Entity
-class Documents : BaseWithCreatorIdEntity() {
+class Documents : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 文档内容。可以是文章、文件、富文本(可嵌入文件)

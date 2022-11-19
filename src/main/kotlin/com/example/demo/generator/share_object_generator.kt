@@ -1,7 +1,7 @@
 package com.example.demo.generator
 
+import com.example.demo.code_message.CodeMessage
 import java.io.File
-import java.nio.file.*
 import javax.persistence.Column
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
@@ -79,22 +79,61 @@ class FieldTarget<out T, out V> {
     val explain: String
 }
 
+enum class ClassNameType {
+    Dto,
+    Vo,
+}
+
+class ClassNameWrapper(private val nameClass: KClass<*>, val type: ClassNameType) {
+    val name = nameClass.simpleName
+    val nameWithType: String = nameClass.simpleName + type.name;
+    val codeMessages: ArrayList<CodeMessage> = arrayListOf()
+    val dtoFieldTargets: ArrayList<FieldTarget<*, *>> = arrayListOf()
+    val voFieldTargets: ArrayList<FieldTarget<*, *>> = arrayListOf()
+
+    init {
+        var hasDto = false
+        var hasVo = false
+        for (declaredField in nameClass.java.declaredFields) {
+            declaredField.isAccessible = true
+            val cm = declaredField.get(null)
+            if (cm is CodeMessage) {
+                codeMessages.add(cm)
+            }
+            if (declaredField.name == ClassNameType.Dto.name.lowercase() + "s") {
+                hasDto = true
+                dtoFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
+            }
+            if (declaredField.name == ClassNameType.Vo.name.lowercase() + "s") {
+                hasVo = true
+                voFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
+            }
+        }
+        if (!hasDto) {
+            throw Exception("缺少名为 dtos 的字段")
+        }
+        if (!hasVo) {
+            throw Exception("缺少名为 vos 的字段")
+        }
+    }
+
+}
+
 class PathClass(
         /**
-         * 相对 [dartGeneratorRootPath]+[mainPath] 的路径。
+         * 相对 [ShareObjectGenerator.dartGeneratorRootPath]+[ShareObjectGenerator.mainPath] 的路径。
          */
         val dartRelativePath: String,
 
         /**
-         * 相对 [kotlinGeneratorRootPath]+[mainPath] 的路径。
+         * 相对 [ShareObjectGenerator.kotlinGeneratorRootPath]+[ShareObjectGenerator.mainPath] 的路径。
          */
         val kotlinRelativePath: String,
 
         /**
          * 统一类名。
          */
-        val className: String
-
+        val classNameWrapper: ClassNameWrapper
 ) {
     val dartCompletePathNoClass: String = ShareObjectGenerator.dartGeneratorRootPath + ShareObjectGenerator.mainPath + dartRelativePath
     val kotlinCompletePath: String = ShareObjectGenerator.kotlinGeneratorRootPath + ShareObjectGenerator.mainPath + kotlinRelativePath
@@ -107,62 +146,166 @@ class PathClass(
         if (dartCompletePathNoClass.contains("\\") || kotlinCompletePath.contains("\\")) {
             throw Exception("路径必须用/，不要使用 \\")
         }
-        dartCompletePathWithClassNoClass = "$dartCompletePathNoClass/$className"
-        kotlinCompletePathWithClass = "$kotlinCompletePath/$className"
+        dartCompletePathWithClassNoClass = "$dartCompletePathNoClass/${classNameWrapper.nameWithType}"
+        kotlinCompletePathWithClass = "$kotlinCompletePath/${classNameWrapper.nameWithType}"
         dartCompletePathWithClassAndSuffix = "$dartCompletePathWithClassNoClass.dart"
         kotlinCompletePathWithClassSuffix = "$kotlinCompletePathWithClass.kt"
     }
 }
 
-class ClassTarget<out T, out V>(
+class ClassTarget(
         val pathClass: PathClass,
-        private vararg val fieldTargets: FieldTarget<T, V>
 ) {
     private val kotlinImports = mutableSetOf<String>()
 
     fun toKotlinContent(): String {
-
-        var fieldTargetContent = ""
-        for (fieldTarget in fieldTargets) {
-            kotlinImports.add(fieldTarget.kotlinImport)
-            fieldTargetContent += """
-    // ${fieldTarget.explain}
-    var ${fieldTarget.fieldName}: ${fieldTarget.kotlinTypeName}${if (fieldTarget.isForceNullable) '?' else ""},${"\n"}"""
-        }
-
         return """
 package ${ShareObjectGenerator.kotlinPackageName}.${(ShareObjectGenerator.mainPath + pathClass.kotlinRelativePath).split(Regex("/")).run { subList(1, count()) }.joinToString(".")}
 ${kotlinImports.joinToString("\n")}
-data class ${pathClass.className}(
-$fieldTargetContent
+data class ${pathClass.classNameWrapper.nameWithType}(
+${
+            fun(): String {
+                val fts = when (pathClass.classNameWrapper.type) {
+                    ClassNameType.Dto -> pathClass.classNameWrapper.dtoFieldTargets
+                    ClassNameType.Vo -> pathClass.classNameWrapper.voFieldTargets
+                    else -> throw Exception("未知 ClassNameType:${pathClass.classNameWrapper.type}")
+                }
+                var content = ""
+                fts.forEach {
+                    kotlinImports.add(it.kotlinImport)
+                    content += """
+    // ${it.explain}
+    var ${it.fieldName}: ${it.kotlinTypeName}${if (it.isForceNullable) '?' else ""},${"\n"}"""
+                }
+                return content
+            }()
+        }
 )
 """.trimIndent()
     }
 
     fun toDartContent(): String {
-        var fieldTargetContent = ""
-        var requiredContent = ""
-        for (fieldTarget in fieldTargets) {
-            fieldTargetContent += """
-    /// ${fieldTarget.explain}
-    ${fieldTarget.dartTypeName}${if (fieldTarget.isForceNullable) "?" else ""} ${fieldTarget.fieldName};
-"""
-            requiredContent += """
-    required this.${fieldTarget.fieldName},
-"""
-        }
         return """
 // ignore_for_file: non_constant_identifier_names
+${ShareObjectGenerator.dartBaseObjectImport}
 import 'package:json_annotation/json_annotation.dart';
-part '${pathClass.className}.g.dart';
+${
+            if (pathClass.classNameWrapper.type == ClassNameType.Dto) {
+                "import '${pathClass.classNameWrapper.name + ClassNameType.Vo.name}.dart';"
+            } else {
+                ""
+            }
+        }
+part '${pathClass.classNameWrapper.nameWithType}.g.dart';
 @JsonSerializable()
-class ${pathClass.className} {
-$fieldTargetContent
-${pathClass.className}({
-$requiredContent
+class ${pathClass.classNameWrapper.nameWithType} extends BaseObject{
+${
+            fun(): String {
+                val fts = when (pathClass.classNameWrapper.type) {
+                    ClassNameType.Dto -> pathClass.classNameWrapper.dtoFieldTargets
+                    ClassNameType.Vo -> pathClass.classNameWrapper.voFieldTargets
+                    else -> throw Exception("未知 ClassNameType:${pathClass.classNameWrapper.type}")
+                }
+                var content = ""
+                fts.forEach {
+                    content += """
+    /// ${it.explain}
+    ${it.dartTypeName}${if (it.isForceNullable) "?" else ""} ${it.fieldName};
+"""
+                }
+                return content
+            }()
+        }
+
+${pathClass.classNameWrapper.nameWithType}({
+${
+            fun(): String {
+                val fts = when (pathClass.classNameWrapper.type) {
+                    ClassNameType.Dto -> pathClass.classNameWrapper.dtoFieldTargets
+                    ClassNameType.Vo -> pathClass.classNameWrapper.voFieldTargets
+                    else -> throw Exception("未知 ClassNameType:${pathClass.classNameWrapper.type}")
+                }
+                var content = ""
+                fts.forEach {
+                    content += """
+    required this.${it.fieldName},
+"""
+                }
+                return content
+            }()
+        }
 });
-    factory ${pathClass.className}.fromJson(Map<String, dynamic> json) => _$${pathClass.className}FromJson(json);
-    Map<String, dynamic> toJson() => _$${pathClass.className}ToJson(this);
+  factory ${pathClass.classNameWrapper.nameWithType}.fromJson(Map<String, dynamic> json) => _$${pathClass.classNameWrapper.nameWithType}FromJson(json);
+    
+  @override
+  Map<String, dynamic> toJson() => _$${pathClass.classNameWrapper.nameWithType}ToJson(this);
+  
+  ${
+            if (pathClass.classNameWrapper.type == ClassNameType.Dto) {
+                """
+          
+  @JsonKey(ignore: true)
+  int? code;
+
+  @JsonKey(ignore: true)
+  String message = "未分配 message！";
+
+  @JsonKey(ignore: true)
+  ${pathClass.classNameWrapper.name + ClassNameType.Vo.name}? vo;
+
+  T handleCode<T>({
+    // 前端 request 内部异常，统一只需消息。
+    required T Function(String message) localExceptionMessage,
+    
+${
+                    fun(): String {
+                        var content = ""
+                        pathClass.classNameWrapper.codeMessages.forEach {
+                            content += if (it.isRequiredData) {
+                                """
+    // ${it.message}
+    required T Function(String message, ${pathClass.classNameWrapper.name + ClassNameType.Vo.name} vo) code${it.code},
+    """
+                            } else {
+                                """
+    // ${it.message}
+    required T Function(String message) code${it.code},
+    """
+                            }
+                        }
+                        return content
+                    }()
+                }
+                
+    }) {
+    
+${
+                    fun(): String {
+                        var content = ""
+                        pathClass.classNameWrapper.codeMessages.forEach {
+                            content += if (it.isRequiredData) {
+                                """
+    if (code == ${it.code}) {
+        return code${it.code}(message, vo!);
+    }
+"""
+                            } else {
+                                """
+    if (code == ${it.code}) {
+        return code${it.code}(message);
+    }
+"""
+                            }
+                        }
+                        return content
+                    }()
+                }
+                
+    throw "未处理 code:${"\$code"}";
+  }
+      """
+            } else ""
+        }
 }
 """
     }
@@ -172,6 +315,9 @@ class ShareObjectGenerator {
     companion object {
 
 
+        /**
+         * com.xxx.xxx
+         */
         var kotlinPackageName: String = ""
 
         /**
@@ -185,21 +331,30 @@ class ShareObjectGenerator {
         var dartGeneratorRootPath: String = ""
 
         /**
+         * dart 中每个 share_object 所继承的 BaseObject 的 import。
+         *
+         * 例如: import 'package:httper/BaseObject.dart';
+         */
+        var dartBaseObjectImport: String = ""
+
+        /**
          * 相对根路径的主路径。
          */
         var mainPath: String = ""
 
-        val targets = mutableListOf<ClassTarget<*, *>>()
+        val targets = mutableListOf<ClassTarget>()
 
         fun setConfig(
                 kotlinPackageName: String,
                 kotlinGeneratorRootPath: String,
                 dartGeneratorRootPath: String,
+                dartBaseObjectImport: String,
                 mainPath: String,
         ) {
             ShareObjectGenerator.kotlinPackageName = kotlinPackageName
             ShareObjectGenerator.kotlinGeneratorRootPath = kotlinGeneratorRootPath
             ShareObjectGenerator.dartGeneratorRootPath = dartGeneratorRootPath
+            ShareObjectGenerator.dartBaseObjectImport = dartBaseObjectImport
             ShareObjectGenerator.mainPath = mainPath
         }
 

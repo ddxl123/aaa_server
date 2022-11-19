@@ -1,6 +1,6 @@
 package com.example.demo.entity.r
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import com.example.demo.entity.unit.Notes
 import com.example.demo.entity.unit_group.NoteGroups
 import javax.persistence.Column
@@ -10,7 +10,13 @@ import javax.persistence.Entity
  * [Notes] 属于 [NoteGroups]
  */
 @Entity
-class RNote2NoteGroups : BaseWithCreatorIdEntity() {
+class RNote2NoteGroups : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 关联的笔记组 id。

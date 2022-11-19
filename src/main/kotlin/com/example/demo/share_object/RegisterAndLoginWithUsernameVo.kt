@@ -1,6 +1,6 @@
 package com.example.demo.share_object
 
-data class RegisterAndLoginVo(
+data class RegisterAndLoginWithUsernameVo(
 
     // 0-注册，1-登录
     var register_or_login: Int,

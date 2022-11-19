@@ -1,6 +1,6 @@
 package com.example.demo.entity.r
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import javax.persistence.Column
 import javax.persistence.Entity
 import com.example.demo.entity.unit.Fragments
@@ -10,7 +10,13 @@ import com.example.demo.entity.unit_group.FragmentGroups
  * [Fragments] 属于 [FragmentGroups]
  */
 @Entity
-class RFragment2FragmentGroups : BaseWithCreatorIdEntity() {
+class RFragment2FragmentGroups : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 关联的碎片组 id。

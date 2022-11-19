@@ -8,6 +8,7 @@ class LinlongApplicationTests {
 
 	@Test
 	fun contextLoads() {
+		print("dadad")
 	}
 
 }

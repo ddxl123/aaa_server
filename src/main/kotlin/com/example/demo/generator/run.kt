@@ -1,6 +1,6 @@
 package com.example.demo.generator
 
-import com.example.demo.entity.Users
+import com.example.demo.code_message.RegisterAndLoginWithUsername
 
 
 fun main() {
@@ -8,45 +8,29 @@ fun main() {
             kotlinPackageName = "com.example.demo",
             kotlinGeneratorRootPath = "D:/project/aaa_server/src/main/kotlin/com/example/demo",
             dartGeneratorRootPath = "D:/project/aaa/subpackages/httper/lib",
+            dartBaseObjectImport = "import 'package:httper/BaseObject.dart';",
             mainPath = "/share_object",
     )
     ShareObjectGenerator.targets.addAll(
-            arrayOf(
+            arrayListOf(
                     ClassTarget(
                             PathClass(
                                     "",
                                     "",
-                                    "RegisterAndLoginWithUsernameDto"
+                                    ClassNameWrapper(RegisterAndLoginWithUsername::class, ClassNameType.Dto)
                             ),
-                            Users::username.toFieldTarget(),
-                            Users::password.toFieldTarget()
                     ),
                     ClassTarget(
                             PathClass(
                                     "",
                                     "",
-                                    "RegisterAndLoginWithUsernameVo"
+                                    ClassNameWrapper(RegisterAndLoginWithUsername::class, ClassNameType.Vo)
                             ),
-                            "register_or_login".toFieldTarget(kotlinType = Int::class, isForceNullable = false, explain = "0-注册，1-登录"),
-                            Users::id.toFieldTarget(),
                     )
             )
     )
     ShareObjectGenerator.run()
 }
 
-fun String.route(r: String): String {
-    return "$this$r"
-}
-
-class Route(
-        val route: String,
-) {
-
-    fun chain(route:Route): Route {
-        return
-    }
-
-}
 
 

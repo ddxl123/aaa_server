@@ -5,14 +5,8 @@ import javax.persistence.*
 
 
 @MappedSuperclass
-open class BaseEntity {
+open class BaseTimeEntity {
 
-    /**
-     * 由客户端或服务器生成。
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
     /**
      * TODO: 需要使用客户端生成数据存入到数据库。
      */

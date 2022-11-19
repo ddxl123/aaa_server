@@ -1,12 +1,18 @@
 package com.example.demo.entity.monolayer_group
 
-import com.example.demo.entity.base.BaseWithCreatorIdEntity
+import com.example.demo.entity.base.BaseIdManualAssignable
 import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity
-class MemoryGroups : BaseWithCreatorIdEntity() {
+class MemoryGroups : BaseIdManualAssignable() {
+
+    /**
+     * 哪个用户创建的数据。
+     */
+    @Column(nullable = false)
+    var creatorUserId: Long? = null
 
     /**
      * 记忆组名称。
