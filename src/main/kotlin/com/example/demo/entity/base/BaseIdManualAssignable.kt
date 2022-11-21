@@ -1,5 +1,7 @@
 package com.example.demo.entity.base
 
+import com.example.demo.share_generator.annotation.ClientColumn
+import com.example.demo.share_generator.annotation.ClientTable
 import javax.persistence.Column
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -12,6 +14,7 @@ open class BaseIdManualAssignable : BaseTimeEntity() {
      *
      * 若不写 [GeneratedValue] id生成策略注解，才可以在业务中分配 id 值。
      */
+    @ClientColumn
     @Id
     var id: Long? = null
 

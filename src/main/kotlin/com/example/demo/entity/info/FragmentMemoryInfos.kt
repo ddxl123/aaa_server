@@ -1,28 +1,37 @@
 package com.example.demo.entity.info
 
+import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
+import com.example.demo.entity.monolayer_group.MemoryGroups
+import com.example.demo.entity.unit.Fragments
+import com.example.demo.share_generator.annotation.ClientColumn
+import com.example.demo.share_generator.annotation.ClientTable
 import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 
+@ClientTable
 @Entity
 class FragmentMemoryInfos : BaseIdManualAssignable() {
 
     /**
      * 哪个用户创建的数据。
      */
+    @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
     var creatorUserId: Long? = null
 
     /**
      * 属于哪个碎片组。
      */
+    @ClientColumn(referenceTo = [MemoryGroups::class])
     @Column(nullable = false)
     var memoryGroupId: Long? = null
 
     /**
      * 属于哪个碎片。
      */
+    @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = false)
     var fragmentId: Long? = null
 
@@ -33,6 +42,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 只要在当前记忆组内存在记录，最新的一个记录的 [isLatestRecord] 总是为 true。
      */
+    @ClientColumn
     @Column(nullable = false)
     var isLatestRecord: Boolean? = null
 
@@ -43,6 +53,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 从记忆组启动时的时间点开始计算。
      */
+    @ClientColumn
     @Column(nullable = false)
     var nextPlanShowTime: Instant? = null
 
@@ -54,12 +65,14 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 从记忆组启动时的时间点开始计算。
      */
+    @ClientColumn
     @Column(nullable = false)
     var currentActualShowTime: Int? = null
 
     /**
      * 刚展示时的熟练度。
      */
+    @ClientColumn
     @Column(nullable = false)
     var showFamiliarity: Double? = null
 
@@ -70,12 +83,14 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 从记忆组启动时的时间点开始计算。
      */
+    @ClientColumn
     @Column(nullable = false)
     var clickTime: Int? = null
 
     /**
      * 点击按钮的按钮数值。
      */
+    @ClientColumn
     @Column(nullable = false)
     var clickValue: Double? = null
 }

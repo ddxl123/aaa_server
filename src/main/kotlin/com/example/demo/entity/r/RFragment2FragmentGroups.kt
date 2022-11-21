@@ -1,20 +1,25 @@
 package com.example.demo.entity.r
 
+import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
 import javax.persistence.Column
 import javax.persistence.Entity
 import com.example.demo.entity.unit.Fragments
 import com.example.demo.entity.unit_group.FragmentGroups
+import com.example.demo.share_generator.annotation.ClientColumn
+import com.example.demo.share_generator.annotation.ClientTable
 
 /**
  * [Fragments] 属于 [FragmentGroups]
  */
+@ClientTable
 @Entity
 class RFragment2FragmentGroups : BaseIdManualAssignable() {
 
     /**
      * 哪个用户创建的数据。
      */
+    @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
     var creatorUserId: Long? = null
 
@@ -23,12 +28,14 @@ class RFragment2FragmentGroups : BaseIdManualAssignable() {
      *
      * 若为空，则当前碎片处在该用户碎片组的最顶层。
      */
+    @ClientColumn(referenceTo = [FragmentGroups::class])
     @Column(nullable = false)
     var fragmentGroupId: Long? = null
 
     /**
      * 关联的碎片 id。
      */
+    @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = false)
     var fragmentId: Long? = null
 

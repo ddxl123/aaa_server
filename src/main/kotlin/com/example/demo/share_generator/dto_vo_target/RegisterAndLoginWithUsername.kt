@@ -1,16 +1,18 @@
-package com.example.demo.code_message
+package com.example.demo.share_generator.dto_vo_target
 
 import com.example.demo.entity.Users
-import com.example.demo.generator.toFieldTarget
+import com.example.demo.share_generator.CodeMessage
+import com.example.demo.share_generator.annotation.DtoVo
+import com.example.demo.share_generator.generator.toFieldTarget
 
+@DtoVo
 class RegisterAndLoginWithUsername {
     companion object {
-        val code1 = CodeMessage(1, "ccccccc", isRequiredData = true)
-        val code2 = CodeMessage(2, "ccccccc", isRequiredData = false)
+        val code1 = CodeMessage(1, "登录/注册成功！", isRequiredData = true)
 
         val dtos = arrayListOf(
                 Users::username.toFieldTarget(),
-                Users::password.toFieldTarget()
+                Users::password.toFieldTarget(),
         )
 
         val vos = arrayListOf(

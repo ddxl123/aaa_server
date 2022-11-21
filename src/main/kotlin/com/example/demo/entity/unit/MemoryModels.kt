@@ -1,15 +1,20 @@
 package com.example.demo.entity.unit
 
+import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
+import com.example.demo.share_generator.annotation.ClientColumn
+import com.example.demo.share_generator.annotation.ClientTable
 import javax.persistence.Column
 import javax.persistence.Entity
 
+@ClientTable
 @Entity
 class MemoryModels : BaseIdManualAssignable() {
 
     /**
      * 哪个用户创建的数据。
      */
+    @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
     var creatorUserId: Long? = null
 
@@ -17,9 +22,11 @@ class MemoryModels : BaseIdManualAssignable() {
      * 从哪个父记忆模型修改而来的。
      * 若为 null，则自身为根记忆模型。
      */
+    @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = true)
     var fatherFragmentId: Long? = null
 
+    @ClientColumn
     @Column(nullable = true)
     var title: String? = null
 
@@ -38,6 +45,7 @@ class MemoryModels : BaseIdManualAssignable() {
      * 5. 总结：你想让函数曲线是什么样子就可以是什么样子，你想让函数值为多少就可以是多少，你想让 f(t) 的含义是什么就可以是什么。
      * 甚至，用户可以利用编程知识来编写算法，提供了 if-else/for语句, ??语法糖等。
      */
+    @ClientColumn
     @Column(nullable = true)
     var familiarityAlgorithm: String? = null
 
@@ -47,12 +55,14 @@ class MemoryModels : BaseIdManualAssignable() {
      * 每次展示并点击按钮后，将输入以下变量，计算出下一次展示的时间点.
      * 注意：是 [每次展示并点击按钮 后 ，将输入以下变量]，而非 [每次点击按钮前，或每次展示前，或每次展示后且点击按钮前...]。
      */
+    @ClientColumn
     @Column(nullable = true)
     var nextTimeAlgorithm: String? = null
 
     /**
      * <在刚展示时>，按钮算法
      */
+    @ClientColumn
     @Column(nullable = true)
     var buttonAlgorithm: String? = null
 
@@ -68,6 +78,7 @@ class MemoryModels : BaseIdManualAssignable() {
      * 2. 对市场上的碎片进行检索，寻找合适的碎片来充当[激发碎片]，
      * 若处于离线状态，将默认使用 1 代替。
      */
+    @ClientColumn
     @Column(nullable = true)
     var stimulateAlgorithm: String? = null
 
@@ -77,6 +88,7 @@ class MemoryModels : BaseIdManualAssignable() {
      *
      * 例如：大一生、高中生
      */
+    @ClientColumn
     @Column(nullable = true)
     var applicableGroups: String? = null
 
@@ -86,6 +98,7 @@ class MemoryModels : BaseIdManualAssignable() {
      *
      * 例如：英语、英语-四级英语、语文-高中必备文言文
      */
+    @ClientColumn
     @Column(nullable = true)
     var applicableFields: String? = null
 }

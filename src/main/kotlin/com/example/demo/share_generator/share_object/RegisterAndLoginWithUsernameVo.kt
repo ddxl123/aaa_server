@@ -1,4 +1,5 @@
-package com.example.demo.share_object
+package com.example.demo.share_generator.share_object
+
 
 data class RegisterAndLoginWithUsernameVo(
 

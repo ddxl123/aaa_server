@@ -1,5 +1,7 @@
 package com.example.demo.entity.base
 
+import com.example.demo.share_generator.annotation.ClientColumn
+import com.example.demo.share_generator.annotation.ClientTable
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -13,6 +15,7 @@ open class BaseIdAutoAssignable : BaseTimeEntity() {
      *
      * 即需要 id 生成策略 [GeneratedValue]
      */
+    @ClientColumn
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null

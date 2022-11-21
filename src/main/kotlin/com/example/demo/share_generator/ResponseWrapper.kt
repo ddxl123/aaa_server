@@ -1,4 +1,4 @@
-package com.example.demo.controller
+package com.example.demo.share_generator
 
 data class ResponseWrapper(
         val code: Int,

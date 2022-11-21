@@ -1,4 +1,4 @@
-package com.example.demo.generator
+package com.example.demo.share_generator.generator
 
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
