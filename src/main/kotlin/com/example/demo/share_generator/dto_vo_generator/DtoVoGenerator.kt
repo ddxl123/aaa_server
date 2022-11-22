@@ -1,19 +1,13 @@
-package com.example.demo.share_generator.generator
+package com.example.demo.share_generator.dto_vo_generator
 
-import com.example.demo.share_generator.annotation.DtoVo
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver
-import org.springframework.core.io.support.ResourcePatternResolver
-import org.springframework.core.type.classreading.CachingMetadataReaderFactory
-import org.springframework.core.type.classreading.MetadataReaderFactory
-import org.springframework.util.ClassUtils
+import com.example.demo.share_generator.common.scanClasses
+import com.example.demo.share_generator.dto_vo_generator.annotation.DtoVo
 import java.io.File
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 
-
-class ShareObjectGenerator {
+class DtoVoGenerator {
     companion object {
-
 
         /**
          * com.xxx.xxx
@@ -40,7 +34,7 @@ class ShareObjectGenerator {
         /**
          * 相对根路径的主路径。
          */
-        var mainPath: String = ""
+        var shareMainPath: String = ""
 
         private val targets = mutableListOf<ClassTarget>()
 
@@ -49,13 +43,13 @@ class ShareObjectGenerator {
                 kotlinGeneratorRootPath: String,
                 dartGeneratorRootPath: String,
                 dartBaseObjectImport: String,
-                mainPath: String,
+                shareMainPath: String,
         ) {
             Companion.kotlinPackageName = kotlinPackageName
             Companion.kotlinGeneratorRootPath = kotlinGeneratorRootPath
             Companion.dartGeneratorRootPath = dartGeneratorRootPath
             Companion.dartBaseObjectImport = dartBaseObjectImport
-            Companion.mainPath = mainPath
+            Companion.shareMainPath = shareMainPath
 
             handleClassTarget()
 
@@ -68,34 +62,21 @@ class ShareObjectGenerator {
         }
 
         private fun handleClassTarget() {
-            //spring工具类，可以获取指定路径下的全部类
-            val resourcePatternResolver: ResourcePatternResolver = PathMatchingResourcePatternResolver()
-
-
-            val pattern: String = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +
-                    ClassUtils.convertClassNameToResourcePath("com.example.demo") + "/**/*.class"
-            // 将会获取全部类。
-            val resources = resourcePatternResolver.getResources(pattern)
-            // MetadataReader 的工厂类
-            val metadataReaderFactory: MetadataReaderFactory = CachingMetadataReaderFactory(resourcePatternResolver)
-            resources.forEach {
-                // 读取类信息
-                val clas = Class.forName(metadataReaderFactory.getMetadataReader(it).classMetadata.className)
-                val annotations = clas.getDeclaredAnnotationsByType(DtoVo::class.java)
-                if (annotations.isNotEmpty()) {
-                    val anno = annotations.first()
+            scanClasses(kotlinPackageName).forEach { kClass ->
+                val dtoVoAnnotation = kClass.java.getAnnotation(DtoVo::class.java)
+                if (dtoVoAnnotation != null) {
                     targets.addAll(
                             arrayListOf(
                                     ClassTarget(
-                                            anno.dartRelativePath,
-                                            anno.kotlinRelativePath,
-                                            clas,
+                                            dtoVoAnnotation.dartRelativePath,
+                                            dtoVoAnnotation.kotlinRelativePath,
+                                            kClass.java,
                                             TargetClassType.Dto
                                     ),
                                     ClassTarget(
-                                            anno.dartRelativePath,
-                                            anno.kotlinRelativePath,
-                                            clas,
+                                            dtoVoAnnotation.dartRelativePath,
+                                            dtoVoAnnotation.kotlinRelativePath,
+                                            kClass.java,
                                             TargetClassType.Vo
                                     )
                             )

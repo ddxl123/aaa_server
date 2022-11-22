@@ -1,4 +1,4 @@
-package com.example.demo.share_generator
+package com.example.demo.controller
 
 import java.lang.Exception
 

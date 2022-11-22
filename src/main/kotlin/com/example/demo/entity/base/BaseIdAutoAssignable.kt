@@ -1,7 +1,6 @@
 package com.example.demo.entity.base
 
-import com.example.demo.share_generator.annotation.ClientColumn
-import com.example.demo.share_generator.annotation.ClientTable
+import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id

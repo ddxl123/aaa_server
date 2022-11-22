@@ -1,11 +1,12 @@
-package com.example.demo.share_generator.generator
+package com.example.demo.share_generator.dto_vo_generator
 
+import com.example.demo.share_generator.common.TypeTarget
+import com.example.demo.share_generator.common.getTypeTarget
 import javax.persistence.Column
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.jvm.javaField
-import kotlin.reflect.jvm.javaType
-import kotlin.reflect.jvm.jvmErasure
+import kotlin.reflect.jvm.kotlinProperty
 
 
 class FieldTarget<out T, out V> {
@@ -25,7 +26,7 @@ class FieldTarget<out T, out V> {
             explain: String = ""
     ) {
         this.kotlinTypeName = fieldTargetObj.returnType.toString().split(".").last().replace("?", "")
-        this.typeTarget = getTypeTarget(kotlinTypeName)
+        this.typeTarget = getTypeTarget(fieldTargetObj.javaField!!.type.kotlin)
         this.fieldName = fieldTargetObj.name.replace(Regex("[A-Z]")) { matchResult -> "_${matchResult.value.lowercase()}" }
         if (isForceNullable != null) {
             this.isForceNullable = isForceNullable
@@ -54,7 +55,7 @@ class FieldTarget<out T, out V> {
             explain: String = ""
     ) {
         this.kotlinTypeName = kotlinType.simpleName!!
-        this.typeTarget = getTypeTarget(kotlinTypeName)
+        this.typeTarget = getTypeTarget(kotlinType)
         this.fieldName = fieldName
         this.isForceNullable = isForceNullable
         this.explain = explain

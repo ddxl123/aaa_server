@@ -4,8 +4,8 @@ import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
 import com.example.demo.entity.unit.MemoryModels
 import com.example.demo.entity.unit_group.MemoryModelGroups
-import com.example.demo.share_generator.annotation.ClientColumn
-import com.example.demo.share_generator.annotation.ClientTable
+import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
+import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import javax.persistence.Column
 import javax.persistence.Entity
 

@@ -1,6 +1,6 @@
-package com.example.demo.share_generator.annotation
+package com.example.demo.share_generator.dto_vo_generator.annotation
 
-import com.example.demo.share_generator.generator.ClassTarget
+import com.example.demo.share_generator.dto_vo_generator.ClassTarget
 
 
 @Target(AnnotationTarget.CLASS)

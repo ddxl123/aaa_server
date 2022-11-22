@@ -1,6 +1,6 @@
-package com.example.demo.share_generator.generator
+package com.example.demo.share_generator.dto_vo_generator
 
-import com.example.demo.share_generator.CodeMessage
+import com.example.demo.controller.CodeMessage
 
 enum class TargetClassType {
     Dto,
@@ -9,12 +9,12 @@ enum class TargetClassType {
 
 class ClassTarget(
         /**
-         * 相对 [ShareObjectGenerator.dartGeneratorRootPath]+[ShareObjectGenerator.mainPath] 的路径。
+         * 相对 [DtoVoGenerator.dartGeneratorRootPath]+[DtoVoGenerator.shareMainPath] 的路径。
          */
         private val dartRelativePath: String,
 
         /**
-         * 相对 [ShareObjectGenerator.kotlinGeneratorRootPath]+[ShareObjectGenerator.mainPath] 的路径。
+         * 相对 [DtoVoGenerator.kotlinGeneratorRootPath]+[DtoVoGenerator.shareMainPath] 的路径。
          */
         private val kotlinRelativePath: String,
 
@@ -30,8 +30,8 @@ class ClassTarget(
 ) {
 
 
-    val dartCompletePathNoClass: String = ShareObjectGenerator.dartGeneratorRootPath + ShareObjectGenerator.mainPath + dartRelativePath
-    val kotlinCompletePath: String = ShareObjectGenerator.kotlinGeneratorRootPath + ShareObjectGenerator.mainPath + kotlinRelativePath
+    val dartCompletePathNoClass: String = DtoVoGenerator.dartGeneratorRootPath + DtoVoGenerator.shareMainPath + dartRelativePath
+    val kotlinCompletePath: String = DtoVoGenerator.kotlinGeneratorRootPath + DtoVoGenerator.shareMainPath + kotlinRelativePath
     private val dartCompletePathWithClassNoClass: String
     private val kotlinCompletePathWithClass: String
     val dartCompletePathWithClassAndSuffix: String
@@ -83,7 +83,7 @@ class ClassTarget(
 
     fun toKotlinContent(): String {
         return """
-package ${ShareObjectGenerator.kotlinPackageName}.${(ShareObjectGenerator.mainPath + kotlinRelativePath).split(Regex("/")).run { subList(1, count()) }.joinToString(".")}
+package ${DtoVoGenerator.kotlinPackageName}.${(DtoVoGenerator.shareMainPath + kotlinRelativePath).split(Regex("/")).run { subList(1, count()) }.joinToString(".")}
 ${
             fun(): String {
                 val fts = when (targetClassType) {
@@ -91,7 +91,7 @@ ${
                     TargetClassType.Vo -> voFieldTargets
                     else -> throw Exception("未知 ClassNameType:${targetClassType}")
                 }
-                return (fts.map { it.typeTarget.kotlinTypeImport }).joinToString("\n")
+                return (fts.map { it.typeTarget.getKClassImport() }.toSet()).joinToString("\n")
             }()
         }
 data class ${classNameWithType}(
@@ -118,7 +118,7 @@ ${
     fun toDartContent(): String {
         return """
 // ignore_for_file: non_constant_identifier_names
-${ShareObjectGenerator.dartBaseObjectImport}
+${DtoVoGenerator.dartBaseObjectImport}
 import 'package:json_annotation/json_annotation.dart';
 ${
             if (targetClassType == TargetClassType.Dto) {

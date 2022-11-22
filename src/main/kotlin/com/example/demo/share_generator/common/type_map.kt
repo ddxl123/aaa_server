@@ -1,8 +1,7 @@
-package com.example.demo.share_generator.generator
+package com.example.demo.share_generator.common
 
 import java.time.Instant
 import kotlin.reflect.KClass
-import kotlin.reflect.KMutableProperty1
 
 class TypeWithImport(
         val typeName: String,
@@ -14,36 +13,61 @@ class TypeWithImport(
 }
 
 class TypeTarget(
+        val kClass: KClass<*>,
         val dartType: TypeWithImport,
         val dartDriftColumnType: TypeWithImport,
         val dartDriftInternalType: TypeWithImport,
-        val kotlinTypeImport: String,
 ) {
+
+    /**
+     * 获取类对应的 import。
+     *
+     * 例如：import com.example.demo.entity.monolayer_group.NewDisplayOrder
+     */
+    fun getKClassImport(): String {
+        return "import ${kClass.qualifiedName}"
+    }
+
     override fun toString(): String {
-        return "(dartType: $dartType, dartDriftColumnType: $dartDriftColumnType, dartDriftInternalType: $dartDriftInternalType, kotlinTypeImport: $kotlinTypeImport)"
+        return "(dartType: $dartType, dartDriftColumnType: $dartDriftColumnType, dartDriftInternalType: $dartDriftInternalType)"
     }
 }
 
-/**
- * @return [String] 为类型名称，[TypeTarget] 为获取到的映射结果。
- */
-fun getTypeTarget(simpleTypeName: String): TypeTarget {
-    return typeMap[simpleTypeName] ?: throw Exception("未找到对应的 dartType！need:${simpleTypeName}")
+fun getTypeTarget(kClass: KClass<*>): TypeTarget {
+    for (typeTarget in typeSet) {
+        if (typeTarget.kClass == kClass) {
+            return typeTarget
+        }
+    }
+    if (kClass.java.isEnum) {
+        val newTypeTarget = TypeTarget(
+                kClass = kClass,
+                dartType = TypeWithImport(typeName = kClass.simpleName!!, import = ""),
+                dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
+                dartDriftInternalType = TypeWithImport(typeName = "intEnum<${kClass.simpleName!!}>", import = ""),
+        )
+        typeSet.add(newTypeTarget)
+        return newTypeTarget
+    }
+    throw Exception("未找到对应的 dartType！need:${kClass.simpleName!!}")
 }
 
-val typeMap = mutableMapOf(
-        Boolean::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+
+val typeSet = mutableSetOf(
+        /**
+         * mysql - BOOLEAN
+         */
+        TypeTarget(
+                kClass = Boolean::class,
                 dartType = TypeWithImport(typeName = "bool", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "BoolColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "boolean", import = ""),
-
         ),
         /**
          * mysql - TINYINT
          */
-        Byte::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Byte::class,
                 dartType = TypeWithImport(typeName = "int", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "integer", import = ""),
@@ -51,8 +75,8 @@ val typeMap = mutableMapOf(
         /**
          * mysql - SMALLINT
          */
-        Short::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Short::class,
                 dartType = TypeWithImport(typeName = "int", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "integer", import = ""),
@@ -60,8 +84,8 @@ val typeMap = mutableMapOf(
         /**
          * mysql - INT
          */
-        Int::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Int::class,
                 dartType = TypeWithImport(typeName = "int", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "integer", import = ""),
@@ -69,8 +93,8 @@ val typeMap = mutableMapOf(
         /**
          * mysql - BIGINT
          */
-        Long::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Long::class,
                 dartType = TypeWithImport(typeName = "int", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "integer", import = ""),
@@ -78,18 +102,17 @@ val typeMap = mutableMapOf(
         /**
          * mysql - DOUBLE
          */
-        Double::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Double::class,
                 dartType = TypeWithImport(typeName = "double", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "RealColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "real", import = ""),
         ),
-
         /**
          * mysql - CHAR
          */
-        Char::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = Char::class,
                 dartType = TypeWithImport(typeName = "String", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "TextColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "text", import = ""),
@@ -97,8 +120,8 @@ val typeMap = mutableMapOf(
         /**
          * mysql - VARCHAR
          */
-        String::class.simpleName to TypeTarget(
-                kotlinTypeImport = "",
+        TypeTarget(
+                kClass = String::class,
                 dartType = TypeWithImport(typeName = "String", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "TextColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "text", import = ""),
@@ -106,8 +129,8 @@ val typeMap = mutableMapOf(
         /**
          * mysql - DATETIME
          */
-        Instant::class.simpleName to TypeTarget(
-                kotlinTypeImport = "import java.time.Instant",
+        TypeTarget(
+                kClass = Instant::class,
                 dartType = TypeWithImport(typeName = "DateTime", import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "DateTimeColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "dateTime", import = ""),

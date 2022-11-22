@@ -1,9 +1,10 @@
-package com.example.demo.share_generator.dto_vo_target
+package com.example.demo.controller.dto_vo
 
 import com.example.demo.entity.Users
-import com.example.demo.share_generator.CodeMessage
-import com.example.demo.share_generator.annotation.DtoVo
-import com.example.demo.share_generator.generator.toFieldTarget
+import com.example.demo.controller.CodeMessage
+import com.example.demo.entity.monolayer_group.MemoryGroups
+import com.example.demo.share_generator.dto_vo_generator.annotation.DtoVo
+import com.example.demo.share_generator.dto_vo_generator.toFieldTarget
 
 @DtoVo
 class RegisterAndLoginWithUsername {
@@ -18,6 +19,7 @@ class RegisterAndLoginWithUsername {
         val vos = arrayListOf(
                 "register_or_login".toFieldTarget(kotlinType = Int::class, isForceNullable = false, explain = "0-注册，1-登录"),
                 Users::id.toFieldTarget(),
+                MemoryGroups::newDisplayOrder.toFieldTarget()
         )
     }
 }

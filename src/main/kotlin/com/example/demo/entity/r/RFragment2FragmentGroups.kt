@@ -6,8 +6,8 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import com.example.demo.entity.unit.Fragments
 import com.example.demo.entity.unit_group.FragmentGroups
-import com.example.demo.share_generator.annotation.ClientColumn
-import com.example.demo.share_generator.annotation.ClientTable
+import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
+import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 
 /**
  * [Fragments] 属于 [FragmentGroups]
