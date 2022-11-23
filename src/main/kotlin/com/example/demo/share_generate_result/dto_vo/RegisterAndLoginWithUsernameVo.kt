@@ -1,3 +1,4 @@
+
 package com.example.demo.share_generate_result.dto_vo
 import kotlin.Int
 import kotlin.Long

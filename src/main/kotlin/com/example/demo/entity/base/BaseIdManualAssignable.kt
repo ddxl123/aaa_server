@@ -1,6 +1,7 @@
 package com.example.demo.entity.base
 
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
+import javax.persistence.Column
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
@@ -14,6 +15,7 @@ open class BaseIdManualAssignable : BaseTimeEntity() {
      */
     @ClientColumn
     @Id
+    @Column(unique = true)
     var id: Long? = null
 
 }

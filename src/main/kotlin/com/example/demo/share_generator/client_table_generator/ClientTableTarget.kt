@@ -14,10 +14,10 @@ class ClientTableTarget(
 
     fun toDartSingleTableContent(): String {
         return """
-part of drift_db_table_part;
+part of drift_db;
 
 @ReferenceTo([])
-class $tableName extends Table {
+class $tableName extends CloudTableBase {
 
   @override
   Set<Column>? get primaryKey => {id};

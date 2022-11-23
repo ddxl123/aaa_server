@@ -9,31 +9,31 @@ enum class TargetClassType {
 
 class ClassTarget(
         /**
-         * 相对 [DtoVoGenerator.dartGeneratorRootPath]+[DtoVoGenerator.shareMainPath] 的路径。
+         * 相对 [DtoVoGenerator.dartGeneratorRootCompletePath]+[DtoVoGenerator.shareMainPath] 的路径。
          */
-        private val dartRelativePath: String,
+        val dartRelativePath: String,
 
         /**
          * 相对 [DtoVoGenerator.kotlinGeneratorRootPath]+[DtoVoGenerator.shareMainPath] 的路径。
          */
-        private val kotlinRelativePath: String,
+        val kotlinRelativePath: String,
 
         /**
          * 将要生成的类。
          */
-        targetClass: Class<*>,
+        val targetClass: Class<*>,
 
         /**
          * 将要生成的类类型。
          */
-        private val targetClassType: TargetClassType
+        val targetClassType: TargetClassType
 ) {
 
 
-    val dartCompletePathNoClass: String = DtoVoGenerator.dartGeneratorRootPath + DtoVoGenerator.shareMainPath + dartRelativePath
+    val dartCompletePathNoClass: String = DtoVoGenerator.dartGeneratorRootCompletePath + DtoVoGenerator.shareMainPath + dartRelativePath
     val kotlinCompletePath: String = DtoVoGenerator.kotlinGeneratorRootPath + DtoVoGenerator.shareMainPath + kotlinRelativePath
-    private val dartCompletePathWithClassNoClass: String
-    private val kotlinCompletePathWithClass: String
+    val dartCompletePathWithClassNoClass: String
+    val kotlinCompletePathWithClass: String
     val dartCompletePathWithClassAndSuffix: String
     val kotlinCompletePathWithClassSuffix: String
 
@@ -112,22 +112,13 @@ ${
             }()
         }
 )
-""".trimIndent()
+"""
     }
 
     fun toDartContent(): String {
         return """
 // ignore_for_file: non_constant_identifier_names
-${DtoVoGenerator.dartBaseObjectImport}
-import 'package:json_annotation/json_annotation.dart';
-${
-            if (targetClassType == TargetClassType.Dto) {
-                "import '${className + TargetClassType.Vo.name}.dart';"
-            } else {
-                ""
-            }
-        }
-part '${classNameWithType}.g.dart';
+part of httper;
 @JsonSerializable()
 class $classNameWithType extends BaseObject{
 ${
