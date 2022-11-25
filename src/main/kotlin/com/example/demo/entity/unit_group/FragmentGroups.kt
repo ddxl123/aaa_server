@@ -24,12 +24,12 @@ class FragmentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [FragmentGroups::class])
     @Column(nullable = true)
-    var fatherFragmentGroupsId: Long? = null
+    var fatherFragmentGroupsId: String? = null
 
     /**
      * 碎片组名称。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 }

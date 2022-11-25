@@ -24,12 +24,12 @@ class DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [DocumentGroups::class])
     @Column(nullable = true)
-    var fatherDocumentGroupsId: Long? = null
+    var fatherDocumentGroupsId: String? = null
 
     /**
      * 文档组名称。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 }

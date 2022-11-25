@@ -24,12 +24,12 @@ class MemoryModelGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [MemoryModelGroups::class])
     @Column(nullable = true)
-    var fatherMemoryModelGroupsId: Long? = null
+    var fatherMemoryModelGroupsId: String? = null
 
     /**
      * 记忆模型组名称。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 }

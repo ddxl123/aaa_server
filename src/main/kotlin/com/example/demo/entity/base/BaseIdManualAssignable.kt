@@ -15,7 +15,7 @@ open class BaseIdManualAssignable : BaseTimeEntity() {
      */
     @ClientColumn
     @Id
-    @Column(unique = true)
-    var id: Long? = null
+    @Column(unique = true, nullable = false)
+    var id: String? = null
 
 }

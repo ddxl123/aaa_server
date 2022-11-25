@@ -26,11 +26,19 @@ class ClientTableGenerator {
         private lateinit var kotlinPackageName: String
 
         /**
-         * 相对 [dartLibPath] 的生成根路径。
+         * 相对 [dartLibPath] 的 cloudTable 生成根路径。
          *
          * 例如：/table/cloud_table
          */
-        private lateinit var dartRelativeGenerateRootPath: String
+        private lateinit var dartCloudTableRelativeGenerateRootPath: String
+
+
+        /**
+         * 相对 [dartLibPath] 的 clientTable 生成根路径。
+         *
+         * 例如：/table/cloud_table
+         */
+        private lateinit var dartLocalTableRelativeGenerateRootPath: String
 
         /**
          * dart 中 share_enum 的 import。
@@ -44,27 +52,32 @@ class ClientTableGenerator {
          */
         private lateinit var dartLibPath: String
 
-        private val clientTableTargets = arrayListOf<ClientTableTarget>()
+        private val dartCloudTableTargets = arrayListOf<DartCloudTableTarget>()
+
+        private val dartLocalTableTargets = arrayListOf<String>()
 
 
         fun run(
                 kotlinRelativeScanPath: String,
                 kotlinPackageName: String,
-                dartRelativeGenerateRootPath: String,
+                dartCloudTableRelativeGenerateRootPath: String,
+                dartLocalTableRelativeGenerateRootPath: String,
                 dartLibPath: String,
                 dartShareEnumImport: String,
         ) {
             Companion.kotlinRelativeScanPath = kotlinRelativeScanPath
             Companion.kotlinPackageName = kotlinPackageName
-            Companion.dartRelativeGenerateRootPath = dartRelativeGenerateRootPath
+            Companion.dartCloudTableRelativeGenerateRootPath = dartCloudTableRelativeGenerateRootPath
+            Companion.dartLocalTableRelativeGenerateRootPath = dartLocalTableRelativeGenerateRootPath
             Companion.dartLibPath = dartLibPath
             Companion.dartShareEnumImport = dartShareEnumImport
 
-            handleClassTarget()
-            for (clientTableTarget in clientTableTargets) {
-                Path(dartLibPath + "/" + dartRelativeGenerateRootPath + clientTableTarget.path).createDirectories()
-                File(dartLibPath + "/" + dartRelativeGenerateRootPath + clientTableTarget.path + "/" + clientTableTarget.tableName + ".dart").writeText(clientTableTarget.toDartSingleTableContent())
+            handleDartCloudTableClassTarget()
+            for (dartCloudTableTarget in dartCloudTableTargets) {
+                Path(dartLibPath + "/" + dartCloudTableRelativeGenerateRootPath + dartCloudTableTarget.kotlinPath).createDirectories()
+                File(dartLibPath + "/" + dartCloudTableRelativeGenerateRootPath + dartCloudTableTarget.kotlinPath + "/" + dartCloudTableTarget.tableName + ".dart").writeText(dartCloudTableTarget.toDartSingleTableContent())
             }
+            handleDartLocalTableClassTarget()
             Path(dartLibPath).createDirectories()
             File("$dartLibPath/DriftDb.dart").writeText(driftDbTablePartContent())
         }
@@ -75,6 +88,7 @@ library drift_db;
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
@@ -94,13 +108,9 @@ part 'dao/DeleteDAO.dart';
 
 part 'table/Base.dart';
 
-part 'table/local/Local.dart';
-
 part 'custom/sync_tag.dart';
 
 part 'custom/sync_curd.dart';
-
-part 'table/local/Sync.dart';
 
 part 'drift_db_init.dart';
 
@@ -115,23 +125,33 @@ part 'DriftDb.reset.dart';
 ${
                 fun(): String {
                     var content = ""
-                    for (clientTableTarget in clientTableTargets) {
+                    for (dartCloudTableTarget in dartCloudTableTargets) {
                         content += """
-part '${dartRelativeGenerateRootPath.removePrefix("/")}${clientTableTarget.path}${
-                            if (clientTableTarget.path.trim() == "/" || clientTableTarget.path.isBlank()) "" else "/"
-                        }${clientTableTarget.tableName}.dart';
-            """
+part '${dartCloudTableRelativeGenerateRootPath.removePrefix("/")}${dartCloudTableTarget.kotlinPath}${
+                            if (dartCloudTableTarget.kotlinPath.trim() == "/" || dartCloudTableTarget.kotlinPath.isBlank()) "" else "/"
+                        }${dartCloudTableTarget.tableName}.dart';
+"""
+                    }
+                    for (dartLocalTableTarget in dartLocalTableTargets) {
+                        content += """
+part '${dartLocalTableRelativeGenerateRootPath.removePrefix("/")}/${dartLocalTableTarget}.dart';
+"""
                     }
                     return content
                 }()
             }
-const List<Type> cloudTableClasses = [
+const List<Type> tableClasses = [
 ${
                 fun(): String {
                     var content = ""
-                    for (clientTableTarget in clientTableTargets) {
+                    for (clientTableTarget in dartCloudTableTargets) {
                         content += """
   ${clientTableTarget.tableName},
+"""
+                    }
+                    for (dartLocalTableTarget in dartLocalTableTargets) {
+                        content += """
+  $dartLocalTableTarget,
 """
                     }
                     return content
@@ -141,7 +161,7 @@ ${
         """
         }
 
-        private fun handleClassTarget() {
+        private fun handleDartCloudTableClassTarget() {
             scanClasses(kotlinPackageName).forEach { kClass ->
                 // /xxx 转 .xxx
                 val toClassName = ClassUtils.convertResourcePathToClassName(kotlinRelativeScanPath)
@@ -149,38 +169,30 @@ ${
                     // clas.annotations 只会获取到 kotlin 的注解，clas.java.annotations 只会获取到 java 的注解。
                     val tableClassAnnotation = kClass.java.getAnnotation(ClientTable::class.java)
                     if (tableClassAnnotation != null) {
-                        val path = kClass.qualifiedName!!.split("$kotlinPackageName$toClassName.").last().split(".")
+                        val kotlinPath = kClass.qualifiedName!!.split("$kotlinPackageName$toClassName.").last().split(".")
                                 .toMutableList().run {
                                     removeLast()
                                     "/" + this.joinToString("/")
                                 }
-                        val clientMemberTargets = arrayListOf<ClientMemberTarget>()
+                        val dartCloudMemberTargets = arrayListOf<DartCloudMemberTarget>()
                         kClass.memberProperties.forEach { memberProperty ->
-                            // TODO: 有时候第一种能获取到全部注解，有时候第二种能获取到全部注解，未知原因。
-                            //  1. println(memberProperty.annotations)
-                            //  2. println(memberProperty.javaField!!.annotations)
                             val clientColumnAnnotation = memberProperty.javaField!!.getAnnotation(ClientColumn::class.java)
                             if (clientColumnAnnotation != null) {
-                                val cmt = ClientMemberTarget(
+                                val cmt = DartCloudMemberTarget(
                                         name = memberProperty.name,
-                                        // 需要的是 kotlin 的类型(如 Int)，并非 java 类型(如 Integer/int)，
                                         typeTarget = getTypeTarget(memberProperty.javaField!!.type.kotlin),
-//                                        typeTarget = getTypeTarget(
-//                                                simpleTypeName = memberProperty.returnType.toString().split(".").last().replace("?", "")
-//                                        ),
-                                        // clas.annotations 只会获取到 kotlin 的注解，clas.java.annotations 只会获取到 java 的注解。
                                         isNullable = memberProperty.javaField!!.getDeclaredAnnotationsByType(Column::class.java).firstOrNull()?.nullable
                                                 ?: true,
                                         referenceTos = clientColumnAnnotation.referenceTo.map { ref -> ref.simpleName!! } as ArrayList<String>,
                                 )
-                                clientMemberTargets.add(cmt)
+                                dartCloudMemberTargets.add(cmt)
                             }
                         }
-                        clientTableTargets.add(
-                                ClientTableTarget(
-                                        path = path,
+                        dartCloudTableTargets.add(
+                                DartCloudTableTarget(
+                                        kotlinPath = kotlinPath,
                                         tableName = kClass.simpleName!!,
-                                        clientMemberTargets = clientMemberTargets
+                                        dartCloudMemberTargets = dartCloudMemberTargets
                                 )
                         )
 
@@ -188,6 +200,14 @@ ${
                 }
             }
         }
+
+        private fun handleDartLocalTableClassTarget() {
+            val file = File("D:/project/aaa/subpackages/drift_main/lib/drift/table/local")
+            file.listFiles()?.forEach {
+                dartLocalTableTargets.add(it.nameWithoutExtension)
+            }
+        }
+
     }
 
 }

@@ -25,6 +25,6 @@ class Documents : BaseIdManualAssignable() {
      * 文档内容。可以是文章、文件、富文本(可嵌入文件)
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var content: String? = null
 }

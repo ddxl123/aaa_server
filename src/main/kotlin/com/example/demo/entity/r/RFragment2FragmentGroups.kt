@@ -29,14 +29,14 @@ class RFragment2FragmentGroups : BaseIdManualAssignable() {
      * 若为空，则当前碎片处在该用户碎片组的最顶层。
      */
     @ClientColumn(referenceTo = [FragmentGroups::class])
-    @Column(nullable = false)
-    var fragmentGroupId: Long? = null
+    @Column(nullable = true)
+    var fragmentGroupId: String? = null
 
     /**
      * 关联的碎片 id。
      */
     @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = false)
-    var fragmentId: Long? = null
+    var fragmentId: String? = null
 
 }

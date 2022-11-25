@@ -26,14 +26,14 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [MemoryGroups::class])
     @Column(nullable = false)
-    var memoryGroupId: Long? = null
+    var memoryGroupId: String? = null
 
     /**
      * 属于哪个碎片。
      */
     @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = false)
-    var fragmentId: Long? = null
+    var fragmentId: String? = null
 
     /**
      * 在当前记忆组内的，当前记录是否为当前碎片的最新记录。
@@ -67,7 +67,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var currentActualShowTime: Int? = null
+    var currentActualShowTime: Instant? = null
 
     /**
      * 刚展示时的熟练度。
@@ -85,7 +85,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var clickTime: Int? = null
+    var clickTime: Instant? = null
 
     /**
      * 点击按钮的按钮数值。

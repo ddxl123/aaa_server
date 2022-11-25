@@ -23,11 +23,11 @@ class Notes : BaseIdManualAssignable() {
 
     /**
      * 从哪个文档摘取的笔记。
-     * 若为 null，则为独立碎片。
+     * 若为 null，则为独立笔记。
      */
     @ClientColumn(referenceTo = [Documents::class])
     @Column(nullable = true)
-    var documentId: Long? = null
+    var documentId: String? = null
 
     /**
      * 该笔记是由哪个父笔记修改而来的。
@@ -35,12 +35,12 @@ class Notes : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Notes::class])
     @Column(nullable = true)
-    var fatherNoteId: Long? = null
+    var fatherNoteId: String? = null
 
     /**
      * 富文本笔记内容(可嵌入文件)
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var content: String? = null
 }

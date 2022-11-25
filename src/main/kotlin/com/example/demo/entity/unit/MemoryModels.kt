@@ -24,10 +24,10 @@ class MemoryModels : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = true)
-    var fatherFragmentId: Long? = null
+    var fatherMemoryModelId: String? = null
 
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 
 
@@ -46,7 +46,7 @@ class MemoryModels : BaseIdManualAssignable() {
      * 甚至，用户可以利用编程知识来编写算法，提供了 if-else/for语句, ??语法糖等。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var familiarityAlgorithm: String? = null
 
     /**
@@ -56,14 +56,14 @@ class MemoryModels : BaseIdManualAssignable() {
      * 注意：是 [每次展示并点击按钮 后 ，将输入以下变量]，而非 [每次点击按钮前，或每次展示前，或每次展示后且点击按钮前...]。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var nextTimeAlgorithm: String? = null
 
     /**
      * <在刚展示时>，按钮算法
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var buttonAlgorithm: String? = null
 
     /**
@@ -79,26 +79,7 @@ class MemoryModels : BaseIdManualAssignable() {
      * 若处于离线状态，将默认使用 1 代替。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var stimulateAlgorithm: String? = null
 
-
-    /**
-     * 适用群体
-     *
-     * 例如：大一生、高中生
-     */
-    @ClientColumn
-    @Column(nullable = true)
-    var applicableGroups: String? = null
-
-
-    /**
-     * 适用领域
-     *
-     * 例如：英语、英语-四级英语、语文-高中必备文言文
-     */
-    @ClientColumn
-    @Column(nullable = true)
-    var applicableFields: String? = null
 }

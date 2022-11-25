@@ -29,14 +29,14 @@ class RMemoryModel2MemoryModelGroups : BaseIdManualAssignable() {
      * 若为空，则当前记忆模型处在该用户记忆模型组的最顶层。
      */
     @ClientColumn(referenceTo = [MemoryModelGroups::class])
-    @Column(nullable = false)
-    var memoryModelGroupId: Long? = null
+    @Column(nullable = true)
+    var memoryModelGroupId: String? = null
 
     /**
      * 关联的记忆模型 id。
      */
     @ClientColumn(referenceTo = [MemoryModels::class])
     @Column(nullable = false)
-    var memoryModelId: Long? = null
+    var memoryModelId: String? = null
 
 }

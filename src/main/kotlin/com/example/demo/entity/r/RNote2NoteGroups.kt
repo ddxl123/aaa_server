@@ -29,14 +29,14 @@ class RNote2NoteGroups : BaseIdManualAssignable() {
      * 若为空，则当前笔记处在该用户笔记组的最顶层。
      */
     @ClientColumn(referenceTo = [NoteGroups::class])
-    @Column(nullable = false)
-    var noteGroupId: Long? = null
+    @Column(nullable = true)
+    var noteGroupId: String? = null
 
     /**
      * 关联的笔记 id。
      */
     @ClientColumn(referenceTo = [Notes::class])
     @Column(nullable = false)
-    var noteId: Long? = null
+    var noteId: String? = null
 
 }

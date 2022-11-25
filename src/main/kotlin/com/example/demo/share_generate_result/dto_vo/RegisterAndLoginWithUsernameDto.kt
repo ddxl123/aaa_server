@@ -4,7 +4,7 @@ import kotlin.String
 data class RegisterAndLoginWithUsernameDto(
 
     // 
-    var username: String?,
+    var username: String,
 
     // 
     var password: String?,

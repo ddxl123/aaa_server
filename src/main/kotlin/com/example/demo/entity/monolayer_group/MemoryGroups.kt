@@ -65,7 +65,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      * 记忆组名称。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 
     /**
@@ -73,7 +73,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [MemoryModels::class])
     @Column(nullable = true)
-    var memoryModelId: Long? = null
+    var memoryModelId: String? = null
 
     /**
      * 新学数量。
@@ -81,14 +81,14 @@ class MemoryGroups : BaseIdManualAssignable() {
      * 每次新学完一个，都会将该值减去1
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var willNewLearnCount: Int? = null
 
     /**
      * 取用 [reviewInterval] 时间点内的复习碎片。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var reviewInterval: Instant? = null
 
     /**
@@ -96,7 +96,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Enumerated
-    @Column(nullable = true)
+    @Column(nullable = false)
     var newReviewDisplayOrder: NewReviewDisplayOrder? = null
 
     /**
@@ -104,7 +104,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Enumerated
-    @Column(nullable = true)
+    @Column(nullable = false)
     var newDisplayOrder: NewDisplayOrder? = null
 
     /**

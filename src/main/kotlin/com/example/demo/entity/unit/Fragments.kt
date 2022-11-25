@@ -27,7 +27,7 @@ class Fragments : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Notes::class])
     @Column(nullable = true)
-    var noteId: Long? = null
+    var noteId: String? = null
 
     /**
      * 从哪个父碎片修改而来的。
@@ -35,12 +35,12 @@ class Fragments : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = true)
-    var fatherFragmentId: Long? = null
+    var fatherFragmentId: String? = null
 
     /**
      * 富文本碎片内容(可嵌入文件)
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var content: String? = null
 }

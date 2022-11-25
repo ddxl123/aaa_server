@@ -1,15 +1,15 @@
 package com.example.demo.share_generator.client_table_generator
 
-class ClientTableTarget(
+class DartCloudTableTarget(
         /**
          * 相对 [ClientTableGenerator.kotlinRelativeScanPath] 的路径。
          */
-        val path: String,
+        val kotlinPath: String,
         val tableName: String,
-        val clientMemberTargets: ArrayList<ClientMemberTarget>,
+        val dartCloudMemberTargets: ArrayList<DartCloudMemberTarget>,
 ) {
     override fun toString(): String {
-        return "path: $path\ntableName: $tableName\nclientMemberTargets: $clientMemberTargets"
+        return "path: $kotlinPath\ntableName: $tableName\ndartCloudMemberTargets: $dartCloudMemberTargets"
     }
 
     fun toDartSingleTableContent(): String {
@@ -24,7 +24,7 @@ class $tableName extends CloudTableBase {
 ${
             fun(): String {
                 var content = ""
-                for (clientMemberTarget in clientMemberTargets) {
+                for (clientMemberTarget in dartCloudMemberTargets) {
                     if (clientMemberTarget.referenceTos.isNotEmpty()) {
                         content += """
   @ReferenceTo([${clientMemberTarget.referenceTos.joinToString(", ").removeSuffix(",")}])"""

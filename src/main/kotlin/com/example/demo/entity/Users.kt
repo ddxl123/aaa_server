@@ -10,9 +10,12 @@ import javax.persistence.*
 @Entity
 class Users : BaseIdAutoAssignable() {
     @ClientColumn
-    @Column(nullable = true, length = 20)
+    @Column(nullable = false, length = 20)
     var username: String? = null
 
+    /**
+     * 当为手机号等登录时，密码为空。
+     */
     @ClientColumn
     @Column(nullable = true, length = 20)
     var password: String? = null
@@ -22,7 +25,7 @@ class Users : BaseIdAutoAssignable() {
     var email: String? = null
 
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var age: Byte? = null
 }
 

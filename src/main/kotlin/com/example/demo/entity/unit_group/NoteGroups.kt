@@ -24,12 +24,12 @@ class NoteGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [NoteGroups::class])
     @Column(nullable = true)
-    var fatherNoteGroupsId: Long? = null
+    var fatherNoteGroupsId: String? = null
 
     /**
      * 笔记组名称。
      */
     @ClientColumn
-    @Column(nullable = true)
+    @Column(nullable = false)
     var title: String? = null
 }

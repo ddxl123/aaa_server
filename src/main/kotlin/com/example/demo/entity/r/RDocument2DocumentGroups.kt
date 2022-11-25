@@ -30,13 +30,13 @@ class RDocument2DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [DocumentGroups::class])
     @Column(nullable = true)
-    var documentGroupId: Long? = null
+    var documentGroupId: String? = null
 
     /**
      * 关联的文档 id。
      */
     @ClientColumn(referenceTo = [Documents::class])
     @Column(nullable = false)
-    var documentId: Long? = null
+    var documentId: String? = null
 
 }

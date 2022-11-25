@@ -9,9 +9,9 @@ data class RegisterAndLoginWithUsernameVo(
     var register_or_login: Int,
 
     // 
-    var id: Long?,
+    var id: Long,
 
     // 
-    var new_display_order: NewDisplayOrder?,
+    var new_display_order: NewDisplayOrder,
 
 )
