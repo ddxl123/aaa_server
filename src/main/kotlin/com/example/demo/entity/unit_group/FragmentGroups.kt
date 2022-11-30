@@ -32,4 +32,12 @@ class FragmentGroups : BaseIdManualAssignable() {
     @ClientColumn
     @Column(nullable = false)
     var title: String? = null
+
+    /**
+     * 该行碎片是否被选择。
+     */
+    @Transient
+    @ClientColumn
+    @Column(nullable = false)
+    var isSelected: Boolean? = null
 }

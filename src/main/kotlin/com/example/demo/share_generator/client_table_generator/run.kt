@@ -5,7 +5,6 @@ fun clientTableGeneratorRun(kotlinPackageName: String, dartCommonLib: String, da
             kotlinRelativeScanPath = "/entity",
             kotlinPackageName = kotlinPackageName,
             dartCloudTableRelativeGenerateRootPath = "/table/cloud",
-            dartLocalTableRelativeGenerateRootPath = "/table/local",
             dartLibPath = "$dartCommonLib/drift",
             dartShareEnumImport = dartShareEnumImport,
     )

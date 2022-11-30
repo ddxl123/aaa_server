@@ -2,7 +2,7 @@ package com.example.demo.share_generator.client_table_generator
 
 import com.example.demo.share_generator.common.TypeTarget
 
-class DartCloudMemberTarget(
+class DartMemberTarget(
         val name: String,
         val typeTarget: TypeTarget,
         /**

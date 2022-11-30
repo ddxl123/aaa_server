@@ -1,15 +1,21 @@
 package com.example.demo.share_generator.client_table_generator
 
-class DartCloudTableTarget(
+enum class TableType {
+    cloud,
+    local,
+}
+
+class DartTableTarget(
         /**
          * 相对 [ClientTableGenerator.kotlinRelativeScanPath] 的路径。
          */
         val kotlinPath: String,
         val tableName: String,
-        val dartCloudMemberTargets: ArrayList<DartCloudMemberTarget>,
+        val tableType: TableType,
+        val dartMemberTargets: ArrayList<DartMemberTarget>,
 ) {
     override fun toString(): String {
-        return "path: $kotlinPath\ntableName: $tableName\ndartCloudMemberTargets: $dartCloudMemberTargets"
+        return "path: $kotlinPath\ntableName: $tableName\ndartCloudMemberTargets: $dartMemberTargets"
     }
 
     fun toDartSingleTableContent(): String {
@@ -17,14 +23,14 @@ class DartCloudTableTarget(
 part of drift_db;
 
 @ReferenceTo([])
-class $tableName extends CloudTableBase {
+class $tableName extends ${if (tableType == TableType.cloud) "CloudTableBase" else "LocalTableBase"}  {
 
   @override
   Set<Column>? get primaryKey => {id};
 ${
             fun(): String {
                 var content = ""
-                for (clientMemberTarget in dartCloudMemberTargets) {
+                for (clientMemberTarget in dartMemberTargets) {
                     if (clientMemberTarget.referenceTos.isNotEmpty()) {
                         content += """
   @ReferenceTo([${clientMemberTarget.referenceTos.joinToString(", ").removeSuffix(",")}])"""
