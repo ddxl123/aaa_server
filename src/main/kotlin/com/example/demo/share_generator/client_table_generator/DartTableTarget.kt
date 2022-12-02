@@ -38,7 +38,7 @@ ${
                     content += """
   ${clientMemberTarget.typeTarget.dartDriftColumnType.typeName} get ${clientMemberTarget.name} => ${clientMemberTarget.typeTarget.dartDriftInternalType.typeName}()${
                         if (clientMemberTarget.isNullable) ".nullable()" else ""
-                    }();
+                    }${if (tableType == TableType.local && clientMemberTarget.name == "id") ".autoIncrement()" else ""}();
 """
                 }
                 return content

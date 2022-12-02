@@ -1,6 +1,6 @@
 package com.example.demo.entity.local
 
-import com.example.demo.entity.base.BaseIdManualAssignable
+import com.example.demo.entity.base.BaseIdLocal
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import javax.persistence.Column
@@ -38,7 +38,7 @@ enum class SyncCurdType {
 }
 
 @ClientTable
-class Syncs : BaseIdManualAssignable() {
+class Syncs : BaseIdLocal() {
 
     @ClientColumn
     @Column(nullable = false)
