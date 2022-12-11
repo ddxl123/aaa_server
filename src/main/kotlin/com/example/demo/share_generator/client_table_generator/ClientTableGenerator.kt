@@ -6,6 +6,7 @@ import com.example.demo.share_generator.common.scanClasses
 import com.example.demo.share_generator.common.getTypeTarget
 import org.springframework.util.ClassUtils
 import java.io.File
+import java.lang.reflect.Field
 import javax.persistence.Column
 import javax.persistence.Entity
 import kotlin.io.path.Path
@@ -106,7 +107,7 @@ part 'DriftDb.drift.dart';
 
 part 'DriftDb.ref.dart';
 
-part 'DriftDb.ctr.dart';
+part 'DriftDb.crt.dart';
 
 part 'DriftDb.reset.dart';
 
@@ -157,6 +158,9 @@ ${
                         kClass.memberProperties.forEach { memberProperty ->
                             val clientColumnAnnotation = memberProperty.javaField!!.getAnnotation(ClientColumn::class.java)
                             if (clientColumnAnnotation != null) {
+                                if (clientColumnAnnotation.isOnlyLocal && !memberProperty.name.startsWith("local_")) {
+                                    throw Exception("${kClass.simpleName}.${memberProperty.name} 未添加 local_ 前缀，因为它是 local 类型")
+                                }
                                 val cmt = DartMemberTarget(
                                         name = memberProperty.name,
                                         typeTarget = getTypeTarget(memberProperty.javaField!!.type.kotlin),

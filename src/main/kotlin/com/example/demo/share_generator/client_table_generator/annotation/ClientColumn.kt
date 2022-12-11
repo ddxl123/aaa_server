@@ -4,4 +4,4 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ClientColumn(val referenceTo: Array<KClass<*>> = [])
+annotation class ClientColumn(val referenceTo: Array<KClass<*>> = [], val isOnlyLocal: Boolean = false)

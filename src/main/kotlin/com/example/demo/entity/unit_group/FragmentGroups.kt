@@ -37,7 +37,7 @@ class FragmentGroups : BaseIdManualAssignable() {
      * 该行碎片是否被选择。
      */
     @Transient
-    @ClientColumn
+    @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var isSelected: Boolean? = null
+    var local_isSelected: Boolean? = null
 }

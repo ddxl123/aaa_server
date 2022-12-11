@@ -4,7 +4,6 @@ import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
-import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity
 
@@ -49,7 +48,7 @@ class Fragments : BaseIdManualAssignable() {
      * 该行碎片是否被选择。
      */
     @Transient
-    @ClientColumn
+    @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var isSelected: Boolean? = null
+    var local_isSelected: Boolean? = null
 }
