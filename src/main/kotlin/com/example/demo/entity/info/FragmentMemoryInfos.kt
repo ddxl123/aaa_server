@@ -36,61 +36,72 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
     var fragmentId: String? = null
 
     /**
-     * 在当前记忆组内的，当前记录是否为当前碎片的最新记录。
-     *
-     * 在新纪录被创建的同时，需要把旧记录设为 false。
-     *
-     * 只要在当前记忆组内存在记录，最新的一个记录的 [isLatestRecord] 总是为 true。
-     */
-    @ClientColumn
-    @Column(nullable = false)
-    var isLatestRecord: Boolean? = null
-
-    /**
-     * 下一次计划展示的时间点。
+     * 记录下一次计划展示的时间点。
      *
      * 单位秒。
      *
      * 从记忆组启动时的时间点开始计算。
+     *
+     * 用 json 形式：[1,2,3]
+     *
+     * 为空表示没有记录。
      */
     @ClientColumn
-    @Column(nullable = false)
-    var nextPlanShowTime: Instant? = null
+    @Column(nullable = true)
+    var nextPlanShowTime: String? = null
 
 
     /**
-     * 当前实际展示的时间点。
+     * 记录当前实际展示的时间点。
      *
      * 单位秒。
      *
      * 从记忆组启动时的时间点开始计算。
+     *
+     * 用 json 形式：[1,2,3]
+     *
+     * 为空表示没有记录。
      */
     @ClientColumn
-    @Column(nullable = false)
-    var currentActualShowTime: Instant? = null
+    @Column(nullable = true)
+    var currentActualShowTime: String? = null
 
     /**
-     * 刚展示时的熟练度。
+     * 记录刚展示时的熟练度。
+     *
+     * 类型：小数
+     *
+     * 用 json 形式：[1,2,3]
+     *
+     * 为空表示没有记录。
      */
     @ClientColumn
-    @Column(nullable = false)
-    var showFamiliarity: Double? = null
+    @Column(nullable = true)
+    var showFamiliarity: String? = null
 
     /**
-     * 点击按钮的时间。
+     * 记录点击按钮的时间点。
      *
      * 单位秒。
      *
      * 从记忆组启动时的时间点开始计算。
+     *
+     * 用 json 形式：[1,2,3]
+     *
+     * 为空表示没有记录。
      */
     @ClientColumn
-    @Column(nullable = false)
-    var clickTime: Instant? = null
+    @Column(nullable = true)
+    var clickTime: String? = null
 
     /**
-     * 点击按钮的按钮数值。
+     * 记录点击按钮的按钮数值。
+     *
+     * 用 json 形式：[1,2,3]
+     *
+     * 为空表示没有记录。
      */
     @ClientColumn
-    @Column(nullable = false)
-    var clickValue: Double? = null
+    @Column(nullable = true)
+    var clickValue: String? = null
 }
