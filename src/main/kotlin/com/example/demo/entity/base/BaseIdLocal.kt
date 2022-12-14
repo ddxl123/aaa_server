@@ -7,9 +7,7 @@ import javax.persistence.*
 open class BaseIdLocal : BaseTimeEntity() {
 
     /**
-     * 自动分配的 id，由客户端或服务器自动生成。
-     *
-     * 即需要 id 生成策略 [GeneratedValue]
+     * local 类型的 id，由客户端进行生成的自增类型，不会被同步到 cloud。
      */
     @ClientColumn
     @Id

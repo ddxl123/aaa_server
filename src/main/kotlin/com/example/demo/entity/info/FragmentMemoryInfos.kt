@@ -2,11 +2,10 @@ package com.example.demo.entity.info
 
 import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
-import com.example.demo.entity.monolayer_group.MemoryGroups
+import com.example.demo.entity.unit.MemoryGroups
 import com.example.demo.entity.unit.Fragments
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
-import java.time.Instant
 import javax.persistence.Column
 import javax.persistence.Entity
 

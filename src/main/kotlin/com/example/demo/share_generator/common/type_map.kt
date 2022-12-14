@@ -22,7 +22,7 @@ class TypeTarget(
     /**
      * 获取类对应的 import。
      *
-     * 例如：import com.example.demo.entity.monolayer_group.NewDisplayOrder
+     * 例如：import com.example.demo.entity.unit.NewDisplayOrder
      */
     fun getKClassImport(): String {
         return "import ${kClass.qualifiedName}"

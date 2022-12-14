@@ -2,7 +2,7 @@ package com.example.demo.controller.dto_vo
 
 import com.example.demo.entity.Users
 import com.example.demo.controller.CodeMessage
-import com.example.demo.entity.monolayer_group.MemoryGroups
+import com.example.demo.entity.unit.MemoryGroups
 import com.example.demo.share_generator.dto_vo_generator.annotation.DtoVo
 import com.example.demo.share_generator.dto_vo_generator.toFieldTarget
 

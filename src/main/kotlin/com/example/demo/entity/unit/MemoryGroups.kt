@@ -1,8 +1,7 @@
-package com.example.demo.entity.monolayer_group
+package com.example.demo.entity.unit
 
 import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
-import com.example.demo.entity.unit.MemoryModels
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import java.time.Instant

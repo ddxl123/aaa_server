@@ -2,7 +2,7 @@
 package com.example.demo.share_generate_result.dto_vo
 import kotlin.Int
 import kotlin.Long
-import com.example.demo.entity.monolayer_group.NewDisplayOrder
+import com.example.demo.entity.unit.NewDisplayOrder
 data class RegisterAndLoginWithUsernameVo(
 
     // 0-注册，1-登录

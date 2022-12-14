@@ -78,8 +78,8 @@ class MemoryModels : BaseIdManualAssignable() {
      * 2. 对市场上的碎片进行检索，寻找合适的碎片来充当[激发碎片]，
      * 若处于离线状态，将默认使用 1 代替。
      */
-    @ClientColumn
-    @Column(nullable = false)
-    var stimulateAlgorithm: String? = null
+//    @ClientColumn
+//    @Column(nullable = false)
+//    var stimulateAlgorithm: String? = null
 
 }
