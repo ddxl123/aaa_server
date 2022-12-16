@@ -2,6 +2,7 @@ package com.example.demo.entity.unit
 
 import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdManualAssignable
+import com.example.demo.entity.info.FragmentMemoryInfos
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import java.time.Instant
@@ -79,12 +80,14 @@ class MemoryGroups : BaseIdManualAssignable() {
      *
      * 每次新学完一个，都会将该值减去1
      */
-    @ClientColumn
+    @ClientColumn(referenceTo = [FragmentMemoryInfos::class])
     @Column(nullable = false)
     var willNewLearnCount: Int? = null
 
     /**
      * 取用 [reviewInterval] 时间点内的复习碎片。
+     *
+     * 标准时间戳。
      */
     @ClientColumn
     @Column(nullable = false)
@@ -110,7 +113,8 @@ class MemoryGroups : BaseIdManualAssignable() {
      * 开始时间的时间点。
      *
      * 若未开始，则为 null。
-     * 若已完成，则时间戳为0.
+     *
+     * 标准时间戳。
      */
     @ClientColumn
     @Column(nullable = true)

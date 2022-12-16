@@ -44,6 +44,8 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      * 用 json 形式：[1,2,3]
      *
      * 为空表示没有记录。
+     *
+     * 该字段用来标识当前碎片是新碎片还是复习碎片。
      */
     @ClientColumn
     @Column(nullable = true)
@@ -59,20 +61,20 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 用 json 形式：[1,2,3]
      *
-     * 为空表示没有记录。
+     * 跟随 [nextPlanShowTime] 是否为 null。
      */
     @ClientColumn
     @Column(nullable = true)
     var currentActualShowTime: String? = null
 
     /**
-     * 记录刚展示时的熟练度。
+     * 记录刚展示时的记忆强度。
      *
      * 类型：小数
      *
      * 用 json 形式：[1,2,3]
      *
-     * 为空表示没有记录。
+     * 跟随 [nextPlanShowTime] 是否为 null。
      */
     @ClientColumn
     @Column(nullable = true)
@@ -87,7 +89,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 用 json 形式：[1,2,3]
      *
-     * 为空表示没有记录。
+     * 跟随 [nextPlanShowTime] 是否为 null。
      */
     @ClientColumn
     @Column(nullable = true)
@@ -98,7 +100,7 @@ class FragmentMemoryInfos : BaseIdManualAssignable() {
      *
      * 用 json 形式：[1,2,3]
      *
-     * 为空表示没有记录。
+     * 跟随 [nextPlanShowTime] 是否为 null。
      */
     @ClientColumn
     @Column(nullable = true)
