@@ -38,6 +38,21 @@ class Fragments : BaseIdManualAssignable() {
     var fatherFragmentId: String? = null
 
     /**
+     * 当前碎片所使用的是哪个碎片模板进行创建的。
+     * 若为 null，则没有使用模板。
+     */
+    @ClientColumn(referenceTo = [FragmentTemplates::class])
+    @Column(nullable = true)
+    var fragmentTemplateId: String? = null
+
+    /**
+     * 标题，修改或增加碎片时，会同时设置标题。
+     */
+    @ClientColumn
+    @Column(nullable = false)
+    var title: String? = null
+
+    /**
      * 富文本碎片内容(可嵌入文件)
      */
     @ClientColumn
