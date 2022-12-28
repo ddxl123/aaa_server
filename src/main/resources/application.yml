@@ -19,3 +19,11 @@ spring:
     #
     # true - 若有表则检测更新，若无表则创建
     generate-ddl: true
+  mail:
+    username: 904084422@qq.com
+    password: rigvfsxkxqbebdac
+    host: smtp.qq.com
+    port: 587
+server:
+  port: 2814
+  address: 127.0.0.1

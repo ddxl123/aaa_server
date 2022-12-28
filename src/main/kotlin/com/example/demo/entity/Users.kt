@@ -9,6 +9,11 @@ import javax.persistence.*
 @ClientTable
 @Entity
 class Users : BaseIdAutoAssignable() {
+
+    @ClientColumn
+    @Column(nullable = false)
+    var token: String? = null
+
     @ClientColumn
     @Column(nullable = false, length = 20)
     var username: String? = null

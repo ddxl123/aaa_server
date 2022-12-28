@@ -7,6 +7,9 @@ import org.springframework.core.type.classreading.MetadataReaderFactory
 import org.springframework.util.ClassUtils
 import kotlin.reflect.KClass
 
+/**
+ * 扫描全部类。
+ */
 fun scanClasses(kotlinPackageName: String): ArrayList<KClass<*>> {
     //spring工具类，可以获取指定路径下的全部类
     val resourcePatternResolver: ResourcePatternResolver = PathMatchingResourcePatternResolver()

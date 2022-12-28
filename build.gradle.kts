@@ -25,6 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.5")
     // 热部署
     implementation("org.springframework.boot:spring-boot-devtools:2.7.5")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
 
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
