@@ -29,6 +29,14 @@ class Users : BaseIdAutoAssignable() {
     @Column(nullable = true, length = 20)
     var email: String? = null
 
+
+    /**
+     * 因为前缀带有 +xx，因此是 String 类型。
+     */
+    @ClientColumn
+    @Column(nullable = true)
+    var phone: String? = null
+
     @ClientColumn
     @Column(nullable = false)
     var age: Byte? = null

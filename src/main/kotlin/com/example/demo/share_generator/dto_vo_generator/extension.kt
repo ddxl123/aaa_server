@@ -37,9 +37,6 @@ fun <T, V> String.toFieldTarget(
         isForceNullable: Boolean,
         explain: String = ""
 ): FieldTarget<T, V> {
-    if (kotlinType.java.isEnum) {
-//        addTypeMap(enumPackageName = kotlinType.java.packageName, enumName = kotlinType.simpleName!!)
-    }
     return FieldTarget(
             fieldName = this,
             kotlinType = kotlinType,

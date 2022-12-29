@@ -2,6 +2,7 @@ package com.example.demo.share_generator.dto_vo_generator
 
 import com.example.demo.share_generator.common.TypeTarget
 import com.example.demo.share_generator.common.getTypeTarget
+import com.example.demo.share_generator.common.typeSet
 import javax.persistence.Column
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
@@ -42,7 +43,7 @@ class FieldTarget<out T, out V> {
      * [fieldName] 自命名的字段名。
      *
      * [kotlinType] 需要的 kotlin 的类型。
-     * 可查看映射：[typeMap]
+     * 可查看映射：[typeSet]
      *
      * [isForceNullable] 是否强制为空或不为空。
      *
