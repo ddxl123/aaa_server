@@ -21,7 +21,7 @@ spring:
     generate-ddl: true
   mail:
     username: 904084422@qq.com
-    password: rigvfsxkxqbebdac
+    password: hwnzzcoiimrvbdfb
     host: smtp.qq.com
     port: 587
 
@@ -44,3 +44,10 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
+
+logging:
+  file:
+    name: ./logs/log.log
+  # trace < debug < info（默认） < warn < error < fatal，低于设置日志级别的日志不会输出
+  level:
+    root: info

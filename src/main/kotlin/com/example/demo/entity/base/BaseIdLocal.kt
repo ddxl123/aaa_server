@@ -7,7 +7,7 @@ import javax.persistence.*
 open class BaseIdLocal : BaseTimeEntity() {
 
     /**
-     * local 类型的 id，由客户端进行生成的自增类型，不会被同步到 cloud。
+     * 纯 local 类型的 id，由客户端进行生成的自增类型，不会被同步到 cloud。
      */
     @ClientColumn
     @Id

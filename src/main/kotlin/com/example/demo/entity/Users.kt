@@ -4,15 +4,17 @@ import com.example.demo.entity.base.BaseIdAutoAssignable
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import javax.persistence.*
+import kotlin.jvm.Transient
 
 
 @ClientTable
 @Entity
 class Users : BaseIdAutoAssignable() {
 
-    @ClientColumn
+    @Transient
+    @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var token: String? = null
+    var local_token: String? = null
 
     @ClientColumn
     @Column(nullable = false, length = 20)
