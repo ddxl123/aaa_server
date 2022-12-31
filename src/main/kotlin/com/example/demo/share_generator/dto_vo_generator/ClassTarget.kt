@@ -175,10 +175,9 @@ ${
   @JsonKey(ignore: true)
   ${className + TargetClassType.Vo.name}? vo;
 
-  T handleCode<T>({
-    // 前端 request 内部异常，统一只需消息。
-    required T Function(String message) localExceptionMessage,
-    
+  Future<T> handleCode<T>({
+    // code 为 null 时的异常（request 函数内部捕获到的异常）
+    required Future<T> Function(int? code, String message) otherException,
 ${
                     fun(): String {
                         var content = ""
@@ -186,46 +185,38 @@ ${
                             content += if (it.isRequiredData) {
                                 """
     // ${it.message}
-    required T Function(String message, ${className + TargetClassType.Vo.name} vo) code${it.code},
+    required Future<T> Function(String message, ${className + TargetClassType.Vo.name} vo) code${it.code},
     """
                             } else {
                                 """
     // ${it.message}
-    required T Function(String message) code${it.code},
+    required Future<T> Function(String message) code${it.code},
     """
                             }
                         }
                         return content
                     }()
                 }
-                
-    }) {
-    
+    }) async {
 ${
                     fun(): String {
                         var content = ""
                         codeMessages.forEach {
                             content += if (it.isRequiredData) {
                                 """
-    if (code == ${it.code}) {
-        return code${it.code}(message, vo!);
-    }
+    if (code == ${it.code}) return await code${it.code}(message, vo!);
 """
                             } else {
                                 """
-    if (code == ${it.code}) {
-        return code${it.code}(message);
-    }
+    if (code == ${it.code}) return await code${it.code}(message);
 """
                             }
                         }
                         return content
                     }()
                 }
-                
-    throw "未处理 code:${"\$code"}";
-  }
-      """
+    return await otherException(code, message);
+  }"""
             } else ""
         }
 }

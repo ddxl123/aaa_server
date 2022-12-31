@@ -33,6 +33,7 @@ class RegisterAndLogin {
                 "register_and_login_type".toFieldTarget(kotlinType = RegisterAndLoginType::class, isForceNullable = false),
                 "is_registered".toFieldTarget(kotlinType = Boolean::class, isForceNullable = false, explain = "是否为新注册用户"),
                 Users::id.toFieldTarget(isForceNullable = true),
+                "token".toFieldTarget(kotlinType = String::class, isForceNullable = true)
         )
     }
 }

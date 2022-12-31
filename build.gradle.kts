@@ -31,6 +31,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     // 认证与鉴权
     implementation("cn.dev33:sa-token-spring-boot-starter:1.33.0")
+    // jwt
+    implementation("com.auth0:java-jwt:4.2.1")
+    // sa-token-jwt
+    implementation("cn.dev33:sa-token-jwt:1.33.0")
+
     // 认证与鉴权的redis
 //    implementation("cn.dev33:sa-token-dao-redis:1.33.0")
 

@@ -1,19 +1,18 @@
 package com.example.demo.controller.controller
 
+import cn.dev33.satoken.stp.SaLoginConfig
 import cn.dev33.satoken.stp.StpUtil
-import cn.dev33.satoken.util.SaResult
 import com.example.demo.controller.ResponseWrapper
 import com.example.demo.controller.dto_vo.RegisterAndLogin
 import com.example.demo.controller.dto_vo.RegisterAndLoginType
+import com.example.demo.controller.exception.CustomException
 import com.example.demo.entity.Users
-import com.example.demo.global.logger
+import com.example.demo.global.routeDoLogin
 import com.example.demo.repository.NotesRepository
 import com.example.demo.repository.UsersRepository
 import com.example.demo.server_generator.output.Crt
 import com.example.demo.share_generate_result.dto_vo.RegisterAndLoginDto
 import com.example.demo.share_generate_result.dto_vo.RegisterAndLoginVo
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Example
 import org.springframework.mail.SimpleMailMessage
 import org.springframework.mail.javamail.JavaMailSender
@@ -27,21 +26,11 @@ val loginOrRegisterVerifyCodes: ConcurrentHashMap<String, Int> = ConcurrentHashM
 val loginOrRegisterVerifyCodeExpires: ConcurrentHashMap<String, Long> = ConcurrentHashMap()
 
 @RestController
-@RequestMapping("/register_and_login")
+@RequestMapping(routeDoLogin)
 class RegisterAndLoginController(
         var usersRepository: UsersRepository,
-        var notesRepository: NotesRepository,
         var javaMailSender: JavaMailSender,
 ) {
-
-
-    @GetMapping("/do_login")
-    fun doLogin(): SaResult? {
-        StpUtil.login(1)
-        val tokenInfo = StpUtil.getTokenInfo()
-        return SaResult.data(tokenInfo)
-    }
-
     @PostMapping("/send_or_verify")
     fun sendOrVerify(@RequestBody registerAndLoginDto: RegisterAndLoginDto): ResponseWrapper {
         if (registerAndLoginDto.register_and_login_type == RegisterAndLoginType.email_send) {
@@ -65,19 +54,21 @@ class RegisterAndLoginController(
             if (verifyCode == registerAndLoginDto.verify_code) {
                 val oldUser = usersRepository.findOne(Example.of(Users().also { it.email = registerAndLoginDto.email }))
                 if (oldUser.isEmpty) {
-
                     val newUser = usersRepository.save(Crt.users(
                             age = -1,
                             email = registerAndLoginDto.email,
                             password = null,
                             phone = null,
-                            username = "还没有起名字", createdAt = Instant.now(), updatedAt = Instant.now(),
+                            username = "还没有起名字",
+                            createdAt = Instant.now(),
+                            updatedAt = Instant.now(),
                     ))
                     StpUtil.login(newUser.id)
                     return RegisterAndLogin.code102.toResponseWrapper(RegisterAndLoginVo(
                             register_and_login_type = RegisterAndLoginType.email_verify,
                             is_registered = true,
                             id = newUser.id,
+                            token = StpUtil.getTokenValue()
                     ))
                 } else {
                     StpUtil.login(oldUser.get().id)
@@ -85,12 +76,13 @@ class RegisterAndLoginController(
                             register_and_login_type = RegisterAndLoginType.email_verify,
                             is_registered = false,
                             id = oldUser.get().id,
+                            token = StpUtil.getTokenValue()
                     ))
                 }
             } else {
                 return RegisterAndLogin.code101.toResponseWrapper()
             }
         }
-        throw Exception("sendOrVerify 异常！")
+        throw CustomException("未处理 RegisterAndLoginDto 类型: ${registerAndLoginDto.register_and_login_type}")
     }
 }

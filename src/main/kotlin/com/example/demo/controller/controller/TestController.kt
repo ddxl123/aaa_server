@@ -1,12 +1,13 @@
 package com.example.demo.controller.controller
 
+import com.example.demo.global.routeNeedLogin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("${routeNeedLogin}/test")
 class TestController {
 
     @GetMapping("/get")
