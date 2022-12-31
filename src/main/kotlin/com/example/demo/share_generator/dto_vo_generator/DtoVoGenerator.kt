@@ -112,6 +112,8 @@ part 'HttpPath.dart';
 
 part 'httper.g.dart';
 
+part 'OtherResponseCode.dart';
+
 ${
                 fun(): String {
                     var content = ""

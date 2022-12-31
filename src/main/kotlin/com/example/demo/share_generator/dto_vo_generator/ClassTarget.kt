@@ -171,13 +171,16 @@ ${
 
   @JsonKey(ignore: true)
   String message = "未分配 message！";
+  
+  @JsonKey(ignore: true)
+  StackTrace? st;
 
   @JsonKey(ignore: true)
   ${className + TargetClassType.Vo.name}? vo;
 
   Future<T> handleCode<T>({
     // code 为 null 时的异常（request 函数内部捕获到的异常）
-    required Future<T> Function(int? code, String message) otherException,
+    required Future<T> Function(int? code, String message, StackTrace st) otherException,
 ${
                     fun(): String {
                         var content = ""
@@ -215,7 +218,7 @@ ${
                         return content
                     }()
                 }
-    return await otherException(code, message);
+    return await otherException(code, message, st!);
   }"""
             } else ""
         }

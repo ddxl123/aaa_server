@@ -37,6 +37,7 @@ fun handle() {
 
 fun content(): String {
     return """
+part of httper;
 class OtherResponseCode {
     /// 返回是否被拦截处理。
     static Future<T?> handleCode<T>({

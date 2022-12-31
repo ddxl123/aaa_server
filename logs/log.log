@@ -12845,3 +12845,497 @@ com.example.demo.controller.exception.CustomException: 未处理 RegisterAndLogi
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
 2022-12-31 21:54:10.321  WARN 14148 --- [http-nio-127.0.0.1-2814-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.controller.exception.CustomException: 未处理 RegisterAndLoginDto 类型: phone_verify]
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:45.428  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:54:50.313  INFO 14148 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 3 deletions, 0 modifications)
+2022-12-31 21:54:50.316  INFO 14148 --- [Thread-27] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 21:54:50.316  INFO 14148 --- [Thread-27] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-12-31 21:54:50.320  INFO 14148 --- [Thread-27] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:54:50.320  INFO 14148 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2022-12-31 21:54:50.324  INFO 14148 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2022-12-31 21:54:50.398  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 14148 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 21:54:50.399  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 21:54:50.544  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 21:54:50.566  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2022-12-31 21:54:50.646  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 21:54:50.646  INFO 14148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 21:54:50.646  INFO 14148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 21:54:50.680  INFO 14148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 21:54:50.680  INFO 14148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 280 ms
+2022-12-31 21:54:50.715  INFO 14148 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 21:54:50.719  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2022-12-31 21:54:50.729  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2022-12-31 21:54:50.729  INFO 14148 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 21:54:51.179  INFO 14148 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 21:54:51.179  INFO 14148 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:54:51.276  WARN 14148 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 21:54:51.429  INFO 14148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 21:54:51.439  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 21:54:51.443  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.067 seconds (JVM running for 924.059)
+2022-12-31 21:54:51.443  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:54:51.444  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:51.444  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:51.444  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:51.444  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:51.444  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:54:51.444  INFO 14148 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 21:54:52.872  INFO 14148 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (3 additions, 0 deletions, 0 modifications)
+2022-12-31 21:54:52.874  INFO 14148 --- [Thread-31] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 21:54:52.876  INFO 14148 --- [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:54:52.877  INFO 14148 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2022-12-31 21:54:52.879  INFO 14148 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2022-12-31 21:54:52.948  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 14148 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 21:54:52.948  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 21:54:53.147  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 21:54:53.171  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 2 JPA repository interfaces.
+2022-12-31 21:54:53.256  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 21:54:53.257  INFO 14148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 21:54:53.257  INFO 14148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 21:54:53.286  INFO 14148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 21:54:53.287  INFO 14148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 337 ms
+2022-12-31 21:54:53.329  INFO 14148 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 21:54:53.333  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2022-12-31 21:54:53.345  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2022-12-31 21:54:53.346  INFO 14148 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 21:54:53.797  INFO 14148 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 21:54:53.797  INFO 14148 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:54:53.868  WARN 14148 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 21:54:53.990  INFO 14148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 21:54:54.001  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 21:54:54.004  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.081 seconds (JVM running for 926.621)
+2022-12-31 21:54:54.004  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:54:54.005  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:54.005  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:54.005  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:54.005  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:54:54.005  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:54:54.005  INFO 14148 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 21:56:23.884  INFO 14148 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 4 deletions, 0 modifications)
+2022-12-31 21:56:23.885  INFO 14148 --- [Thread-35] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 21:56:23.888  INFO 14148 --- [Thread-35] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:23.888  INFO 14148 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2022-12-31 21:56:23.892  INFO 14148 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2022-12-31 21:56:23.965  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 14148 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 21:56:23.965  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 21:56:24.119  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 21:56:24.141  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 2 JPA repository interfaces.
+2022-12-31 21:56:24.207  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 21:56:24.207  INFO 14148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 21:56:24.207  INFO 14148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 21:56:24.237  INFO 14148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 21:56:24.237  INFO 14148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 270 ms
+2022-12-31 21:56:24.270  INFO 14148 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 21:56:24.274  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2022-12-31 21:56:24.282  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2022-12-31 21:56:24.282  INFO 14148 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 21:56:24.647  INFO 14148 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 21:56:24.647  INFO 14148 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:24.708  WARN 14148 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 21:56:24.792  INFO 14148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 21:56:24.799  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 21:56:24.802  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 0.86 seconds (JVM running for 1017.419)
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:24.803  INFO 14148 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:24.803  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:56:26.225  INFO 14148 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (4 additions, 0 deletions, 0 modifications)
+2022-12-31 21:56:26.228  INFO 14148 --- [Thread-39] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 21:56:26.236  INFO 14148 --- [Thread-39] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:26.237  INFO 14148 --- [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2022-12-31 21:56:26.242  INFO 14148 --- [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2022-12-31 21:56:26.312  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 14148 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 21:56:26.312  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 21:56:26.445  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 21:56:26.461  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 2 JPA repository interfaces.
+2022-12-31 21:56:26.510  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 21:56:26.511  INFO 14148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 21:56:26.511  INFO 14148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 21:56:26.537  INFO 14148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 21:56:26.537  INFO 14148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 224 ms
+2022-12-31 21:56:26.566  INFO 14148 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 21:56:26.570  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2022-12-31 21:56:26.579  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2022-12-31 21:56:26.579  INFO 14148 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 21:56:26.920  INFO 14148 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 21:56:26.920  INFO 14148 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:26.984  WARN 14148 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 21:56:27.075  INFO 14148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 21:56:27.083  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 21:56:27.086  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 0.794 seconds (JVM running for 1019.702)
+2022-12-31 21:56:27.086  INFO 14148 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 21:56:27.087  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:56:27.088  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:27.088  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:27.088  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:27.088  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:27.088  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:56:47.461  INFO 14148 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 5 class path changes (0 additions, 0 deletions, 5 modifications)
+2022-12-31 21:56:47.463  INFO 14148 --- [Thread-43] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 21:56:47.466  INFO 14148 --- [Thread-43] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:47.467  INFO 14148 --- [Thread-43] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2022-12-31 21:56:47.469  INFO 14148 --- [Thread-43] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+2022-12-31 21:56:47.579  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 14148 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 21:56:47.579  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 21:56:47.779  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 21:56:47.797  INFO 14148 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 2 JPA repository interfaces.
+2022-12-31 21:56:47.871  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 21:56:47.872  INFO 14148 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 21:56:47.872  INFO 14148 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 21:56:47.908  INFO 14148 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 21:56:47.908  INFO 14148 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 324 ms
+2022-12-31 21:56:47.943  INFO 14148 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 21:56:47.946  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2022-12-31 21:56:47.956  INFO 14148 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2022-12-31 21:56:47.956  INFO 14148 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 21:56:48.406  INFO 14148 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 21:56:48.407  INFO 14148 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 21:56:48.510  WARN 14148 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 21:56:48.661  INFO 14148 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 21:56:48.675  INFO 14148 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 21:56:48.683  INFO 14148 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.152 seconds (JVM running for 1041.299)
+2022-12-31 21:56:48.684  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 21:56:48.685  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:48.685  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:48.686  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:48.686  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 21:56:48.686  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 21:56:48.687  INFO 14148 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 22:01:48.786  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:01:48.869  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:01:48.869  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:01:48.869  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:01:48.869  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:01:48.869  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:06:48.881  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:06:48.881  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:06:48.881  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:06:48.881  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:06:48.881  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:06:48.882  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:11:48.892  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:11:48.892  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:11:48.892  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:11:48.892  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:11:48.892  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:11:48.893  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:16:48.905  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:21:48.912  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:26:48.919  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:31:48.920  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:36:48.935  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:41:48.944  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:41:48.944  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:41:48.944  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:41:48.945  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:41:48.945  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:41:48.945  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:46:48.948  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:51:48.960  INFO 14148 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:52:16.759  INFO 14148 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 22:52:16.793  INFO 14148 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2022-12-31 22:52:16.806  INFO 14148 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+2022-12-31 22:52:21.621  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 16728 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 22:52:21.622  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 22:52:21.688  INFO 16728 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-31 22:52:21.689  INFO 16728 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-31 22:52:22.671  INFO 16728 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 22:52:22.740  INFO 16728 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 2 JPA repository interfaces.
+2022-12-31 22:52:23.357  INFO 16728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 22:52:23.368  INFO 16728 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 22:52:23.368  INFO 16728 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 22:52:23.458  INFO 16728 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 22:52:23.458  INFO 16728 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1769 ms
+2022-12-31 22:52:23.647  INFO 16728 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 22:52:23.718  INFO 16728 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-31 22:52:23.921  INFO 16728 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-31 22:52:24.029  INFO 16728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-31 22:52:24.361  INFO 16728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-31 22:52:24.391  INFO 16728 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 22:52:25.407  INFO 16728 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 22:52:25.415  INFO 16728 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 22:52:25.753  WARN 16728 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 22:52:26.110  INFO 16728 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 22:52:26.149  INFO 16728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 22:52:26.156  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:52:26.157  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:52:26.157  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:52:26.157  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:52:26.157  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:52:26.157  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 22:52:26.158  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 5.026 seconds (JVM running for 6.052)
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 22:57:26.168  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:02:26.170  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:02:26.173  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:02:26.173  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:02:26.173  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:02:26.174  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:02:26.174  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:03:39.840  INFO 16728 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2022-12-31 23:03:39.889  INFO 16728 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:03:39.923  INFO 16728 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:03:39.937  INFO 16728 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-31 23:03:39.964  INFO 16728 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-31 23:03:40.088  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 16728 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:03:40.088  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:03:40.317  INFO 16728 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:03:40.346  INFO 16728 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:03:40.457  INFO 16728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:03:40.458  INFO 16728 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:03:40.458  INFO 16728 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:03:40.498  INFO 16728 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:03:40.498  INFO 16728 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 408 ms
+2022-12-31 23:03:40.554  INFO 16728 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:03:40.560  INFO 16728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-12-31 23:03:40.581  INFO 16728 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-12-31 23:03:40.581  INFO 16728 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:03:41.111  INFO 16728 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:03:41.113  INFO 16728 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:03:41.192  WARN 16728 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:03:41.297  INFO 16728 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:03:41.309  INFO 16728 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:03:41.312  INFO 16728 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.257 seconds (JVM running for 681.207)
+2022-12-31 23:03:41.312  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:03:41.313  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:41.313  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:41.313  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:41.313  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:41.313  INFO 16728 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:03:41.314  INFO 16728 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 23:03:44.566  INFO 16728 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:03:44.567  INFO 16728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2022-12-31 23:03:44.571  INFO 16728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2022-12-31 23:03:47.347  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:03:47.348  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:03:47.406  INFO 22192 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-31 23:03:47.406  INFO 22192 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-31 23:03:48.237  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:03:48.298  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:03:48.786  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:03:48.797  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:03:48.797  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:03:48.886  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:03:48.886  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1480 ms
+2022-12-31 23:03:49.047  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:03:49.117  INFO 22192 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-31 23:03:49.316  INFO 22192 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-31 23:03:49.423  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-31 23:03:49.772  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-31 23:03:49.806  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:03:51.280  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:03:51.293  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:03:51.786  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:03:52.214  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:03:52.254  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:03:52.264  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:03:52.265  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:52.265  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:52.265  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:52.266  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:03:52.266  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:03:52.267  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 5.293 seconds (JVM running for 6.027)
+2022-12-31 23:04:07.104  INFO 22192 --- [http-nio-192.168.101.15-2814-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-31 23:04:07.104  INFO 22192 --- [http-nio-192.168.101.15-2814-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-31 23:04:07.105  INFO 22192 --- [http-nio-192.168.101.15-2814-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-31 23:06:33.057  INFO 22192 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 4 deletions, 0 modifications)
+2022-12-31 23:06:33.061  INFO 22192 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:06:33.063  INFO 22192 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-12-31 23:06:33.072  INFO 22192 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:33.075  INFO 22192 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-31 23:06:33.086  INFO 22192 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-31 23:06:33.158  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:06:33.159  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:06:33.325  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:06:33.347  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:06:33.442  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:06:33.444  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:06:33.444  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:06:33.471  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:06:33.472  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 311 ms
+2022-12-31 23:06:33.510  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:06:33.515  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-12-31 23:06:33.528  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-12-31 23:06:33.528  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:06:34.080  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:06:34.080  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:34.179  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:06:34.348  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:06:34.359  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:06:34.364  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.236 seconds (JVM running for 168.123)
+2022-12-31 23:06:34.364  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:06:34.365  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:34.365  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:34.365  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:34.365  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:34.365  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:06:34.366  INFO 22192 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 23:06:35.792  INFO 22192 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (4 additions, 0 deletions, 0 modifications)
+2022-12-31 23:06:35.795  INFO 22192 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:06:35.800  INFO 22192 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:35.801  INFO 22192 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2022-12-31 23:06:35.805  INFO 22192 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2022-12-31 23:06:35.898  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:06:35.899  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:06:36.082  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:06:36.106  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:06:36.197  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:06:36.198  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:06:36.198  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:06:36.232  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:06:36.232  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 331 ms
+2022-12-31 23:06:36.271  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:06:36.277  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2022-12-31 23:06:36.293  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2022-12-31 23:06:36.294  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:06:36.973  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:06:36.973  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:37.060  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:06:37.178  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:06:37.186  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:06:37.191  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.332 seconds (JVM running for 170.952)
+2022-12-31 23:06:37.192  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:06:37.193  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:37.193  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:37.193  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:37.193  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:37.194  INFO 22192 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 23:06:37.194  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:06:51.361  INFO 22192 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 0 deletions, 4 modifications)
+2022-12-31 23:06:51.363  INFO 22192 --- [Thread-11] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:06:51.367  INFO 22192 --- [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:51.368  INFO 22192 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2022-12-31 23:06:51.373  INFO 22192 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2022-12-31 23:06:51.450  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:06:51.450  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:06:51.655  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:06:51.676  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:06:51.741  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:06:51.743  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:06:51.743  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:06:51.772  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:06:51.773  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 322 ms
+2022-12-31 23:06:51.807  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:06:51.814  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2022-12-31 23:06:51.827  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2022-12-31 23:06:51.827  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:06:52.404  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:06:52.405  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:06:52.489  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:06:52.631  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:06:52.639  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:06:52.643  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.225 seconds (JVM running for 186.402)
+2022-12-31 23:06:52.643  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:06:52.643  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:52.643  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:52.644  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:52.644  INFO 22192 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 23:06:52.644  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:06:52.644  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:07:23.935  INFO 22192 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 4 deletions, 0 modifications)
+2022-12-31 23:07:23.937  INFO 22192 --- [Thread-15] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:07:23.940  INFO 22192 --- [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:07:23.941  INFO 22192 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2022-12-31 23:07:23.944  INFO 22192 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2022-12-31 23:07:24.032  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:07:24.032  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:07:24.223  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:07:24.239  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:07:24.296  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:07:24.296  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:07:24.296  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:07:24.322  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:07:24.323  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 287 ms
+2022-12-31 23:07:24.361  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:07:24.365  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2022-12-31 23:07:24.381  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2022-12-31 23:07:24.381  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:07:24.807  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:07:24.807  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:07:24.926  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:07:25.040  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:07:25.048  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:07:25.051  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 1.055 seconds (JVM running for 218.811)
+2022-12-31 23:07:25.051  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:07:25.053  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:25.053  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:25.053  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:25.053  INFO 22192 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-12-31 23:07:25.053  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:25.053  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:07:26.507  INFO 22192 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (4 additions, 0 deletions, 0 modifications)
+2022-12-31 23:07:26.509  INFO 22192 --- [Thread-19] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-31 23:07:26.512  INFO 22192 --- [Thread-19] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:07:26.512  INFO 22192 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2022-12-31 23:07:26.514  INFO 22192 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2022-12-31 23:07:26.569  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Starting LinlongApplicationKt using Java 17.0.4.1 on LongPC with PID 22192 (D:\project\aaa_server\build\classes\kotlin\main started by LongPC in D:\project\aaa_server)
+2022-12-31 23:07:26.570  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : No active profile set, falling back to 1 default profile: "default"
+2022-12-31 23:07:26.683  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-31 23:07:26.698  INFO 22192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 2 JPA repository interfaces.
+2022-12-31 23:07:26.748  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 2814 (http)
+2022-12-31 23:07:26.748  INFO 22192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-31 23:07:26.748  INFO 22192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-31 23:07:26.790  INFO 22192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-31 23:07:26.790  INFO 22192 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 219 ms
+2022-12-31 23:07:26.826  INFO 22192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-31 23:07:26.830  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2022-12-31 23:07:26.840  INFO 22192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2022-12-31 23:07:26.840  INFO 22192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-12-31 23:07:27.241  INFO 22192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-31 23:07:27.241  INFO 22192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-31 23:07:27.301  WARN 22192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-31 23:07:27.398  INFO 22192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-31 23:07:27.406  INFO 22192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 2814 (http) with context path ''
+2022-12-31 23:07:27.409  INFO 22192 --- [restartedMain] com.example.demo.LinlongApplicationKt    : Started LinlongApplicationKt in 0.857 seconds (JVM running for 221.17)
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 正在清除过期登录/注册验证码...
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : {}
+2022-12-31 23:07:27.411  INFO 22192 --- [scheduling-1] com.example.demo.LinlongApplication      : 清除过期登录/注册验证码完成。
+2022-12-31 23:07:27.411  INFO 22192 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
