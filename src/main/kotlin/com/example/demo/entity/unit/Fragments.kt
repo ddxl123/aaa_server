@@ -65,5 +65,5 @@ class Fragments : BaseIdManualAssignable() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_isSelected: Boolean? = null
+    var local_be_Selected: Boolean? = null
 }

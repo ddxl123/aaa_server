@@ -24,7 +24,15 @@ spring:
     password: hwnzzcoiimrvbdfb
     host: smtp.qq.com
     port: 587
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    # Redis数据库索引（默认为0）
+    database: 0
+    # 读取超时时间
+    timeout: 30s
+    # 连接超时时间
+    connect-timeout: 30s
 server:
   port: 2814
   address: 192.168.101.15
@@ -39,15 +47,18 @@ sa-token:
   # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
   activity-timeout: -1
   # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
-  is-concurrent: false
+  # 但是为了 jwt 的混入模式，避开 [顶人登录]，必须设置为 true。
+  is-concurrent: true
   # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
-  is-share: false
+  # 但是为了 jwt 的混入模式，避开 [顶人登录]，必须设置为 true。
+  is-share: true
   # token风格
   token-style: uuid
   # 是否输出操作日志
   is-log: true
   # jwt 密钥
-  jwt-secret-key: longjwtsecretkey
+  jwt-secret-key: longjwtsecretkey1111
+
 
 logging:
   file:

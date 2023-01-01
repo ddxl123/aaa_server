@@ -1,5 +1,6 @@
 package com.example.demo.controller.controller
 
+import cn.dev33.satoken.stp.StpUtil
 import com.example.demo.global.routeNeedLogin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,6 +13,7 @@ class TestController {
 
     @GetMapping("/get")
     fun getTest(): String {
+        StpUtil.login(1)
         return "this is GET test"
     }
 

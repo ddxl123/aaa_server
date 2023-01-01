@@ -27,7 +27,7 @@ fun handle() {
     ExceptionAdvice::class.companionObject!!.memberProperties.forEach {
         it.isAccessible = true
         val cm = it.javaField!!.get(null) as CodeMessage
-        requiredContent += "\n        required Future<T> Function(String message) code${cm.code},"
+        requiredContent += "\n        required Future<T> Function(String showMessage) code${cm.code},"
         bodyContent += """
         if (inputCode == ${cm.code}) {
             return await code${cm.code}("${cm.message}");

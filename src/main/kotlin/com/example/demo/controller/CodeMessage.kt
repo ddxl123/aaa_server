@@ -2,7 +2,7 @@ package com.example.demo.controller
 
 import java.lang.Exception
 
-class CodeMessage(val code: Int, val message: String, val isRequiredData: Boolean) {
+data class CodeMessage(val code: Int, val message: String, val isRequiredData: Boolean) {
     fun toResponseWrapper(): ResponseWrapper {
         if (this.isRequiredData) {
             throw Exception("isRequiredData 为 true，但是执行的是不含 data 的函数！")

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @Configuration
 class Interceptor : WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry) {
-        registry.addInterceptor(SaInterceptor { StpUtil.checkLogin() })
-                .addPathPatterns("$routeNeedLogin/**")
+//        registry.addInterceptor(SaInterceptor { StpUtil.checkLogin() })
+//                .addPathPatterns("$routeNeedLogin/**")
     }
 }
