@@ -14,11 +14,11 @@ class Users : BaseIdAutoAssignable() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_token: String? = null
+    var local_token: String = ""
 
     @ClientColumn
     @Column(nullable = false, length = 20)
-    var username: String? = null
+    var username: String = ""
 
     /**
      * 当为手机号等登录时，密码为空。
@@ -40,7 +40,7 @@ class Users : BaseIdAutoAssignable() {
     var phone: String? = null
 
     @ClientColumn
-    @Column(nullable = false)
+    @Column(nullable = true)
     var age: Byte? = null
 }
 

@@ -18,6 +18,8 @@ import javax.persistence.Column
  *  - 若客户端早于服务端， 则 1. 可能客户端、服务端时间被篡改；2. 该条数据在其他客户端已经被同步过了 TODO: 可依据此处设计多客户端登陆方案。
  */
 enum class SyncCurdType {
+    none,
+
     /**
      * 增
      */
@@ -42,15 +44,15 @@ class Syncs : BaseIdLocal() {
 
     @ClientColumn
     @Column(nullable = false)
-    var syncTableName: String? = null
+    var syncTableName: String = ""
 
     @ClientColumn
     @Column(nullable = false)
-    var rowId: String? = null
+    var rowId: String = ""
 
     @ClientColumn
     @Column(nullable = false)
-    var syncCurdType: SyncCurdType? = null
+    var syncCurdType: SyncCurdType = SyncCurdType.none
 
     /**
      * 同组标识符，可以看 [SyncTag]。
@@ -65,5 +67,5 @@ class Syncs : BaseIdLocal() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var tag: Int? = null
+    var tag: Int = -1
 }

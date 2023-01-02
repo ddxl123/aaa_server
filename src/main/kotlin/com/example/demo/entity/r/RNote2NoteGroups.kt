@@ -21,7 +21,7 @@ class RNote2NoteGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long? = null
+    var creatorUserId: Long = -1
 
     /**
      * 关联的笔记组 id。
@@ -37,6 +37,6 @@ class RNote2NoteGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Notes::class])
     @Column(nullable = false)
-    var noteId: String? = null
+    var noteId: String = ""
 
 }

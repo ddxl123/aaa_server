@@ -16,7 +16,7 @@ class FragmentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long? = null
+    var creatorUserId: Long = -1
 
     /**
      * 当前碎片组的父碎片组id。
@@ -31,7 +31,7 @@ class FragmentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var title: String? = null
+    var title: String = ""
 
     /**
      * 该行碎片是否被选择。
@@ -39,5 +39,5 @@ class FragmentGroups : BaseIdManualAssignable() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_be_Selected: Boolean? = null
+    var local_be_Selected: Boolean = false
 }

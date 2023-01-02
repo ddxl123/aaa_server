@@ -12,15 +12,19 @@ import javax.persistence.Entity
 class ServerSyncInfos : BaseIdAutoAssignable() {
 
     @Column(nullable = false)
-    var userId: Long? = null
+    var userId: Long = -1
 
     /**
      * 若客户端与服务端相同，则数据正常。
      *
-     * 若客户端存储的时间比服务端存储的时间不一致，则需要删除客户端全部数据并重新下载全部数据，
+     * 若客户端A存储的时间比服务端存储的时间靠前，说明用户在其他客户端B被同步，客户端A需要检测并下载，
+     *
+     * 若客户端A存储的时间比服务端存储的时间靠后，则抛出异常，并提醒需要清除数据重新下载。
+     *
+     * 若客户端A存储的时间比服务端存储的时间相同，则可以同步未同步内容。
      *
      * 若客户端没有存储的时间，则直接下载。
      */
     @Column(nullable = false)
-    var recentSyncTime: Instant? = null
+    var recentSyncTime: Instant = Instant.now()
 }

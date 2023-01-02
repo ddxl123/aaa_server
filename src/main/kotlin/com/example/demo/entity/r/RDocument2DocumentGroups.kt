@@ -21,7 +21,7 @@ class RDocument2DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long? = null
+    var creatorUserId: Long = -1
 
     /**
      * 关联的文档组 id。
@@ -37,6 +37,6 @@ class RDocument2DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Documents::class])
     @Column(nullable = false)
-    var documentId: String? = null
+    var documentId: String = ""
 
 }

@@ -19,12 +19,12 @@ class Documents : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long? = null
+    var creatorUserId: Long = -1
 
     /**
      * 文档内容。可以是文章、文件、富文本(可嵌入文件)
      */
     @ClientColumn
     @Column(nullable = false)
-    var content: String? = null
+    var content: String = ""
 }

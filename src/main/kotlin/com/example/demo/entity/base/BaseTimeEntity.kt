@@ -12,12 +12,12 @@ open class BaseTimeEntity : BaseEntity() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var createdAt: Instant? = null
+    var createdAt: Instant = Instant.now()
 
     /**
      * TODO: 需要使用客户端生成数据存入到数据库。
      */
     @ClientColumn
     @Column(nullable = false)
-    var updatedAt: Instant? = null
+    var updatedAt: Instant = Instant.now()
 }

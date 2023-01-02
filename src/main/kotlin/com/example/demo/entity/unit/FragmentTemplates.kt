@@ -8,6 +8,8 @@ import javax.persistence.Column
 import javax.persistence.Entity
 
 enum class FragmentTemplateType {
+    none,
+
     /**
      * 可以为任何形式的 rich。
      */
@@ -16,20 +18,20 @@ enum class FragmentTemplateType {
 
 @ClientTable
 @Entity
-class FragmentTemplates  : BaseIdManualAssignable() {
+class FragmentTemplates : BaseIdManualAssignable() {
 
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var ownerUserId: Long? = null
+    var ownerUserId: Long = -1
 
     /**
      * 模板类型。
      */
     @ClientColumn()
     @Column(nullable = false)
-    var type: FragmentTemplateType? = null
+    var type: FragmentTemplateType = FragmentTemplateType.none
 
     @ClientColumn()
     @Column(nullable = false)
-    var content: String? = null
+    var content: String = ""
 }

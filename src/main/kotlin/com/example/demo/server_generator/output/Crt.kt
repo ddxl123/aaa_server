@@ -19,7 +19,7 @@ class Crt {
     companion object {
 
             fun users(
-                age: kotlin.Byte,
+                age: kotlin.Byte?,
                 email: kotlin.String?,
                 password: kotlin.String?,
                 phone: kotlin.String?,
