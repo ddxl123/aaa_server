@@ -94,6 +94,9 @@ ${
                 return (fts.map { it.typeTarget.getKClassImport() }.toSet()).joinToString("\n")
             }()
         }
+/**
+ * [${targetClass.name}]
+ */
 data class ${classNameWithType}(
 ${
             fun(): String {

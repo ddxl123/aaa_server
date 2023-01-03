@@ -14,8 +14,6 @@ import javax.persistence.Enumerated
  * 新旧碎片展示先后顺序。
  */
 enum class NewReviewDisplayOrder {
-    none,
-
     /**
      * 随机混合
      */
@@ -36,8 +34,6 @@ enum class NewReviewDisplayOrder {
  * 新碎片展示先后顺序。
  */
 enum class NewDisplayOrder {
-    none,
-
     /**
      * 随机顺序。
      */
@@ -63,14 +59,14 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 记忆组名称。
      */
     @ClientColumn
     @Column(nullable = false)
-    var title: String = ""
+    var title: String? = null
 
     /**
      * 使用的记忆模型 id。
@@ -86,7 +82,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [FragmentMemoryInfos::class])
     @Column(nullable = false)
-    var willNewLearnCount: Int = -1
+    var willNewLearnCount: Int? = null
 
     /**
      * 取用 [reviewInterval] 时间点内的复习碎片。
@@ -95,7 +91,7 @@ class MemoryGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var reviewInterval: Instant = Instant.now()
+    var reviewInterval: Instant? = null
 
     /**
      * 新旧碎片展示先后顺序。
@@ -103,7 +99,7 @@ class MemoryGroups : BaseIdManualAssignable() {
     @ClientColumn
     @Enumerated
     @Column(nullable = false)
-    var newReviewDisplayOrder: NewReviewDisplayOrder = NewReviewDisplayOrder.none
+    var newReviewDisplayOrder: NewReviewDisplayOrder? = null
 
     /**
      * 新碎片展示先后顺序。
@@ -111,7 +107,7 @@ class MemoryGroups : BaseIdManualAssignable() {
     @ClientColumn
     @Enumerated
     @Column(nullable = false)
-    var newDisplayOrder: NewDisplayOrder = NewDisplayOrder.none
+    var newDisplayOrder: NewDisplayOrder? = null
 
     /**
      * 开始时间的时间点。

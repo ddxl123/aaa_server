@@ -21,7 +21,7 @@ class RFragment2FragmentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 关联的碎片组 id。
@@ -37,6 +37,6 @@ class RFragment2FragmentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Fragments::class])
     @Column(nullable = false)
-    var fragmentId: String = ""
+    var fragmentId: String? = null
 
 }

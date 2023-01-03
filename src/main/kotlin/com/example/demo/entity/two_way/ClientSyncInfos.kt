@@ -24,5 +24,5 @@ class ClientSyncInfos : BaseIdLocal() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var recentSyncTime: Instant = Instant.now()
+    var recentSyncTime: Instant? = null
 }

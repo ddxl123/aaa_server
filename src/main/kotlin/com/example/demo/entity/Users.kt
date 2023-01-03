@@ -14,11 +14,11 @@ class Users : BaseIdAutoAssignable() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_token: String = ""
+    var local_token: String? = null
 
     @ClientColumn
     @Column(nullable = false, length = 20)
-    var username: String = ""
+    var username: String? = null
 
     /**
      * 当为手机号等登录时，密码为空。

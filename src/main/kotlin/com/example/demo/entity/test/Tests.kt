@@ -13,5 +13,5 @@ class Tests : BaseIdLocal() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_content: String = ""
+    var local_content: String? = null
 }

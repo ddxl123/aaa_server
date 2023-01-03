@@ -1,22 +1,14 @@
 package com.example.demo.controller.exception
 
 import cn.dev33.satoken.error.SaErrorCode
-import cn.dev33.satoken.exception.NotLoginException
 import cn.dev33.satoken.exception.SaTokenException
-import cn.dev33.satoken.stp.StpUtil
 import cn.hutool.json.JSONObject
 import com.example.demo.controller.CodeMessage
 import com.example.demo.controller.ResponseWrapper
 import com.example.demo.global.logger
-import org.apache.catalina.connector.RequestFacade
-import org.slf4j.Marker
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import java.net.http.HttpRequest
-import java.util.logging.Formatter
-import java.util.logging.SimpleFormatter
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletRequestWrapper
 import javax.servlet.http.HttpServletResponse
 
 @RestControllerAdvice
@@ -50,9 +42,9 @@ class ExceptionAdvice {
     }
 
 
-    @ExceptionHandler(CustomException::class)
-    fun customExceptionHandler(customException: CustomException): ResponseWrapper {
-        logger.error("customExceptionHandler 截取到异常: ${customException.message}", customException)
+    @ExceptionHandler(DefiniteException::class)
+    fun definiteExceptionHandler(definiteException: DefiniteException): ResponseWrapper {
+        logger.error("definiteExceptionHandler 截取到异常: ${definiteException.message}", definiteException)
         return code10001.toResponseWrapper()
     }
 
@@ -70,7 +62,7 @@ class ExceptionAdvice {
             val key = headerWrapper.next()
             header[key] = request.getHeader(key)
         }
-        
+
         val allMap = mapOf<String, Any?>(
                 Pair("method", method),
                 Pair("url", url.toString()),

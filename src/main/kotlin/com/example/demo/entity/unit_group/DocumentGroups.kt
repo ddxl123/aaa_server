@@ -16,7 +16,7 @@ class DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 当前文档组的父文档组id。
@@ -31,5 +31,5 @@ class DocumentGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var title: String = ""
+    var title: String? = null
 }

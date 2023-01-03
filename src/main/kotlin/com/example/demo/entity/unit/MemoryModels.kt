@@ -16,7 +16,7 @@ class MemoryModels : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 从哪个父记忆模型修改而来的。
@@ -28,7 +28,7 @@ class MemoryModels : BaseIdManualAssignable() {
 
     @ClientColumn
     @Column(nullable = false)
-    var title: String = ""
+    var title: String? = null
 
 
     /**
@@ -47,7 +47,7 @@ class MemoryModels : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var familiarityAlgorithm: String = ""
+    var familiarityAlgorithm: String? = null
 
     /**
      * <在点击按钮时>，评估下一次展示的时间点的算法。
@@ -57,14 +57,14 @@ class MemoryModels : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var nextTimeAlgorithm: String = ""
+    var nextTimeAlgorithm: String? = null
 
     /**
      * <在刚展示时>，按钮算法
      */
     @ClientColumn
     @Column(nullable = false)
-    var buttonAlgorithm: String = ""
+    var buttonAlgorithm: String? = null
 
     /**
      * 激发算法

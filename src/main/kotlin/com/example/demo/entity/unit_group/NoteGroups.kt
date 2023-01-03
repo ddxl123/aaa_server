@@ -16,7 +16,7 @@ class NoteGroups : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 当前笔记组的父笔记组id。
@@ -31,5 +31,5 @@ class NoteGroups : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var title: String = ""
+    var title: String? = null
 }

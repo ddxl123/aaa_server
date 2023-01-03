@@ -37,7 +37,7 @@ fun repositoryRun(kotlinPackageName: String, kotlinGeneratorRootPath: String) {
     }
 
     Path("$kotlinGeneratorRootPath/services").createDirectories()
-    File("$kotlinGeneratorRootPath/services/SimpleRepository.kt").writeText(serviceContent(kotlinPackageName = kotlinPackageName))
+    File("$kotlinGeneratorRootPath/services/SimpleService.kt").writeText(serviceContent(kotlinPackageName = kotlinPackageName))
 }
 
 
@@ -77,7 +77,7 @@ fun serviceContent(kotlinPackageName: String): String {
 package com.example.demo.services
 
 @org.springframework.stereotype.Service
-class SimpleRepository(
+class SimpleService(
 $single
 )
 """

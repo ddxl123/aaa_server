@@ -19,7 +19,7 @@ class Notes : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 从哪个文档摘取的笔记。
@@ -42,5 +42,5 @@ class Notes : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var content: String = ""
+    var content: String? = null
 }

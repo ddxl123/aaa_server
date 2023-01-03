@@ -12,7 +12,7 @@ import javax.persistence.Entity
 class ServerSyncInfos : BaseIdAutoAssignable() {
 
     @Column(nullable = false)
-    var userId: Long = -1
+    var userId: Long? = null
 
     /**
      * 若客户端与服务端相同，则数据正常。
@@ -26,5 +26,5 @@ class ServerSyncInfos : BaseIdAutoAssignable() {
      * 若客户端没有存储的时间，则直接下载。
      */
     @Column(nullable = false)
-    var recentSyncTime: Instant = Instant.now()
+    var recentSyncTime: Instant? = null
 }

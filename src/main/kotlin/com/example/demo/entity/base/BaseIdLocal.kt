@@ -13,6 +13,6 @@ open class BaseIdLocal : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
-    var id: Long = -1
+    var id: Long? = null
 
 }

@@ -19,7 +19,7 @@ class Fragments : BaseIdManualAssignable() {
      */
     @ClientColumn(referenceTo = [Users::class])
     @Column(nullable = false)
-    var creatorUserId: Long = -1
+    var creatorUserId: Long? = null
 
     /**
      * 从哪个笔记碎片化的。
@@ -50,14 +50,14 @@ class Fragments : BaseIdManualAssignable() {
      */
     @ClientColumn
     @Column(nullable = false)
-    var title: String = ""
+    var title: String? = null
 
     /**
      * 富文本碎片内容(可嵌入文件)
      */
     @ClientColumn
     @Column(nullable = false)
-    var content: String = ""
+    var content: String? = null
 
     /**
      * 该行碎片是否被选择。
@@ -65,5 +65,5 @@ class Fragments : BaseIdManualAssignable() {
     @Transient
     @ClientColumn(isOnlyLocal = true)
     @Column(nullable = false)
-    var local_be_Selected: Boolean = false
+    var local_be_Selected: Boolean? = null
 }
