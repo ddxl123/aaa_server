@@ -89,7 +89,9 @@ $dartShareEnumImport
 
 part 'dao/query/GeneralQueryDAO.dart';
 
-part 'dao/InsertDAO.dart';
+part 'dao/insert/InsertDAO.dart';
+
+part 'dao/insert/RawInsertDAO.dart';
 
 part 'dao/UpdateDAO.dart';
 

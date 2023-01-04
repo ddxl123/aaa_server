@@ -1,7 +1,11 @@
 package com.example.demo.share_generator.common
 
+import com.example.demo.entity.base.BaseEntity
 import java.time.Instant
 import kotlin.reflect.KClass
+import kotlin.reflect.full.allSuperclasses
+import kotlin.reflect.full.isSuperclassOf
+import kotlin.reflect.full.superclasses
 
 class TypeWithImport(
         val typeName: String,
@@ -18,16 +22,6 @@ class TypeTarget(
         val dartDriftColumnType: TypeWithImport,
         val dartDriftInternalType: TypeWithImport,
 ) {
-
-    /**
-     * 获取类对应的 import。
-     *
-     * 例如：import com.example.demo.entity.unit.NewDisplayOrder
-     */
-    fun getKClassImport(): String {
-        return "import ${kClass.qualifiedName}"
-    }
-
     override fun toString(): String {
         return "(dartType: $dartType, dartDriftColumnType: $dartDriftColumnType, dartDriftInternalType: $dartDriftInternalType)"
     }
@@ -45,6 +39,16 @@ fun getTypeTarget(kClass: KClass<*>): TypeTarget {
                 dartType = TypeWithImport(typeName = kClass.simpleName!!, import = ""),
                 dartDriftColumnType = TypeWithImport(typeName = "IntColumn", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "intEnum<${kClass.simpleName!!}>", import = ""),
+        )
+        typeSet.add(newTypeTarget)
+        return newTypeTarget
+    }
+    if (kClass.allSuperclasses.contains(BaseEntity::class)) {
+        val newTypeTarget = TypeTarget(
+                kClass = kClass,
+                dartType = TypeWithImport(typeName = kClass.simpleName!!.removeSuffix("s"), import = ""),
+                dartDriftColumnType = TypeWithImport(typeName = "", import = ""),
+                dartDriftInternalType = TypeWithImport(typeName = "", import = ""),
         )
         typeSet.add(newTypeTarget)
         return newTypeTarget

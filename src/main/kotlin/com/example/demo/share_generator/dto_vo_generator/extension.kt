@@ -1,6 +1,9 @@
 package com.example.demo.share_generator.dto_vo_generator
 
+import com.example.demo.entity.Users
+import com.example.demo.entity.base.BaseEntity
 import com.example.demo.share_generator.common.getTypeTarget
+import com.example.demo.tool.toLowercaseLine
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.jvm.javaField
@@ -40,6 +43,18 @@ fun <T, V> String.toFieldTarget(
     return FieldTarget(
             fieldName = this,
             kotlinType = kotlinType,
+            isForceNullable = isForceNullable,
+            explain = explain
+    )
+}
+
+fun <T, V> BaseEntity.toFieldTarget(
+        isForceNullable: Boolean,
+        explain: String = ""
+): FieldTarget<T, V> {
+    return FieldTarget(
+            fieldName = this::class.simpleName!!.removeSuffix("s").toLowercaseLine() + "_entity",
+            kotlinType = this::class,
             isForceNullable = isForceNullable,
             explain = explain
     )

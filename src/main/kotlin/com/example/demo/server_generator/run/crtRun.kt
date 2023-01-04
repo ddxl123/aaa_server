@@ -34,11 +34,8 @@ fun find(kotlinPackageName: String) {
                 packages.add("import ${cl.toString().removePrefix("class ")}")
                 cl.memberProperties.forEach { m ->
                     val col = m.javaField!!.getAnnotation(Column::class.java)
-                    val clientCol = m.javaField!!.getAnnotation(ClientColumn::class.java)
-                    if (clientCol == null || !clientCol.isOnlyLocal) {
-                        val type = m.returnType.toString().removeSuffix("?")
-                        crtMembers.add(CrtMember(name = m.name, isNullable = col.nullable, type = type))
-                    }
+                    val type = m.returnType.toString().removeSuffix("?")
+                    crtMembers.add(CrtMember(name = m.name, isNullable = col.nullable, type = type))
                 }
                 tables.add(CrtTable(name = cl.simpleName!!, members = crtMembers, idType = idType))
             }

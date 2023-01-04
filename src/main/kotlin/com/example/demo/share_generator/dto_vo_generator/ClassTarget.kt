@@ -84,16 +84,6 @@ class ClassTarget(
     fun toKotlinContent(): String {
         return """
 package ${DtoVoGenerator.kotlinPackageName}.${(DtoVoGenerator.shareMainPath + kotlinRelativePath).split(Regex("/")).run { subList(1, count()) }.joinToString(".")}
-${
-            fun(): String {
-                val fts = when (targetClassType) {
-                    TargetClassType.Dto -> dtoFieldTargets
-                    TargetClassType.Vo -> voFieldTargets
-                    else -> throw Exception("未知 ClassNameType:${targetClassType}")
-                }
-                return (fts.map { it.typeTarget.getKClassImport() }.toSet()).joinToString("\n")
-            }()
-        }
 /**
  * [${targetClass.name}]
  */

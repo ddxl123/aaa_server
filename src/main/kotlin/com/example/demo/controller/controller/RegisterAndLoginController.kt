@@ -59,13 +59,13 @@ class RegisterAndLoginController(
                 if (oldUser == null) {
                     val newUser = uniteService.insertService.insertUser(registerAndLoginDto.email!!)
                     StpUtil.login(newUser.id)
+                    newUser.local_token = StpUtil.getTokenValueByLoginId(newUser.id!!)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = true,
                             be_logged_in = true,
                             recent_sync_time = null,
-                            id = newUser.id!!,
-                            token = StpUtil.getTokenValueByLoginId(newUser.id!!)
+                            user_entity = newUser,
                     ))
                 } else {
                     val beLoggedIn = StpUtil.getTokenValueByLoginId(oldUser.id) != null
@@ -73,13 +73,14 @@ class RegisterAndLoginController(
                     if (!beLoggedIn) {
                         StpUtil.login(oldUser.id)
                     }
+                    // TODO: 纯客户端的表字段必须默认是非空值，这样的话就不需要每次都对 local_ 类型赋初始值了。
+                    oldUser.local_token = if (beLoggedIn) "" else StpUtil.getTokenValueByLoginId(oldUser.id)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = false,
                             be_logged_in = beLoggedIn,
                             recent_sync_time = serverSyncInfo?.recentSyncTime,
-                            id = oldUser.id,
-                            token = if (beLoggedIn) null else StpUtil.getTokenValueByLoginId(oldUser.id),
+                            user_entity = oldUser,
                     ))
                 }
             } else {

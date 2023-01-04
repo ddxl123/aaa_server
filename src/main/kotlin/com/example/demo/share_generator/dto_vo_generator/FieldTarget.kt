@@ -1,13 +1,15 @@
 package com.example.demo.share_generator.dto_vo_generator
 
+import com.example.demo.entity.base.BaseEntity
 import com.example.demo.share_generator.common.TypeTarget
 import com.example.demo.share_generator.common.getTypeTarget
 import com.example.demo.share_generator.common.typeSet
 import javax.persistence.Column
+import javax.persistence.Entity
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.jvm.javaField
-import kotlin.reflect.jvm.kotlinProperty
+import kotlin.reflect.jvm.javaType
 
 
 class FieldTarget<out T, out V> {
@@ -16,7 +18,7 @@ class FieldTarget<out T, out V> {
      * [fieldTargetObj] XXX:name
      *
      * [isForceNullable] 是否强制为空或不为空，无论 XXX:name 的注解是否为空。
-     * TODO: 注解为写业务
+     * TODO: 注解未写业务
      * 当 [isForceNullable] 为 null 时，会根据 XXX:name 的注解自动检测是否为空。
      *
      * [explain] 当前变量的注释。
@@ -26,7 +28,7 @@ class FieldTarget<out T, out V> {
             isForceNullable: Boolean? = null,
             explain: String = ""
     ) {
-        this.kotlinTypeName = fieldTargetObj.returnType.toString().split(".").last().replace("?", "")
+        this.kotlinTypeName = fieldTargetObj.returnType.toString().removeSuffix("?")
         this.typeTarget = getTypeTarget(fieldTargetObj.javaField!!.type.kotlin)
         this.fieldName = fieldTargetObj.name.replace(Regex("[A-Z]")) { matchResult -> "_${matchResult.value.lowercase()}" }
         if (isForceNullable != null) {
@@ -55,13 +57,12 @@ class FieldTarget<out T, out V> {
             isForceNullable: Boolean,
             explain: String = ""
     ) {
-        this.kotlinTypeName = kotlinType.simpleName!!
+        this.kotlinTypeName = kotlinType.qualifiedName!!
         this.typeTarget = getTypeTarget(kotlinType)
         this.fieldName = fieldName
         this.isForceNullable = isForceNullable
         this.explain = explain
     }
-
 
     val fieldName: String
     val kotlinTypeName: String

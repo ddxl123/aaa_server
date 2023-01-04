@@ -8,10 +8,12 @@ spring:
     # 输出 sql 语句
     show-sql: true
 
-
     # 和 generate-ddl 类似，但有 create,create-drop,update 等更多策略。
     hibernate:
       ddl-auto: create
+      naming:
+        # 使用自定义命名生成策略。
+        physical-strategy: com.example.demo.global.yml_config.Entity2DatabaseNamePhysicalNamingStrategy
 
     #    open-in-view: true
 

@@ -1,23 +1,20 @@
 
 package com.example.demo.share_generate_result.dto_vo
-import com.example.demo.controller.dto_vo.RegisterOrLoginType
-import kotlin.String
-import kotlin.Int
 /**
  * [com.example.demo.controller.dto_vo.RegisterOrLogin]
  */
 data class RegisterOrLoginDto(
 
     // 
-    var register_or_login_type: RegisterOrLoginType,
+    var register_or_login_type: com.example.demo.controller.dto_vo.RegisterOrLoginType,
 
     // 
-    var email: String?,
+    var email: kotlin.String?,
 
     // 
-    var phone: String?,
+    var phone: kotlin.String?,
 
     // 
-    var verify_code: Int?,
+    var verify_code: kotlin.Int?,
 
 )
