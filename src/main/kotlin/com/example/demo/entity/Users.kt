@@ -12,9 +12,9 @@ import kotlin.jvm.Transient
 class Users : BaseIdAutoAssignable() {
 
     @Transient
-    @ClientColumn(isOnlyLocal = true)
+    @ClientColumn(isOnlyClient = true)
     @Column(nullable = false)
-    var local_token: String? = null
+    var client_token: String = ""
 
     @ClientColumn
     @Column(nullable = false, length = 20)

@@ -6,7 +6,6 @@ import com.example.demo.share_generator.common.scanClasses
 import com.example.demo.share_generator.common.getTypeTarget
 import org.springframework.util.ClassUtils
 import java.io.File
-import java.lang.reflect.Field
 import javax.persistence.Column
 import javax.persistence.Entity
 import kotlin.io.path.Path
@@ -160,8 +159,8 @@ ${
                         kClass.memberProperties.forEach { memberProperty ->
                             val clientColumnAnnotation = memberProperty.javaField!!.getAnnotation(ClientColumn::class.java)
                             if (clientColumnAnnotation != null) {
-                                if (clientColumnAnnotation.isOnlyLocal && !memberProperty.name.startsWith("local_")) {
-                                    throw Exception("${kClass.simpleName}.${memberProperty.name} 未添加 local_ 前缀，因为它是 local 类型")
+                                if (clientColumnAnnotation.isOnlyClient && !memberProperty.name.startsWith("client_")) {
+                                    throw Exception("${kClass.simpleName}.${memberProperty.name} 未添加 client_ 前缀，因为它是 client 类型")
                                 }
                                 val cmt = DartMemberTarget(
                                         name = memberProperty.name,
@@ -177,7 +176,7 @@ ${
                                 DartTableTarget(
                                         kotlinPath = kotlinPath,
                                         tableName = kClass.simpleName!!,
-                                        tableType = if (kotlinTableClassAnnotation == null) TableType.local else TableType.cloud,
+                                        tableType = if (kotlinTableClassAnnotation == null) TableType.client else TableType.cloud,
                                         dartMemberTargets = dartMemberTargets
                                 )
                         )

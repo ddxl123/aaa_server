@@ -1,7 +1,9 @@
 package com.example.demo.share_generator
 
 import com.example.demo.server_generator.run.crtRun
+import com.example.demo.server_generator.run.entityCloneRun
 import com.example.demo.server_generator.run.repositoryRun
+import com.example.demo.share_generator.check.checkRun
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import com.example.demo.share_generator.client_table_generator.clientTableGeneratorRun
 import com.example.demo.share_generator.common.scanClasses
@@ -22,7 +24,7 @@ const val dartDriftMainLib = "D:/project/aaa/subpackages/drift_main/lib"
 const val dartShareEnumImport = "import 'package:drift_main/share_common/share_enum.dart';"
 
 fun main() {
-    check()
+    checkRun()
     clientTableGeneratorRun(kotlinPackageName = kotlinPackageName, dartCommonLib = dartDriftMainLib, dartShareEnumImport = dartShareEnumImport)
     dtoVoGeneratorRun(kotlinPackageName = kotlinPackageName, kotlinGeneratorRootPath = kotlinGeneratorRootPath, dartCommonLib = dartDriftMainLib, dartShareEnumImport = dartShareEnumImport)
     otherResponseCodeGenerator(dartDriftMainLib = dartDriftMainLib)
@@ -30,15 +32,6 @@ fun main() {
     routeGenerator(dartCommonLib = dartDriftMainLib, kotlinPackageName = kotlinPackageName)
     crtRun(kotlinPackageName = kotlinPackageName, kotlinGeneratorRootPath = kotlinGeneratorRootPath)
     repositoryRun(kotlinPackageName = kotlinPackageName, kotlinGeneratorRootPath = kotlinGeneratorRootPath)
+    entityCloneRun()
 }
 
-fun check() {
-    val cls = scanClasses(kotlinPackageName = kotlinPackageName)
-    cls.forEach { cl ->
-        if (cl.java.getAnnotation(Entity::class.java) != null) {
-            if (!cl.simpleName!!.endsWith("s")) {
-                throw Exception("实体类的命名必须带有 s 后缀！${cl.qualifiedName}")
-            }
-        }
-    }
-}

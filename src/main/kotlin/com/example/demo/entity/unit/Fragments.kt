@@ -63,7 +63,7 @@ class Fragments : BaseIdManualAssignable() {
      * 该行碎片是否被选择。
      */
     @Transient
-    @ClientColumn(isOnlyLocal = true)
+    @ClientColumn(isOnlyClient = true)
     @Column(nullable = false)
-    var local_be_Selected: Boolean? = null
+    var client_be_Selected: Boolean = false
 }

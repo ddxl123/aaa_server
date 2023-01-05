@@ -34,7 +34,6 @@ class RegisterOrLogin {
                 "be_logged_in".toFieldTarget(kotlinType = Boolean::class, isForceNullable = true, explain = "是否用户状态是否已登录"),
                 ServerSyncInfos::recentSyncTime.toFieldTarget(isForceNullable = true),
                 Users().toFieldTarget(isForceNullable = true),
-//                "token".toFieldTarget(kotlinType = String::class, isForceNullable = true, explain = "已在其他地方登录则为空，否则进行登录并带上token"),
         )
     }
 }

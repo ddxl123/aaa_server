@@ -21,7 +21,6 @@ class Crt {
             fun users(
                 age: kotlin.Byte?,
                 email: kotlin.String?,
-                local_token: kotlin.String,
                 password: kotlin.String?,
                 phone: kotlin.String?,
                 username: kotlin.String,
@@ -32,7 +31,6 @@ class Crt {
                 return Users().also {
                     it.age = age
                     it.email = email
-                    it.local_token = local_token
                     it.password = password
                     it.phone = phone
                     it.username = username
@@ -191,7 +189,6 @@ class Crt {
                 creatorUserId: kotlin.Long,
                 fatherFragmentId: kotlin.String?,
                 fragmentTemplateId: kotlin.String?,
-                local_be_Selected: kotlin.Boolean,
                 noteId: kotlin.String?,
                 title: kotlin.String,
                 createdAt: java.time.Instant,
@@ -204,7 +201,6 @@ class Crt {
                     it.creatorUserId = creatorUserId
                     it.fatherFragmentId = fatherFragmentId
                     it.fragmentTemplateId = fragmentTemplateId
-                    it.local_be_Selected = local_be_Selected
                     it.noteId = noteId
                     it.title = title
                     it.createdAt = createdAt
@@ -315,7 +311,6 @@ class Crt {
             fun fragmentGroups(
                 creatorUserId: kotlin.Long,
                 fatherFragmentGroupsId: kotlin.String?,
-                local_be_Selected: kotlin.Boolean,
                 title: kotlin.String,
                 createdAt: java.time.Instant,
                 id: String,
@@ -325,7 +320,6 @@ class Crt {
                 return FragmentGroups().also {
                     it.creatorUserId = creatorUserId
                     it.fatherFragmentGroupsId = fatherFragmentGroupsId
-                    it.local_be_Selected = local_be_Selected
                     it.title = title
                     it.createdAt = createdAt
                     it.id = id

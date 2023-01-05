@@ -4,10 +4,10 @@ import com.example.demo.share_generator.client_table_generator.annotation.Client
 import javax.persistence.*
 
 @MappedSuperclass
-open class BaseIdLocal : BaseTimeEntity() {
+open class BaseIdClient : BaseTimeEntity() {
 
     /**
-     * 纯 local 类型的 id，由客户端进行生成的自增类型，不会被同步到 cloud。
+     * 纯 client 类型的 id，由客户端进行生成的自增类型，不会被同步到 cloud。
      */
     @ClientColumn
     @Id

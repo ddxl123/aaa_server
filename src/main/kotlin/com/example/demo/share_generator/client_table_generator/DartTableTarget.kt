@@ -2,7 +2,7 @@ package com.example.demo.share_generator.client_table_generator
 
 enum class TableType {
     cloud,
-    local,
+    client,
 }
 
 class DartTableTarget(
@@ -23,7 +23,7 @@ class DartTableTarget(
 part of drift_db;
 
 @ReferenceTo([])
-class $tableName extends ${if (tableType == TableType.cloud) "CloudTableBase" else "LocalTableBase"}  {
+class $tableName extends ${if (tableType == TableType.cloud) "CloudTableBase" else "ClientTableBase"}  {
 
   @override
   Set<Column>? get primaryKey => {id};
@@ -38,7 +38,7 @@ ${
                     content += """
   ${clientMemberTarget.typeTarget.dartDriftColumnType.typeName} get ${clientMemberTarget.name} => ${clientMemberTarget.typeTarget.dartDriftInternalType.typeName}()${
                         if (clientMemberTarget.isNullable) ".nullable()" else ""
-                    }${if (tableType == TableType.local && clientMemberTarget.name == "id") ".autoIncrement()" else ""}();
+                    }${if (tableType == TableType.client && clientMemberTarget.name == "id") ".autoIncrement()" else ""}();
 """
                 }
                 return content

@@ -6,6 +6,7 @@ import com.example.demo.controller.dto_vo.RegisterOrLogin
 import com.example.demo.controller.dto_vo.RegisterOrLoginType
 import com.example.demo.controller.exception.DefiniteException
 import com.example.demo.global.routeDoLogin
+import com.example.demo.server_generator.output.toClone
 import com.example.demo.services.UniteService
 import com.example.demo.share_generate_result.dto_vo.RegisterOrLoginDto
 import com.example.demo.share_generate_result.dto_vo.RegisterOrLoginVo
@@ -55,32 +56,32 @@ class RegisterAndLoginController(
             val verifyCode = loginOrRegisterVerifyCodes[registerAndLoginDto.email]
             if (verifyCode == registerAndLoginDto.verify_code) {
                 remove(registerAndLoginDto.email!!)
-                val oldUser = uniteService.queryService.findOneOrNullUserBy(registerAndLoginDto.email!!)
+                val oldUser = uniteService.queryService.findOneOrNullUserBy(registerAndLoginDto.email!!)?.toClone()
                 if (oldUser == null) {
-                    val newUser = uniteService.insertService.insertUser(registerAndLoginDto.email!!)
+                    val newUser = uniteService.insertService.insertUser(registerAndLoginDto.email!!).toClone()
                     StpUtil.login(newUser.id)
-                    newUser.local_token = StpUtil.getTokenValueByLoginId(newUser.id!!)
+                    newUser.client_token = StpUtil.getTokenValueByLoginId(newUser.id)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = true,
                             be_logged_in = true,
                             recent_sync_time = null,
-                            user_entity = newUser,
+                            user_entity = newUser.toEntity(),
                     ))
                 } else {
                     val beLoggedIn = StpUtil.getTokenValueByLoginId(oldUser.id) != null
-                    val serverSyncInfo = uniteService.queryService.findOneOrNullServerSyncInfoBy(oldUser.id!!)
+                    val serverSyncInfo = uniteService.queryService.findOneOrNullServerSyncInfoBy(oldUser.id)?.toClone()
                     if (!beLoggedIn) {
                         StpUtil.login(oldUser.id)
                     }
                     // TODO: 纯客户端的表字段必须默认是非空值，这样的话就不需要每次都对 local_ 类型赋初始值了。
-                    oldUser.local_token = if (beLoggedIn) "" else StpUtil.getTokenValueByLoginId(oldUser.id)
+                    oldUser.client_token = if (beLoggedIn) "" else StpUtil.getTokenValueByLoginId(oldUser.id)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = false,
                             be_logged_in = beLoggedIn,
                             recent_sync_time = serverSyncInfo?.recentSyncTime,
-                            user_entity = oldUser,
+                            user_entity = oldUser.toEntity(),
                     ))
                 }
             } else {

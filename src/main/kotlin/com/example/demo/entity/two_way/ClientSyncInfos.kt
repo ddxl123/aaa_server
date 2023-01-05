@@ -1,16 +1,13 @@
 package com.example.demo.entity.two_way
 
-import com.example.demo.entity.Users
-import com.example.demo.entity.base.BaseIdAutoAssignable
-import com.example.demo.entity.base.BaseIdLocal
+import com.example.demo.entity.base.BaseIdClient
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import java.time.Instant
 import javax.persistence.Column
-import javax.persistence.Entity
 
 @ClientTable
-class ClientSyncInfos : BaseIdLocal() {
+class ClientSyncInfos : BaseIdClient() {
     /**
      * 若客户端与服务端相同，则数据正常。
      *

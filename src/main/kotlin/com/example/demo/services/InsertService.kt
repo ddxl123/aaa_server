@@ -1,11 +1,8 @@
 package com.example.demo.services
 
 import com.example.demo.entity.Users
-import com.example.demo.entity.local.Syncs
-import com.example.demo.entity.unit.Fragments
 import com.example.demo.server_generator.output.Crt
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 
 @Service
@@ -24,7 +21,6 @@ class InsertService(
                 username = "还没有起名字",
                 createdAt = Instant.now(),
                 updatedAt = Instant.now(),
-                local_token = "",
         ))
     }
 }

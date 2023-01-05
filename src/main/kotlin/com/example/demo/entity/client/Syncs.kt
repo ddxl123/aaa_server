@@ -1,6 +1,6 @@
-package com.example.demo.entity.local
+package com.example.demo.entity.client
 
-import com.example.demo.entity.base.BaseIdLocal
+import com.example.demo.entity.base.BaseIdClient
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import javax.persistence.Column
@@ -38,7 +38,7 @@ enum class SyncCurdType {
 }
 
 @ClientTable
-class Syncs : BaseIdLocal() {
+class Syncs : BaseIdClient() {
 
     @ClientColumn
     @Column(nullable = false)
