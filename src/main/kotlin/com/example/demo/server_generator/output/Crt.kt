@@ -5,7 +5,6 @@ import com.example.demo.entity.info.FragmentMemoryInfos
 import com.example.demo.entity.r.RDocument2DocumentGroups
 import com.example.demo.entity.r.RFragment2FragmentGroups
 import com.example.demo.entity.r.RNote2NoteGroups
-import com.example.demo.entity.two_way.ServerSyncInfos
 import com.example.demo.entity.unit.Documents
 import com.example.demo.entity.unit.FragmentTemplates
 import com.example.demo.entity.unit.Fragments
@@ -125,22 +124,6 @@ class Crt {
                     it.noteId = noteId
                     it.createdAt = createdAt
                     it.id = id
-                    it.updatedAt = updatedAt
-
-                }
-            }
-        
-            fun serverSyncInfos(
-                recentSyncTime: java.time.Instant,
-                userId: kotlin.Long,
-                createdAt: java.time.Instant,
-                updatedAt: java.time.Instant,
-
-            ): ServerSyncInfos {
-                return ServerSyncInfos().also {
-                    it.recentSyncTime = recentSyncTime
-                    it.userId = userId
-                    it.createdAt = createdAt
                     it.updatedAt = updatedAt
 
                 }

@@ -3,7 +3,7 @@ package com.example.demo.share_generate_result.dto_vo
 /**
  * [com.example.demo.controller.dto_vo.RegisterOrLogin]
  */
-data class RegisterOrLoginDto(
+class RegisterOrLoginDto(
 
     // 
     var register_or_login_type: com.example.demo.controller.dto_vo.RegisterOrLoginType,
@@ -16,5 +16,8 @@ data class RegisterOrLoginDto(
 
     // 
     var verify_code: kotlin.Int?,
+
+    // 必须带上设备，以便鉴别多设备登录！
+    var device: kotlin.String,
 
 )

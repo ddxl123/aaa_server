@@ -3,7 +3,7 @@ package com.example.demo.share_generator.client_table_generator
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
 import com.example.demo.share_generator.common.scanClasses
-import com.example.demo.share_generator.common.getTypeTarget
+import com.example.demo.share_generator.common.getOrSetTypeTarget
 import org.springframework.util.ClassUtils
 import java.io.File
 import javax.persistence.Column
@@ -164,7 +164,7 @@ ${
                                 }
                                 val cmt = DartMemberTarget(
                                         name = memberProperty.name,
-                                        typeTarget = getTypeTarget(memberProperty.javaField!!.type.kotlin),
+                                        typeTarget = getOrSetTypeTarget(memberProperty.javaField!!.type.kotlin),
                                         isNullable = memberProperty.javaField!!.getDeclaredAnnotationsByType(Column::class.java).firstOrNull()?.nullable
                                                 ?: true,
                                         referenceTos = clientColumnAnnotation.referenceTo.map { ref -> ref.simpleName!! } as ArrayList<String>,

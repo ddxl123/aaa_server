@@ -1,6 +1,5 @@
 package com.example.demo.server_generator.output
 
-
 class UsersClone(
         var age: kotlin.Byte?,
         var client_token: kotlin.String,
@@ -12,7 +11,7 @@ class UsersClone(
         var id: kotlin.Long,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.Users {
         return com.example.demo.entity.Users().also {
             it.age = age
@@ -31,17 +30,17 @@ class UsersClone(
 
 fun com.example.demo.entity.Users.toClone(): UsersClone {
     return UsersClone(
-            age = this.age!!,
+            age = this.age,
             client_token = this.client_token,
-            email = this.email!!,
-            password = this.password!!,
-            phone = this.phone!!,
+            email = this.email,
+            password = this.password,
+            phone = this.phone,
             username = this.username!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class FragmentMemoryInfosClone(
@@ -57,7 +56,7 @@ class FragmentMemoryInfosClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.info.FragmentMemoryInfos {
         return com.example.demo.entity.info.FragmentMemoryInfos().also {
             it.clickTime = clickTime
@@ -78,19 +77,19 @@ class FragmentMemoryInfosClone(
 
 fun com.example.demo.entity.info.FragmentMemoryInfos.toClone(): FragmentMemoryInfosClone {
     return FragmentMemoryInfosClone(
-            clickTime = this.clickTime!!,
-            clickValue = this.clickValue!!,
+            clickTime = this.clickTime,
+            clickValue = this.clickValue,
             creatorUserId = this.creatorUserId!!,
-            currentActualShowTime = this.currentActualShowTime!!,
+            currentActualShowTime = this.currentActualShowTime,
             fragmentId = this.fragmentId!!,
             memoryGroupId = this.memoryGroupId!!,
-            nextPlanShowTime = this.nextPlanShowTime!!,
-            showFamiliarity = this.showFamiliarity!!,
+            nextPlanShowTime = this.nextPlanShowTime,
+            showFamiliarity = this.showFamiliarity,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class RDocument2DocumentGroupsClone(
@@ -101,7 +100,7 @@ class RDocument2DocumentGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.r.RDocument2DocumentGroups {
         return com.example.demo.entity.r.RDocument2DocumentGroups().also {
             it.creatorUserId = creatorUserId
@@ -118,13 +117,13 @@ class RDocument2DocumentGroupsClone(
 fun com.example.demo.entity.r.RDocument2DocumentGroups.toClone(): RDocument2DocumentGroupsClone {
     return RDocument2DocumentGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            documentGroupId = this.documentGroupId!!,
+            documentGroupId = this.documentGroupId,
             documentId = this.documentId!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class RFragment2FragmentGroupsClone(
@@ -135,7 +134,7 @@ class RFragment2FragmentGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.r.RFragment2FragmentGroups {
         return com.example.demo.entity.r.RFragment2FragmentGroups().also {
             it.creatorUserId = creatorUserId
@@ -152,13 +151,13 @@ class RFragment2FragmentGroupsClone(
 fun com.example.demo.entity.r.RFragment2FragmentGroups.toClone(): RFragment2FragmentGroupsClone {
     return RFragment2FragmentGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            fragmentGroupId = this.fragmentGroupId!!,
+            fragmentGroupId = this.fragmentGroupId,
             fragmentId = this.fragmentId!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class RNote2NoteGroupsClone(
@@ -169,7 +168,7 @@ class RNote2NoteGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.r.RNote2NoteGroups {
         return com.example.demo.entity.r.RNote2NoteGroups().also {
             it.creatorUserId = creatorUserId
@@ -186,13 +185,13 @@ class RNote2NoteGroupsClone(
 fun com.example.demo.entity.r.RNote2NoteGroups.toClone(): RNote2NoteGroupsClone {
     return RNote2NoteGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            noteGroupId = this.noteGroupId!!,
+            noteGroupId = this.noteGroupId,
             noteId = this.noteId!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class Test2sClone(
@@ -201,7 +200,7 @@ class Test2sClone(
         var id: kotlin.Long,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.test.Test2s {
         return com.example.demo.entity.test.Test2s().also {
             it.client_content = client_content
@@ -220,7 +219,7 @@ fun com.example.demo.entity.test.Test2s.toClone(): Test2sClone {
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class TestsClone(
@@ -229,7 +228,7 @@ class TestsClone(
         var id: kotlin.Long,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.test.Tests {
         return com.example.demo.entity.test.Tests().also {
             it.client_content = client_content
@@ -248,38 +247,7 @@ fun com.example.demo.entity.test.Tests.toClone(): TestsClone {
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
-}
-
-class ServerSyncInfosClone(
-        var recentSyncTime: java.time.Instant,
-        var userId: kotlin.Long,
-        var createdAt: java.time.Instant,
-        var id: kotlin.Long,
-        var updatedAt: java.time.Instant,
-
-) {
-    fun toEntity(): com.example.demo.entity.two_way.ServerSyncInfos {
-        return com.example.demo.entity.two_way.ServerSyncInfos().also {
-            it.recentSyncTime = recentSyncTime
-            it.userId = userId
-            it.createdAt = createdAt
-            it.id = id
-            it.updatedAt = updatedAt
-
-        }
-    }
-}
-
-fun com.example.demo.entity.two_way.ServerSyncInfos.toClone(): ServerSyncInfosClone {
-    return ServerSyncInfosClone(
-            recentSyncTime = this.recentSyncTime!!,
-            userId = this.userId!!,
-            createdAt = this.createdAt!!,
-            id = this.id!!,
-            updatedAt = this.updatedAt!!,
-
-    )
+            )
 }
 
 class DocumentsClone(
@@ -289,7 +257,7 @@ class DocumentsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.Documents {
         return com.example.demo.entity.unit.Documents().also {
             it.content = content
@@ -310,7 +278,7 @@ fun com.example.demo.entity.unit.Documents.toClone(): DocumentsClone {
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class FragmentTemplatesClone(
@@ -321,7 +289,7 @@ class FragmentTemplatesClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.FragmentTemplates {
         return com.example.demo.entity.unit.FragmentTemplates().also {
             it.content = content
@@ -344,7 +312,7 @@ fun com.example.demo.entity.unit.FragmentTemplates.toClone(): FragmentTemplatesC
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class FragmentsClone(
@@ -359,7 +327,7 @@ class FragmentsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.Fragments {
         return com.example.demo.entity.unit.Fragments().also {
             it.client_be_Selected = client_be_Selected
@@ -382,15 +350,15 @@ fun com.example.demo.entity.unit.Fragments.toClone(): FragmentsClone {
             client_be_Selected = this.client_be_Selected,
             content = this.content!!,
             creatorUserId = this.creatorUserId!!,
-            fatherFragmentId = this.fatherFragmentId!!,
-            fragmentTemplateId = this.fragmentTemplateId!!,
-            noteId = this.noteId!!,
+            fatherFragmentId = this.fatherFragmentId,
+            fragmentTemplateId = this.fragmentTemplateId,
+            noteId = this.noteId,
             title = this.title!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class MemoryGroupsClone(
@@ -406,7 +374,7 @@ class MemoryGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.MemoryGroups {
         return com.example.demo.entity.unit.MemoryGroups().also {
             it.creatorUserId = creatorUserId
@@ -428,18 +396,18 @@ class MemoryGroupsClone(
 fun com.example.demo.entity.unit.MemoryGroups.toClone(): MemoryGroupsClone {
     return MemoryGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            memoryModelId = this.memoryModelId!!,
+            memoryModelId = this.memoryModelId,
             newDisplayOrder = this.newDisplayOrder!!,
             newReviewDisplayOrder = this.newReviewDisplayOrder!!,
             reviewInterval = this.reviewInterval!!,
-            startTime = this.startTime!!,
+            startTime = this.startTime,
             title = this.title!!,
             willNewLearnCount = this.willNewLearnCount!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class MemoryModelsClone(
@@ -453,7 +421,7 @@ class MemoryModelsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.MemoryModels {
         return com.example.demo.entity.unit.MemoryModels().also {
             it.buttonAlgorithm = buttonAlgorithm
@@ -475,14 +443,14 @@ fun com.example.demo.entity.unit.MemoryModels.toClone(): MemoryModelsClone {
             buttonAlgorithm = this.buttonAlgorithm!!,
             creatorUserId = this.creatorUserId!!,
             familiarityAlgorithm = this.familiarityAlgorithm!!,
-            fatherMemoryModelId = this.fatherMemoryModelId!!,
+            fatherMemoryModelId = this.fatherMemoryModelId,
             nextTimeAlgorithm = this.nextTimeAlgorithm!!,
             title = this.title!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class NotesClone(
@@ -494,7 +462,7 @@ class NotesClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit.Notes {
         return com.example.demo.entity.unit.Notes().also {
             it.content = content
@@ -513,13 +481,13 @@ fun com.example.demo.entity.unit.Notes.toClone(): NotesClone {
     return NotesClone(
             content = this.content!!,
             creatorUserId = this.creatorUserId!!,
-            documentId = this.documentId!!,
-            fatherNoteId = this.fatherNoteId!!,
+            documentId = this.documentId,
+            fatherNoteId = this.fatherNoteId,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class DocumentGroupsClone(
@@ -530,7 +498,7 @@ class DocumentGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit_group.DocumentGroups {
         return com.example.demo.entity.unit_group.DocumentGroups().also {
             it.creatorUserId = creatorUserId
@@ -547,13 +515,13 @@ class DocumentGroupsClone(
 fun com.example.demo.entity.unit_group.DocumentGroups.toClone(): DocumentGroupsClone {
     return DocumentGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            fatherDocumentGroupsId = this.fatherDocumentGroupsId!!,
+            fatherDocumentGroupsId = this.fatherDocumentGroupsId,
             title = this.title!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class FragmentGroupsClone(
@@ -565,7 +533,7 @@ class FragmentGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit_group.FragmentGroups {
         return com.example.demo.entity.unit_group.FragmentGroups().also {
             it.client_be_Selected = client_be_Selected
@@ -584,13 +552,13 @@ fun com.example.demo.entity.unit_group.FragmentGroups.toClone(): FragmentGroupsC
     return FragmentGroupsClone(
             client_be_Selected = this.client_be_Selected,
             creatorUserId = this.creatorUserId!!,
-            fatherFragmentGroupsId = this.fatherFragmentGroupsId!!,
+            fatherFragmentGroupsId = this.fatherFragmentGroupsId,
             title = this.title!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }
 
 class NoteGroupsClone(
@@ -601,7 +569,7 @@ class NoteGroupsClone(
         var id: kotlin.String,
         var updatedAt: java.time.Instant,
 
-) {
+        ) {
     fun toEntity(): com.example.demo.entity.unit_group.NoteGroups {
         return com.example.demo.entity.unit_group.NoteGroups().also {
             it.creatorUserId = creatorUserId
@@ -618,11 +586,11 @@ class NoteGroupsClone(
 fun com.example.demo.entity.unit_group.NoteGroups.toClone(): NoteGroupsClone {
     return NoteGroupsClone(
             creatorUserId = this.creatorUserId!!,
-            fatherNoteGroupsId = this.fatherNoteGroupsId!!,
+            fatherNoteGroupsId = this.fatherNoteGroupsId,
             title = this.title!!,
             createdAt = this.createdAt!!,
             id = this.id!!,
             updatedAt = this.updatedAt!!,
 
-    )
+            )
 }

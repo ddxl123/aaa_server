@@ -117,6 +117,7 @@ part 'OtherResponseCode.dart';
 
 part 'HttperException.dart';
 
+part 'share_generate_result/bo/bo.dart';
 ${
                 fun(): String {
                     var content = ""

@@ -1,11 +1,14 @@
 package com.example.demo.share_generator.common
 
 import com.example.demo.entity.base.BaseEntity
+import com.example.demo.share_generator.dto_vo_generator.annotation.Bo
+import java.lang.reflect.ParameterizedType
 import java.time.Instant
 import kotlin.reflect.KClass
-import kotlin.reflect.full.allSuperclasses
-import kotlin.reflect.full.isSuperclassOf
-import kotlin.reflect.full.superclasses
+import kotlin.reflect.full.*
+import kotlin.reflect.jvm.internal.impl.load.kotlin.KotlinClassFinder.Result.KotlinClass
+import kotlin.reflect.jvm.javaType
+import kotlin.reflect.jvm.jvmName
 
 class TypeWithImport(
         val typeName: String,
@@ -27,7 +30,10 @@ class TypeTarget(
     }
 }
 
-fun getTypeTarget(kClass: KClass<*>): TypeTarget {
+/**
+ * [isElementForceNullable] 只对 [kClass] 类型为 Array 时有效。
+ */
+fun getOrSetTypeTarget(kClass: KClass<*>, isElementForceNullable: Boolean? = null): TypeTarget {
     for (typeTarget in typeSet) {
         if (typeTarget.kClass == kClass) {
             return typeTarget
@@ -43,10 +49,33 @@ fun getTypeTarget(kClass: KClass<*>): TypeTarget {
         typeSet.add(newTypeTarget)
         return newTypeTarget
     }
-    if (kClass.allSuperclasses.contains(BaseEntity::class)) {
+    if (kClass.isSubclassOf(BaseEntity::class)) {
         val newTypeTarget = TypeTarget(
                 kClass = kClass,
                 dartType = TypeWithImport(typeName = kClass.simpleName!!.removeSuffix("s"), import = ""),
+                dartDriftColumnType = TypeWithImport(typeName = "", import = ""),
+                dartDriftInternalType = TypeWithImport(typeName = "", import = ""),
+        )
+        typeSet.add(newTypeTarget)
+        return newTypeTarget
+    }
+    if (kClass.hasAnnotation<Bo>()) {
+        val newTypeTarget = TypeTarget(
+                kClass = kClass,
+                dartType = TypeWithImport(typeName = kClass.simpleName!!, import = ""),
+                dartDriftColumnType = TypeWithImport(typeName = "", import = ""),
+                dartDriftInternalType = TypeWithImport(typeName = "", import = ""),
+        )
+        typeSet.add(newTypeTarget)
+        return newTypeTarget
+    }
+    if (kClass.qualifiedName == "kotlin.Array") {
+        val newTypeTarget = TypeTarget(
+                kClass = kClass,
+                dartType = TypeWithImport(
+                        typeName = "List<${kClass.java.componentType.simpleName}${if (isElementForceNullable!!) "?" else ""}>",
+                        import = "",
+                ),
                 dartDriftColumnType = TypeWithImport(typeName = "", import = ""),
                 dartDriftInternalType = TypeWithImport(typeName = "", import = ""),
         )

@@ -1,6 +1,7 @@
 package com.example.demo.share_generator.dto_vo_generator
 
 fun dtoVoGeneratorRun(kotlinPackageName: String, kotlinGeneratorRootPath: String, dartCommonLib: String, dartShareEnumImport: String) {
+    boGenerator()
     DtoVoGenerator.run(
             kotlinPackageName = kotlinPackageName,
             kotlinGeneratorRootPath = kotlinGeneratorRootPath,

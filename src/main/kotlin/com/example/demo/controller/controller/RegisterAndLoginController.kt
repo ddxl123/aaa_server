@@ -2,6 +2,7 @@ package com.example.demo.controller.controller
 
 import cn.dev33.satoken.stp.StpUtil
 import com.example.demo.controller.ResponseWrapper
+import com.example.demo.controller.dto_vo.DeviceAndTokenBo
 import com.example.demo.controller.dto_vo.RegisterOrLogin
 import com.example.demo.controller.dto_vo.RegisterOrLoginType
 import com.example.demo.controller.exception.DefiniteException
@@ -59,29 +60,30 @@ class RegisterAndLoginController(
                 val oldUser = uniteService.queryService.findOneOrNullUserBy(registerAndLoginDto.email!!)?.toClone()
                 if (oldUser == null) {
                     val newUser = uniteService.insertService.insertUser(registerAndLoginDto.email!!).toClone()
-                    StpUtil.login(newUser.id)
-                    newUser.client_token = StpUtil.getTokenValueByLoginId(newUser.id)
+                    // 如果数据库的用户被清除，则实际为未登录，但可能 redis 中的该用户多个设备已登录的数据仍然存在，因此需要登出一下。
+                    // 登出的是全部设备。
+                    StpUtil.logout(newUser.id, null)
+                    // 登录的是当前设备。
+                    StpUtil.login(newUser.id, registerAndLoginDto.device)
+                    newUser.client_token = StpUtil.getTokenValueByLoginId(newUser.id, registerAndLoginDto.device)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = true,
-                            be_logged_in = true,
-                            recent_sync_time = null,
+                            // 其实这里的 be_exist_logged_in 不重要，因为是注册状态。
+                            be_exist_logged_in = false,
                             user_entity = newUser.toEntity(),
+                            // 注册状态的 token 放到 newUser 中。
+                            device_and_token_bo_list = null
                     ))
                 } else {
-                    val beLoggedIn = StpUtil.getTokenValueByLoginId(oldUser.id) != null
-                    val serverSyncInfo = uniteService.queryService.findOneOrNullServerSyncInfoBy(oldUser.id)?.toClone()
-                    if (!beLoggedIn) {
-                        StpUtil.login(oldUser.id)
-                    }
-                    // TODO: 纯客户端的表字段必须默认是非空值，这样的话就不需要每次都对 local_ 类型赋初始值了。
-                    oldUser.client_token = if (beLoggedIn) "" else StpUtil.getTokenValueByLoginId(oldUser.id)
+                    StpUtil.login(oldUser.id, registerAndLoginDto.device)
+                    val userSession = StpUtil.getSessionByLoginId(oldUser.id).tokenSignList.map { DeviceAndTokenBo(device = it.device, token = it.value) }
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = false,
-                            be_logged_in = beLoggedIn,
-                            recent_sync_time = serverSyncInfo?.recentSyncTime,
+                            be_exist_logged_in = false,
                             user_entity = oldUser.toEntity(),
+                            device_and_token_bo_list = userSession.toTypedArray()
                     ))
                 }
             } else {

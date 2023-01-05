@@ -87,7 +87,7 @@ package ${DtoVoGenerator.kotlinPackageName}.${(DtoVoGenerator.shareMainPath + ko
 /**
  * [${targetClass.name}]
  */
-data class ${classNameWithType}(
+class ${classNameWithType}(
 ${
             fun(): String {
                 val fts = when (targetClassType) {

@@ -1,7 +1,6 @@
 package com.example.demo.share_generator.route_generator
 
 import com.example.demo.share_generator.common.scanClasses
-import com.example.demo.share_generator.dto_vo_generator.annotation.DtoVo
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping

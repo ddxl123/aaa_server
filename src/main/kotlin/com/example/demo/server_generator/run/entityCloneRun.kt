@@ -46,12 +46,12 @@ fun entityCloneContent(): String {
 
             toEntityContent += "            it.${m.name} = ${m.name}\n"
 
-            toCloneContent += "            ${m.name} = this.${m.name}${if (isOnlyClient) "" else "!!"},\n"
+            toCloneContent += "            ${m.name} = this.${m.name}${if (isOnlyClient) "" else (if (isNullable) "" else "!!")},\n"
         }
         bodyContent += """
 class ${ce.kClass.simpleName}Clone(
 $constructorContent
-) {
+        ) {
     fun toEntity(): ${ce.kClass.qualifiedName} {
         return ${ce.kClass.qualifiedName}().also {
 $toEntityContent
@@ -62,9 +62,9 @@ $toEntityContent
 fun ${ce.kClass.qualifiedName}.toClone(): ${ce.kClass.simpleName}Clone {
     return ${ce.kClass.simpleName}Clone(
 $toCloneContent
-    )
+            )
 }
 """
     }
-    return "package com.example.demo.server_generator.output\n\n$bodyContent"
+    return "package com.example.demo.server_generator.output\n$bodyContent"
 }

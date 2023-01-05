@@ -10,7 +10,6 @@ class SimpleService(
         val rNote2NoteGroupsRepository: com.example.demo.entity.r.RNote2NoteGroupsRepository,
         val test2sRepository: com.example.demo.entity.test.Test2sRepository,
         val testsRepository: com.example.demo.entity.test.TestsRepository,
-        val serverSyncInfosRepository: com.example.demo.entity.two_way.ServerSyncInfosRepository,
         val documentsRepository: com.example.demo.entity.unit.DocumentsRepository,
         val fragmentTemplatesRepository: com.example.demo.entity.unit.FragmentTemplatesRepository,
         val fragmentsRepository: com.example.demo.entity.unit.FragmentsRepository,

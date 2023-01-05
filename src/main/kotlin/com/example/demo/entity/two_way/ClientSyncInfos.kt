@@ -9,6 +9,8 @@ import javax.persistence.Column
 @ClientTable
 class ClientSyncInfos : BaseIdClient() {
     /**
+     * 相对应的服务端存储在 Sa-Token 的对应的 token-session 中。
+     *
      * 若客户端与服务端相同，则数据正常。
      *
      * 若客户端A存储的时间比服务端存储的时间靠前，说明用户在其他客户端B被同步，客户端A需要检测并下载，
