@@ -90,7 +90,7 @@ part 'dao/query/GeneralQueryDAO.dart';
 
 part 'dao/insert/InsertDAO.dart';
 
-part 'dao/insert/RawInsertDAO.dart';
+part 'dao/RawDAO.dart';
 
 part 'dao/UpdateDAO.dart';
 

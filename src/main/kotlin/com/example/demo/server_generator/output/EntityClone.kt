@@ -2,7 +2,6 @@ package com.example.demo.server_generator.output
 
 class UsersClone(
         var age: kotlin.Byte?,
-        var client_token: kotlin.String,
         var email: kotlin.String?,
         var password: kotlin.String?,
         var phone: kotlin.String?,
@@ -15,7 +14,6 @@ class UsersClone(
     fun toEntity(): com.example.demo.entity.Users {
         return com.example.demo.entity.Users().also {
             it.age = age
-            it.client_token = client_token
             it.email = email
             it.password = password
             it.phone = phone
@@ -31,7 +29,6 @@ class UsersClone(
 fun com.example.demo.entity.Users.toClone(): UsersClone {
     return UsersClone(
             age = this.age,
-            client_token = this.client_token,
             email = this.email,
             password = this.password,
             phone = this.phone,

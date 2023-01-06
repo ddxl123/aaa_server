@@ -11,11 +11,6 @@ import kotlin.jvm.Transient
 @Entity
 class Users : BaseIdAutoAssignable() {
 
-    @Transient
-    @ClientColumn(isOnlyClient = true)
-    @Column(nullable = false)
-    var client_token: String = ""
-
     @ClientColumn
     @Column(nullable = false, length = 20)
     var username: String? = null

@@ -64,26 +64,26 @@ class RegisterAndLoginController(
                     // 登出的是全部设备。
                     StpUtil.logout(newUser.id, null)
                     // 登录的是当前设备。
-                    StpUtil.login(newUser.id, registerAndLoginDto.device)
-                    newUser.client_token = StpUtil.getTokenValueByLoginId(newUser.id, registerAndLoginDto.device)
+                    StpUtil.login(newUser.id, registerAndLoginDto.device_info!!)
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = true,
-                            // 其实这里的 be_exist_logged_in 不重要，因为是注册状态。
-                            be_exist_logged_in = false,
                             user_entity = newUser.toEntity(),
-                            // 注册状态的 token 放到 newUser 中。
+                            device_and_token_bo = DeviceAndTokenBo(
+                                    deviceInfo = registerAndLoginDto.device_info!!,
+                                    token = StpUtil.getTokenValueByLoginId(newUser.id, registerAndLoginDto.device_info!!)!!,
+                            ),
                             device_and_token_bo_list = null
                     ))
                 } else {
-                    StpUtil.login(oldUser.id, registerAndLoginDto.device)
-                    val userSession = StpUtil.getSessionByLoginId(oldUser.id).tokenSignList.map { DeviceAndTokenBo(device = it.device, token = it.value) }
+                    StpUtil.login(oldUser.id, registerAndLoginDto.device_info!!)
+                    val userSession = StpUtil.getSessionByLoginId(oldUser.id).tokenSignList.map { DeviceAndTokenBo(deviceInfo = it.device, token = it.value) }
                     return RegisterOrLogin.code102.toResponseWrapper(RegisterOrLoginVo(
                             register_or_login_type = RegisterOrLoginType.email_verify,
                             be_new_user = false,
-                            be_exist_logged_in = false,
                             user_entity = oldUser.toEntity(),
-                            device_and_token_bo_list = userSession.toTypedArray()
+                            device_and_token_bo = userSession.last(),
+                            device_and_token_bo_list = userSession.toMutableList().apply { removeLast() }.toTypedArray()
                     ))
                 }
             } else {

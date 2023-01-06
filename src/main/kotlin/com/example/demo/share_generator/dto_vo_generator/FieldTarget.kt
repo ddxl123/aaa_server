@@ -6,6 +6,7 @@ import com.example.demo.share_generator.common.typeSet
 import javax.persistence.Column
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.KProperty1
 import kotlin.reflect.jvm.javaField
 import kotlin.reflect.jvm.jvmName
 
@@ -22,7 +23,7 @@ class FieldTarget<out T, out V> {
      * [explain] 当前变量的注释。
      */
     constructor(
-            fieldTargetObj: KMutableProperty1<T, V>,
+            fieldTargetObj: KProperty1<T, V>,
             isForceNullable: Boolean? = null,
             explain: String = ""
     ) {

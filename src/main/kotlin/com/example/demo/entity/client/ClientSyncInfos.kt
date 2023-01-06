@@ -1,5 +1,7 @@
-package com.example.demo.entity.two_way
+package com.example.demo.entity.client
 
+import cn.dev33.satoken.stp.StpUtil
+import com.example.demo.entity.Users
 import com.example.demo.entity.base.BaseIdClient
 import com.example.demo.share_generator.client_table_generator.annotation.ClientColumn
 import com.example.demo.share_generator.client_table_generator.annotation.ClientTable
@@ -22,6 +24,21 @@ class ClientSyncInfos : BaseIdClient() {
      * 若客户端没有存储的时间，则直接下载。
      */
     @ClientColumn
-    @Column(nullable = false)
+    @Column(nullable = true)
     var recentSyncTime: Instant? = null
+
+    /**
+     * 该客户端数据库的唯一识别码。
+     *
+     * 每次登录都需要提供 [deviceInfo] 给 [StpUtil.login] 两个参数: userId - [Users.id] 和 device - [deviceInfo],
+     * 以便解决同类型设备多开应用问题。
+     */
+    @ClientColumn
+    @Column(nullable = false)
+    var deviceInfo: String? = null
+
+
+    @ClientColumn
+    @Column(nullable = true)
+    var token: String? = null
 }

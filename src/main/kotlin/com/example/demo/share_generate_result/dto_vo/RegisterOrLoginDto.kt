@@ -17,7 +17,7 @@ class RegisterOrLoginDto(
     // 
     var verify_code: kotlin.Int?,
 
-    // 必须带上设备，以便鉴别多设备登录！
-    var device: kotlin.String,
+    // 验证验证码成功后，必须带上设备数据进行登录/注册，以便鉴别多设备登录！
+    var device_info: kotlin.String?,
 
 )
