@@ -1,9 +1,9 @@
 
 package com.example.demo.share_generate_result.dto_vo
 /**
- * [com.example.demo.controller.dto_vo.RegisterOrLogin]
+ * [com.example.demo.controller.dto_vo.SendOrVerify]
  */
-class RegisterOrLoginVo(
+class SendOrVerifyVo(
 
     // 
     var register_or_login_type: com.example.demo.controller.dto_vo.RegisterOrLoginType,
@@ -15,7 +15,7 @@ class RegisterOrLoginVo(
     var user_entity: com.example.demo.entity.Users?,
 
     // 当前登录/注册状态时的数据
-    var device_and_token_bo: com.example.demo.controller.dto_vo.DeviceAndTokenBo,
+    var current_device_and_token_bo: com.example.demo.controller.dto_vo.DeviceAndTokenBo,
 
     // 注册状态时，当前会话产生的 token 放到 ClientSyncInfos.token 中, 登录状态时，全部的 token 放到这里（不包含当前会话产生的 token）
     var device_and_token_bo_list: kotlin.Array<com.example.demo.controller.dto_vo.DeviceAndTokenBo>?,

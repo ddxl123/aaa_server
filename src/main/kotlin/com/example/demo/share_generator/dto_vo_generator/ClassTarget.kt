@@ -59,6 +59,7 @@ class ClassTarget(
         var hasVo = false
         for (declaredField in targetClass.declaredFields) {
             declaredField.isAccessible = true
+            // 如果这里抛出异常，则可能 companion.object 中不存在 codeMessage。
             val cm = declaredField.get(null)
             if (cm is CodeMessage) {
                 codeMessages.add(cm)
@@ -73,10 +74,10 @@ class ClassTarget(
             }
         }
         if (!hasDto) {
-            throw Exception("缺少名为 dtos 的字段")
+            throw Exception("缺少名为 dtos 的字段\n${targetClass.kotlin.qualifiedName}")
         }
         if (!hasVo) {
-            throw Exception("缺少名为 vos 的字段")
+            throw Exception("缺少名为 vos 的字段\n${targetClass.kotlin.qualifiedName}")
         }
     }
 
@@ -163,7 +164,7 @@ ${
   int? code;
 
   @JsonKey(ignore: true)
-  HttperMessage? httperMessage;
+  HttperException? httperException;
   
   @JsonKey(ignore: true)
   StackTrace? st;
@@ -174,19 +175,21 @@ ${
   /// 内部抛出的异常将在 [otherException] 中捕获。
   Future<T> handleCode<T>({
     // code 为 null 时的异常（request 函数内部捕获到的异常）
-    required Future<T> Function(int? code, HttperMessage httperException, StackTrace st) otherException,
+    required Future<T> Function(int? code, HttperException httperException, StackTrace st) otherException,
 ${
                     fun(): String {
                         var content = ""
                         codeMessages.forEach {
                             content += if (it.isRequiredData) {
                                 """
-    // ${it.message}
+    // message: ${it.message}
+    // explain: ${it.explain}
     required Future<T> Function(String showMessage, ${className + TargetClassType.Vo.name} vo) code${it.code},
     """
                             } else {
                                 """
-    // ${it.message}
+    // message: ${it.message}
+    // explain: ${it.explain}
     required Future<T> Function(String showMessage) code${it.code},
     """
                             }
@@ -202,11 +205,11 @@ ${
                         codeMessages.forEach {
                             content += if (it.isRequiredData) {
                                 """
-        if (code == ${it.code}) return await code${it.code}(httperMessage!.showMessage, vo!);
+        if (code == ${it.code}) return await code${it.code}(httperException!.showMessage, vo!);
 """
                             } else {
                                 """
-        if (code == ${it.code}) return await code${it.code}(httperMessage!.showMessage);
+        if (code == ${it.code}) return await code${it.code}(httperException!.showMessage);
 """
                             }
                         }
@@ -214,15 +217,15 @@ ${
                     }()
                 }
     } catch (e, st) {
-      if (e is HttperMessage) {
+      if (e is HttperException) {
         return await otherException(code, e, st);
       }
-      return await otherException(code, HttperMessage(showMessage: '请求异常！', debugMessage: e.toString()), st);
+      return await otherException(code, HttperException(showMessage: '请求异常！', debugMessage: e.toString()), st);
     }
     if (code != null) {
-      return await otherException(code, HttperMessage(showMessage: '请求异常！', debugMessage: '响应码 ${"\$code"} 未处理！'), st!);
+      return await otherException(code, HttperException(showMessage: '请求异常！', debugMessage: '响应码 ${"\$code"} 未处理！'), st!);
     }
-    return await otherException(code, httperMessage!, st!);
+    return await otherException(code, httperException!, st!);
   }"""
             } else ""
         }

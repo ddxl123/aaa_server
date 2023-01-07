@@ -1,9 +1,9 @@
 
 package com.example.demo.share_generate_result.dto_vo
 /**
- * [com.example.demo.controller.dto_vo.RegisterOrLogin]
+ * [com.example.demo.controller.dto_vo.SendOrVerify]
  */
-class RegisterOrLoginDto(
+class SendOrVerifyDto(
 
     // 
     var register_or_login_type: com.example.demo.controller.dto_vo.RegisterOrLoginType,
