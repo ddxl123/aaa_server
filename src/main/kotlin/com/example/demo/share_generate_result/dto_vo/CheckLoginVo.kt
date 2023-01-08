@@ -5,7 +5,7 @@ package com.example.demo.share_generate_result.dto_vo
  */
 class CheckLoginVo(
 
-    // 
-    var ok: kotlin.Boolean,
+    // 填充字段
+    var vo_padding: kotlin.Boolean?,
 
 )

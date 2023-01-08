@@ -87,3 +87,12 @@ inline fun <reified T : Any> KClass<T>.toListFieldTarget(
             explain = explain
     )
 }
+
+fun paddingFieldTarget(): FieldTarget<Any, Any> {
+    return FieldTarget(
+            fieldName = "padding",
+            kotlinType = Boolean::class,
+            isForceNullable = true,
+            explain = "填充字段"
+    )
+}

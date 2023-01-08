@@ -1,6 +1,7 @@
 package com.example.demo.share_generator.dto_vo_generator
 
 import com.example.demo.controller.CodeMessage
+import kotlin.reflect.jvm.kotlinProperty
 
 enum class TargetClassType {
     Dto,
@@ -59,25 +60,54 @@ class ClassTarget(
         var hasVo = false
         for (declaredField in targetClass.declaredFields) {
             declaredField.isAccessible = true
-            // 如果这里抛出异常，则可能 companion.object 中不存在 codeMessage。
-            val cm = declaredField.get(null)
-            if (cm is CodeMessage) {
-                codeMessages.add(cm)
-            }
-            if (declaredField.name == TargetClassType.Dto.name.lowercase() + "s") {
-                hasDto = true
-                dtoFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
-            }
-            if (declaredField.name == TargetClassType.Vo.name.lowercase() + "s") {
-                hasVo = true
-                voFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
+            if (declaredField.kotlinProperty == null) {
+                // 如果这里抛出异常，则可能 companion.object 中不存在 codeMessage。
+                val cm = declaredField.get(null)
+                if (cm is CodeMessage) {
+                    codeMessages.add(cm)
+                }
+            } else {
+                val cm = declaredField.get(targetClass.getDeclaredConstructor().newInstance())
+                if (declaredField.name == TargetClassType.Dto.name.lowercase() + "s") {
+                    hasDto = true
+                    dtoFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
+                }
+                if (declaredField.name == TargetClassType.Vo.name.lowercase() + "s") {
+                    hasVo = true
+                    voFieldTargets.addAll((cm as ArrayList<*>).map { it as FieldTarget<*, *> })
+                }
             }
         }
         if (!hasDto) {
-            throw Exception("缺少名为 dtos 的字段\n${targetClass.kotlin.qualifiedName}")
+            throw Exception("缺少名为 dtos 的字段\n${targetClass.kotlin.qualifiedName}\n" +
+                    "尽可能让一对 Dto-Vo 充分发挥作用，不能让其过于单一，否则将会日积月累的叠加大量的简单 Dto-Vo对。")
         }
         if (!hasVo) {
-            throw Exception("缺少名为 vos 的字段\n${targetClass.kotlin.qualifiedName}")
+            throw Exception("缺少名为 vos 的字段\n${targetClass.kotlin.qualifiedName}\n" +
+                    "该 vos 字段是必需的，因为 Dart 中，如果字段由不存在变为存在，那么 Dart 对 XXX.fromJson 的引用需要手动由 null 改为 XXX.fromJson，" +
+                    "vos 字段是必需的，这将让 Dart 端对 XXX.fromJson 的引用无需作出改变，降低维护的繁琐性。")
+        }
+        if (targetClassType == TargetClassType.Dto) {
+            val all = arrayListOf(Int::class, Float::class, Long::class, Boolean::class, String::class)
+            val result = dtoFieldTargets.map { it.typeTarget.kClass.qualifiedName }.joinToString("").contains(Regex(all.joinToString("|") { "(${it.qualifiedName})" }))
+
+            if (!result) {
+                dtoFieldTargets.add(FieldTarget<Any, Any>("dto_padding", Boolean::class, isForceNullable = true, explain = "填充字段"))
+                println("--- 已自动添加填充字段：dto_padding\n" +
+                        "|   dtos 数组必需至少包含一个基本数据类型的元素！\n" +
+                        "|   否则 controller 在接收 Dto 对象时，会报 InvalidDefinitionException 异常！\n" +
+                        "--- ${targetClass.name}.dtos"
+                )
+            }
+        }
+        if (targetClassType == TargetClassType.Vo) {
+            if (voFieldTargets.isEmpty()) {
+                voFieldTargets.add(FieldTarget<Any, Any>("vo_padding", Boolean::class, isForceNullable = true, explain = "填充字段"))
+                println("--- 已自动添加填充字段：vo_padding\n" +
+                        "|   vos 数组必需至少包含一个元素！\n" +
+                        "--- ${targetClass.name}.vos"
+                )
+            }
         }
     }
 
